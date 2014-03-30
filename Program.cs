@@ -11,6 +11,7 @@ namespace SpaceBagel
 			{
 				//Console.WriteLine("test");
 				Keyboard keyboard = new Keyboard();
+				Mouse mouse = new Mouse();
 
 				/*List<Key.KeyCode> allKeysDown = new List<Key.KeyCode>();
 
@@ -21,9 +22,11 @@ namespace SpaceBagel
 					Console.Write(keyCode.ToString() + ", ");
 				}*/
 
-				Console.WriteLine(keyboard.IsKeyDown(Key.KeyCode.Space));
+				//Console.WriteLine(keyboard.IsKeyDown(Key.KeyCode.Space));
 
-				Console.WriteLine("end");
+				Console.WriteLine(mouse.GetMousePosition());
+
+				//Console.WriteLine("end");
 			}
 		}
 	}
