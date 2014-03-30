@@ -149,13 +149,5 @@
     <None Include="libosx\libsfml-window.2.0.dylib">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="sfmlnet-audio-2.dll.config" />
-    <None Include="sfmlnet-graphics-2.dll.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="sfmlnet-window-2.dll.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="app.config" />
   </ItemGroup>
 </Project>
