@@ -2,7 +2,7 @@
 /Users/josdento/SB/SpaceBagel/bin/Debug/sfmlnet-window-2.dll
 /Users/josdento/SB/SpaceBagel/bin/Debug/sfmlnet-graphics-2.dll
 /Users/josdento/SB/SpaceBagel/bin/Debug/sfmlnet-audio-2.dll
-/Users/josdento/SB/SpaceBagel/bin/Debug/OpenTK.dll
+/Users/josdento/SB/SpaceBagel/bin/Debug/Tao.OpenGl.dll
 /Users/josdento/SB/SpaceBagel/bin/Debug/libosx/libcsfml-audio.2.0.dylib
 /Users/josdento/SB/SpaceBagel/bin/Debug/libosx/libcsfml-graphics.2.0.dylib
 /Users/josdento/SB/SpaceBagel/bin/Debug/libosx/libcsfml-system.2.0.dylib
@@ -19,4 +19,3 @@
 /Users/josdento/SB/SpaceBagel/bin/Debug/SpaceBagel.exe
 /Users/josdento/SB/SpaceBagel/obj/x86/Debug/SpaceBagel.exe
 /Users/josdento/SB/SpaceBagel/obj/x86/Debug/SpaceBagel.exe.mdb
-/Users/josdento/SB/SpaceBagel/bin/Debug/Tao.OpenGl.dll

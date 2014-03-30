@@ -5,7 +5,7 @@ using SFML.Window;
 using Tao.OpenGl;
 
 
-namespace window
+namespace SpaceBagel
 {
 	static class Program
 	{
@@ -17,6 +17,10 @@ namespace window
 			// Request a 32-bits depth buffer when creating the window
 			ContextSettings contextSettings = new ContextSettings();
 			contextSettings.DepthBits = 32;
+
+			//Console.WriteLine("test");
+			Keyboard keyboard = new Keyboard();
+			Mouse mouse = new Mouse();
 
 			// Create the main window
 			Window window = new Window(new VideoMode(640, 480), "SFML window with OpenGL", Styles.Default, contextSettings);
@@ -89,10 +93,6 @@ namespace window
 				50, -50, -50,  1, 0, 1, 1,
 				50,  50, -50,  1, 0, 1, 1,
 
-				//Console.WriteLine("test");
-				Keyboard keyboard = new Keyboard();
-				Mouse mouse = new Mouse();
-
 				-50, -50,  50,  1, 1, 0, 1,
 				50, -50,  50,  1, 1, 0, 1,
 				-50,  50,  50,  1, 1, 0, 1,
@@ -112,15 +112,16 @@ namespace window
 			Gl.glDisableClientState(Gl.GL_TEXTURE_COORD_ARRAY);
 
 			int startTime = Environment.TickCount;
-				//Console.WriteLine(keyboard.IsKeyDown(Key.KeyCode.Space));
-
-				Console.WriteLine(mouse.GetMousePosition());
 
 			// Start the game loop
 			while (window.IsOpen())
 			{
 				// Process events
 				window.DispatchEvents();
+
+				//Console.WriteLine(keyboard.IsKeyDown(Key.KeyCode.Space));
+
+				//Console.WriteLine(mouse.GetMousePosition());
 
 				// Clear color and depth buffer
 				Gl.glClear(Gl.GL_COLOR_BUFFER_BIT | Gl.GL_DEPTH_BUFFER_BIT);
@@ -157,7 +158,7 @@ namespace window
 		static void OnKeyPressed(object sender, KeyEventArgs e)
 		{
 			Window window = (Window)sender;
-			if (e.Code == Keyboard.Key.Escape)
+			if (e.Code == SFML.Window.Keyboard.Key.Escape)
 				window.Close();
 		}
 
