@@ -109,6 +109,8 @@
     <Compile Include="Core\Objects\Player.cs" />
     <Compile Include="Core\Objects\Enemy.cs" />
     <Compile Include="Core\Objects\Item.cs" />
+    <Compile Include="Physics\World.cs" />
+    <Compile Include="Physics\Collider.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -1,6 +1,5 @@
 using System;
 using System.Runtime.InteropServices;
-using SFML;
 using SFML.Window;
 using Tao.OpenGl;
 
@@ -113,15 +112,16 @@ namespace SpaceBagel
 
 			int startTime = Environment.TickCount;
 
+			World world = new World();
+			Player player = new Player();
+			world.AddCollider(player.collider);
+
+
 			// Start the game loop
 			while (window.IsOpen())
 			{
 				// Process events
 				window.DispatchEvents();
-
-				//Console.WriteLine(keyboard.IsKeyDown(Key.KeyCode.Space));
-
-				//Console.WriteLine(mouse.GetMousePosition());
 
 				// Clear color and depth buffer
 				Gl.glClear(Gl.GL_COLOR_BUFFER_BIT | Gl.GL_DEPTH_BUFFER_BIT);
@@ -140,6 +140,10 @@ namespace SpaceBagel
 
 				// Finally, display the rendered frame on screen
 				window.Display();
+
+
+				world.Update();
+
 			}
 		}
 
