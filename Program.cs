@@ -26,7 +26,7 @@ namespace SpaceBagel
 
 				Console.WriteLine(mouse.GetMousePosition());
 
-				//Console.WriteLine("end");
+				Console.WriteLine("end");
 			}
 		}
 	}
