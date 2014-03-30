@@ -2,6 +2,9 @@ using System;
 
 namespace SpaceBagel
 {
+	/// <summary>
+	/// The Player Object.
+	/// </summary>
 	public class Player : BaseObject
 	{
 		public Vector2 velocity;

@@ -111,6 +111,11 @@
     <Compile Include="Core\Objects\Item.cs" />
     <Compile Include="Physics\World.cs" />
     <Compile Include="Physics\Collider.cs" />
+    <Compile Include="Physics\CollisionDetector.cs" />
+    <Compile Include="Physics\CollisionResolution.cs" />
+    <Compile Include="Physics\CollisionInformation.cs" />
+    <Compile Include="Core\Game.cs" />
+    <Compile Include="Core\Level.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

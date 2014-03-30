@@ -5,15 +5,20 @@ namespace SpaceBagel
 {
 	public class World
 	{
+		// holds the list of colliders.
 		public List<Collider> colliders;
 
+
+		/// <summary>
+		/// Default constructor
+		/// </summary>
 		public World ()
 		{
 			colliders = new List<Collider>();
 		}
 
 		/// <summary>
-		/// Updates all physic objects
+		/// Updates all physics objects
 		/// </summary>
 		public void Update()
 		{
@@ -32,6 +37,10 @@ namespace SpaceBagel
 			colliders.Add(boxCollider);
 		}
 
+		/// <summary>
+		/// Adds the character collider.
+		/// </summary>
+		/// <param name="characterCollider">Character collider.</param>
 		public void AddCollider(CharacterCollider characterCollider)
 		{
 			colliders.Add(characterCollider);

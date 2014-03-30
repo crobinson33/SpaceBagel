@@ -2,8 +2,12 @@ using System;
 
 namespace SpaceBagel
 {
+	/// <summary>
+	/// Base Collider
+	/// </summary>
 	public class Collider
 	{
+
 		public Collider ()
 		{
 		}
