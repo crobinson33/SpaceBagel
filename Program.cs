@@ -53,6 +53,7 @@ namespace window
 			// Define a 3D cube (6 faces made of 2 triangles composed by 3 vertices)
 			float[] cube = new float[]
 			{
+<<<<<<< HEAD
 				// positions    // colors (r, g, b, a)
 				-50, -50, -50,  0, 0, 1, 1,
 				-50,  50, -50,  0, 0, 1, 1,
@@ -88,6 +89,11 @@ namespace window
 				-50,  50, -50,  1, 0, 1, 1,
 				50, -50, -50,  1, 0, 1, 1,
 				50,  50, -50,  1, 0, 1, 1,
+=======
+				//Console.WriteLine("test");
+				Keyboard keyboard = new Keyboard();
+				Mouse mouse = new Mouse();
+>>>>>>> bfbccaa3afa490e97f3fac921e7110e043224333
 
 				-50, -50,  50,  1, 1, 0, 1,
 				50, -50,  50,  1, 1, 0, 1,
@@ -107,7 +113,13 @@ namespace window
 			Gl.glDisableClientState(Gl.GL_NORMAL_ARRAY);
 			Gl.glDisableClientState(Gl.GL_TEXTURE_COORD_ARRAY);
 
+<<<<<<< HEAD
 			int startTime = Environment.TickCount;
+=======
+				//Console.WriteLine(keyboard.IsKeyDown(Key.KeyCode.Space));
+
+				Console.WriteLine(mouse.GetMousePosition());
+>>>>>>> bfbccaa3afa490e97f3fac921e7110e043224333
 
 			// Start the game loop
 			while (window.IsOpen())
