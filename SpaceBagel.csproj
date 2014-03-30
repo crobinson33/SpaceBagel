@@ -101,6 +101,8 @@
     <Compile Include="src\Window\Window.cs" />
     <Compile Include="Core\Keyboard.cs" />
     <Compile Include="Core\Key.cs" />
+    <Compile Include="Core\Mouse.cs" />
+    <Compile Include="Core\Vector2.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
