@@ -53,7 +53,6 @@ namespace window
 			// Define a 3D cube (6 faces made of 2 triangles composed by 3 vertices)
 			float[] cube = new float[]
 			{
-<<<<<<< HEAD
 				// positions    // colors (r, g, b, a)
 				-50, -50, -50,  0, 0, 1, 1,
 				-50,  50, -50,  0, 0, 1, 1,

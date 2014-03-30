@@ -1,9 +1,11 @@
-﻿<Properties GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Program.cs">
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench>
     <Files>
-      <File FileName="Program.cs" Line="13" Column="40" />
-      <File FileName="Core/Mouse.cs" Line="67" Column="10" />
+      <File FileName="sfmlnet-audio-2.dll.config" Line="1" Column="1" />
+      <File FileName="app.config" Line="3" Column="39" />
+      <File FileName="Program.cs" Line="5" Column="1" />
+      <File FileName="../../Downloads/SFML.Net-2.1 2/examples/window/Window.cs" Line="4" Column="19" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
