@@ -34,19 +34,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="sfmlnet-audio-2">
-      <HintPath>..\..\..\Downloads\kylepulver-otter-d4446b1c130b\Otter\Lib\sfmlnet-audio-2.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="sfmlnet-window-2">
+      <HintPath>..\..\Downloads\SFML.Net-2.1 2\lib\sfmlnet-window-2.dll</HintPath>
     </Reference>
     <Reference Include="sfmlnet-graphics-2">
-      <HintPath>..\..\..\Downloads\kylepulver-otter-d4446b1c130b\Otter\Lib\sfmlnet-graphics-2.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\Downloads\SFML.Net-2.1 2\lib\sfmlnet-graphics-2.dll</HintPath>
     </Reference>
-    <Reference Include="sfmlnet-window-2">
-      <HintPath>..\..\..\Downloads\kylepulver-otter-d4446b1c130b\Otter\Lib\sfmlnet-window-2.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="sfmlnet-audio-2">
+      <HintPath>..\..\Downloads\SFML.Net-2.1 2\lib\sfmlnet-audio-2.dll</HintPath>
     </Reference>
-    <Reference Include="System.Data.Linq" />
+    <Reference Include="Tao.OpenGl">
+      <HintPath>..\..\Documents\tao\bin\Tao.OpenGl.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
