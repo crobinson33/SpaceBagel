@@ -14,7 +14,5 @@ libsfml-window.2.0.dylib
 sfmlnet-audio-2.dll
 sfmlnet-graphics-2.dll
 sfmlnet-window-2.dll
-bin/*
-*.csproj
-
+bin/
 SpaceBagel.csproj
