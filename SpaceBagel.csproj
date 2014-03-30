@@ -103,6 +103,8 @@
     <Compile Include="Core\Key.cs" />
     <Compile Include="Core\Mouse.cs" />
     <Compile Include="Core\Vector2.cs" />
+    <Compile Include="Physics\BoxCollider.cs" />
+    <Compile Include="Physics\CharacterCollider.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
