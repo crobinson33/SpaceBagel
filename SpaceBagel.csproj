@@ -105,6 +105,10 @@
     <Compile Include="Core\Vector2.cs" />
     <Compile Include="Physics\BoxCollider.cs" />
     <Compile Include="Physics\CharacterCollider.cs" />
+    <Compile Include="Core\Objects\BaseObject.cs" />
+    <Compile Include="Core\Objects\Player.cs" />
+    <Compile Include="Core\Objects\Enemy.cs" />
+    <Compile Include="Core\Objects\Item.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -113,6 +117,7 @@
     <Folder Include="Physics\" />
     <Folder Include="Graphics\" />
     <Folder Include="Core\" />
+    <Folder Include="Core\Objects\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="libsndfile-1.dll" />
