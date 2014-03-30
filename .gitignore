@@ -1,7 +1,3 @@
-sfmlnet-audio-2.dll.config
-sfmlnet-graphics-2.dll.config
-sfmlnet-window-2.dll.config
-app.config
 libcsfml-audio.2.0.dylib
 libcsfml-graphics.2.0.dylib
 libcsfml-system.2.0.dylib
