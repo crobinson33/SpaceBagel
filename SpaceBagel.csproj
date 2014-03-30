@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C90D060D-D448-4B8F-A60F-26FC5952CCFF}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>SpaceBagel</RootNamespace>
+    <AssemblyName>SpaceBagel</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Externalconsole>true</Externalconsole>
+    <PlatformTarget>x86</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Externalconsole>true</Externalconsole>
+    <PlatformTarget>x86</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="sfmlnet-audio-2">
+      <HintPath>..\..\..\Downloads\kylepulver-otter-d4446b1c130b\Otter\Lib\sfmlnet-audio-2.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="sfmlnet-graphics-2">
+      <HintPath>..\..\..\Downloads\kylepulver-otter-d4446b1c130b\Otter\Lib\sfmlnet-graphics-2.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="sfmlnet-window-2">
+      <HintPath>..\..\..\Downloads\kylepulver-otter-d4446b1c130b\Otter\Lib\sfmlnet-window-2.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\Audio\Listener.cs" />
+    <Compile Include="src\Audio\Music.cs" />
+    <Compile Include="src\Audio\Sound.cs" />
+    <Compile Include="src\Audio\SoundBuffer.cs" />
+    <Compile Include="src\Audio\SoundBufferRecorder.cs" />
+    <Compile Include="src\Audio\SoundRecorder.cs" />
+    <Compile Include="src\Audio\SoundStream.cs" />
+    <Compile Include="src\Audio\Vector3.cs" />
+    <Compile Include="src\Graphics\BlendMode.cs" />
+    <Compile Include="src\Graphics\CircleShape.cs" />
+    <Compile Include="src\Graphics\Color.cs" />
+    <Compile Include="src\Graphics\Context.cs" />
+    <Compile Include="src\Graphics\ConvexShape.cs" />
+    <Compile Include="src\Graphics\Drawable.cs" />
+    <Compile Include="src\Graphics\Font.cs" />
+    <Compile Include="src\Graphics\Glyph.cs" />
+    <Compile Include="src\Graphics\Image.cs" />
+    <Compile Include="src\Graphics\PrimitiveType.cs" />
+    <Compile Include="src\Graphics\Rect.cs" />
+    <Compile Include="src\Graphics\RectangleShape.cs" />
+    <Compile Include="src\Graphics\RenderStates.cs" />
+    <Compile Include="src\Graphics\RenderTarget.cs" />
+    <Compile Include="src\Graphics\RenderTexture.cs" />
+    <Compile Include="src\Graphics\RenderWindow.cs" />
+    <Compile Include="src\Graphics\Shader.cs" />
+    <Compile Include="src\Graphics\Shape.cs" />
+    <Compile Include="src\Graphics\Sprite.cs" />
+    <Compile Include="src\Graphics\Text.cs" />
+    <Compile Include="src\Graphics\Texture.cs" />
+    <Compile Include="src\Graphics\Transform.cs" />
+    <Compile Include="src\Graphics\Transformable.cs" />
+    <Compile Include="src\Graphics\Vertex.cs" />
+    <Compile Include="src\Graphics\VertexArray.cs" />
+    <Compile Include="src\Graphics\View.cs" />
+    <Compile Include="src\Window\ContextSettings.cs" />
+    <Compile Include="src\Window\Event.cs" />
+    <Compile Include="src\Window\EventArgs.cs" />
+    <Compile Include="src\Window\Joystick.cs" />
+    <Compile Include="src\Window\Keyboard.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="src\Window\LoadingFailedException.cs" />
+    <Compile Include="src\Window\Mouse.cs" />
+    <Compile Include="src\Window\ObjectBase.cs" />
+    <Compile Include="src\Window\StreamAdaptor.cs" />
+    <Compile Include="src\Window\Vector2.cs" />
+    <Compile Include="src\Window\VideoMode.cs" />
+    <Compile Include="src\Window\Window.cs" />
+    <Compile Include="Core\Keyboard.cs" />
+    <Compile Include="Core\Key.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="src\" />
+    <Folder Include="libosx\" />
+    <Folder Include="Physics\" />
+    <Folder Include="Graphics\" />
+    <Folder Include="Core\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="libsndfile-1.dll" />
+    <None Include="openal32.dll" />
+    <None Include="libosx\libcsfml-audio.2.0.dylib">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="libosx\libcsfml-graphics.2.0.dylib">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="libosx\libcsfml-system.2.0.dylib">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="libosx\libcsfml-window.2.0.dylib">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="libosx\libsfml-audio.2.0.dylib">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="libosx\libsfml-graphics.2.0.dylib">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="libosx\libsfml-network.2.0.dylib">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="libosx\libsfml-system.2.0.dylib">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="libosx\libsfml-window.2.0.dylib">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="sfmlnet-audio-2.dll.config" />
+    <None Include="sfmlnet-graphics-2.dll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="sfmlnet-window-2.dll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="app.config" />
+  </ItemGroup>
+</Project>
