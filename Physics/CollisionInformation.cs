@@ -7,6 +7,9 @@ namespace SpaceBagel
 	/// </summary>
 	public class CollisionInformation
 	{
+		public Collider object1;
+		public Collider object2;
+
 		public CollisionInformation ()
 		{
 		}

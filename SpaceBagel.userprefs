@@ -1,15 +1,16 @@
 ﻿<Properties GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Program.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Physics/CollisionInformation.cs">
     <Files>
-      <File FileName="Program.cs" Line="18" Column="42" />
-      <File FileName="Core/Mouse.cs" Line="67" Column="10" />
-      <File FileName="Physics/BoxCollider.cs" Line="15" Column="1" />
-      <File FileName="Physics/CharacterCollider.cs" Line="13" Column="1" />
-      <File FileName="Core/Objects/BaseObject.cs" Line="1" Column="1" />
-      <File FileName="Core/Objects/Player.cs" Line="13" Column="4" />
-      <File FileName="Core/Objects/Enemy.cs" Line="5" Column="33" />
-      <File FileName="Core/Objects/Item.cs" Line="7" Column="10" />
+      <File FileName="Program.cs" Line="129" Column="34" />
+      <File FileName="Physics/BoxCollider.cs" Line="24" Column="4" />
+      <File FileName="Physics/CharacterCollider.cs" Line="17" Column="29" />
+      <File FileName="Physics/World.cs" Line="6" Column="20" />
+      <File FileName="Core/Objects/Player.cs" Line="17" Column="39" />
+      <File FileName="Physics/Collider.cs" Line="6" Column="19" />
+      <File FileName="Physics/CollisionDetector.cs" Line="13" Column="3" />
+      <File FileName="Physics/CollisionResolution.cs" Line="6" Column="45" />
+      <File FileName="Physics/CollisionInformation.cs" Line="13" Column="10" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
