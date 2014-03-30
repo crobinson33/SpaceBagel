@@ -35,17 +35,17 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data.Linq" />
-    <Reference Include="sfmlnet-window-2">
-      <HintPath>..\..\Downloads\SFML.Net-2.1 2\lib\sfmlnet-window-2.dll</HintPath>
+    <Reference Include="sfmlnet-audio-2">
+      <HintPath>..\..\Downloads\SFML.Net-2.1\lib\sfmlnet-audio-2.dll</HintPath>
     </Reference>
     <Reference Include="sfmlnet-graphics-2">
-      <HintPath>..\..\Downloads\SFML.Net-2.1 2\lib\sfmlnet-graphics-2.dll</HintPath>
+      <HintPath>..\..\Downloads\SFML.Net-2.1\lib\sfmlnet-graphics-2.dll</HintPath>
     </Reference>
-    <Reference Include="sfmlnet-audio-2">
-      <HintPath>..\..\Downloads\SFML.Net-2.1 2\lib\sfmlnet-audio-2.dll</HintPath>
+    <Reference Include="sfmlnet-window-2">
+      <HintPath>..\..\Downloads\SFML.Net-2.1\lib\sfmlnet-window-2.dll</HintPath>
     </Reference>
     <Reference Include="Tao.OpenGl">
-      <HintPath>..\..\Documents\tao\bin\Tao.OpenGl.dll</HintPath>
+      <HintPath>..\tao\bin\Tao.OpenGl.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

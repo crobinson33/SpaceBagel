@@ -19,8 +19,8 @@ namespace SpaceBagel
 			contextSettings.DepthBits = 32;
 
 			//Console.WriteLine("test");
-			Keyboard keyboard = new Keyboard();
-			Mouse mouse = new Mouse();
+			//Keyboard keyboard = new Keyboard();
+			//Mouse mouse = new Mouse();
 
 			// Create the main window
 			Window window = new Window(new VideoMode(640, 480), "SFML window with OpenGL", Styles.Default, contextSettings);
