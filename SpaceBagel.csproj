@@ -156,5 +156,6 @@
     <None Include="libosx\libsfml-window.2.0.dylib">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="app.config" />
   </ItemGroup>
 </Project>

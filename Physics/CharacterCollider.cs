@@ -8,20 +8,17 @@ namespace SpaceBagel
 	public class CharacterCollider : Collider
 	{
 		public Vector2 size;
-		public Vector2 position;
 
 
-		public Vector2 topLeft;
-		public Vector2 bottomRight;
+
 
 		public CharacterCollider()
 		{
 		}
 
-		public CharacterCollider(Vector2 size, Vector2 position)
+		public CharacterCollider(Vector2 size, Vector2 position) : base(size, position, new Vector2(0, 0))
 		{
 			this.size = size;
-			this.position = position;
 
 			// Get internal variables set for collision detection
 			CalculatePoints();

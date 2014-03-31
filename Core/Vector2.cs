@@ -22,6 +22,16 @@ namespace SpaceBagel
 			X = x;
 			Y = y;
 		}
+
+		/// <summary>
+		/// Calculates the Dot Product of two vectors
+		/// </summary>
+		/// <param name="vOne">V one.</param>
+		/// <param name="vTwo">V two.</param>
+		public float Dot(Vector2 vOne, Vector2 vTwo)
+		{
+			return ((vOne.X * vTwo.X) + (vOne.Y * vTwo.Y));
+		}
 		
 		////////////////////////////////////////////////////////////
 		/// <summary>

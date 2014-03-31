@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace SpaceBagel
 {
@@ -9,6 +10,138 @@ namespace SpaceBagel
 	{
 		public CollisionDetector ()
 		{
+		}
+
+		/// <summary>
+		/// Test axis aligned box vs axis aligned box.
+		/// </summary>
+		/// <returns><c>true</c>, if collision, <c>false</c> otherwise.</returns>
+		/// <param name="colliderOne">Collider one.</param>
+		/// <param name="colliderTwo">Collider two.</param>
+		public bool AABBvsAABB(Collider colliderOne, Collider colliderTwo)
+		{
+			// Exit with no intersection if found separated along an axis
+			if (colliderOne.bottomRight.X < colliderTwo.topLeft.X || colliderOne.topLeft.X > colliderTwo.bottomRight.X)
+			{
+				return false;
+			}
+			if(colliderOne.bottomRight.Y < colliderTwo.topLeft.Y || colliderOne.topLeft.Y > colliderTwo.bottomRight.Y)
+			{
+				return false;
+			}
+				
+			// No separating axis found, therefor there is at least one overlapping axis
+			return true;
+		}
+
+		/// <summary>
+		/// This aabbvsaabb also fills out collisioninfo.
+		/// </summary>
+		/// <returns><c>true</c>, if collision, <c>false</c> otherwise.</returns>
+		/// <param name="colliderOne">Collider one.</param>
+		/// <param name="colliderTwo">Collider two.</param>
+		/// <param name="collisionInfo">Collision info.</param>
+		public bool AABBvsAABB(Collider colliderOne, Collider colliderTwo, CollisionInformation collisionInfo)
+		{
+			Vector2 collisionNormal;
+		
+			// Vector from A to B
+			Vector2 normal = colliderTwo.position - colliderOne.position;
+
+			// Calculate half extents along x axis for each object
+			float colliderOne_extent = (colliderOne.bottomRight.X - colliderOne.topLeft.X) / 2;
+			float colliderTwo_extent = (colliderTwo.bottomRight.X - colliderTwo.topLeft.X) / 2;
+
+			// Calculate overlap on x axis
+			float x_overlap = colliderOne_extent + colliderTwo_extent - Math.Abs(normal.X);
+
+			// SAT test on x axis
+			if(x_overlap > 0)
+			{
+				// Calculate half extents along x axis for each object
+				colliderOne_extent = (colliderOne.bottomRight.Y - colliderOne.topLeft.Y) / 2;
+				colliderTwo_extent = (colliderTwo.bottomRight.Y - colliderTwo.topLeft.Y) / 2;
+
+				// Calculate overlap on y axis
+				float y_overlap = colliderOne_extent + colliderTwo_extent - Math.Abs(normal.Y);
+
+				// SAT test on y axis
+				if(y_overlap > 0)
+				{
+					// Find out which axis is axis of least penetration
+					if(x_overlap > y_overlap)
+					{
+						// Point towards B knowing that n points from A to B
+						if(normal.X < 0)
+						{
+							collisionNormal = new Vector2(-1, 0);
+						}
+						else
+						{
+							collisionNormal = new Vector2(0,0);
+						}
+						
+						collisionInfo.collisionNormal = collisionNormal;
+						collisionInfo.penetrationAmount = x_overlap;
+						
+						return true;
+					}
+					else
+					{
+						// Point toward B knowing that n points from A to B
+						if(normal.Y < 0)
+						{
+							collisionNormal = new Vector2(0,-1);
+						}
+						else
+						{
+							collisionNormal = new Vector2(0,1);
+						}
+
+						collisionInfo.collisionNormal = collisionNormal;
+						collisionInfo.penetrationAmount =y_overlap;
+
+						return true;
+					}
+				}
+				return false;
+			}
+			return false;
+		}
+
+		/// <summary>
+		/// Takes a list of all colliders added to the world and finds all collisions and returns a list of collisioninformation.
+		/// </summary>
+		/// <returns>The all collisions.</returns>
+		/// <param name="objects">Objects.</param>
+		public List<CollisionInformation> GetAllCollisions(List<Collider> objects)
+		{
+			// to be returned
+			List<CollisionInformation> collisions = new List<CollisionInformation>();
+
+			// Need to loop through all objects and test all objects against all objects. 
+			// 	- Might need to implement a structure here later for preformace.
+			foreach (Collider colliderOne in objects)
+			{
+				foreach (Collider colliderTwo in objects)
+				{
+					// don't want to check against ourselves.
+					if (colliderOne != colliderTwo)
+					{
+						// check the collisions
+						CollisionInformation collisionInfo = new CollisionInformation();
+						if (AABBvsAABB(colliderOne, colliderTwo, collisionInfo))
+						{
+							collisionInfo.objectOne = colliderOne;
+							collisionInfo.objectTwo = colliderTwo;
+
+							collisions.Add(collisionInfo);
+						}
+					}
+				}
+			}
+
+			return collisions;
 		}
 	}
 }
