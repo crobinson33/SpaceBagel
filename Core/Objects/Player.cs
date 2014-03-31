@@ -7,9 +7,7 @@ namespace SpaceBagel
 	/// </summary>
 	public class Player : BaseObject
 	{
-		public Vector2 velocity;
-		public Vector2 position;
-
+		// collider holds all position and velocity information
 		public CharacterCollider collider;
 
 		public Player ()

@@ -14,6 +14,10 @@ namespace SpaceBagel
 		{
 		}
 
+		public BoxCollider(Vector2 size, Vector2 pos) : base(size, pos, new Vector2(0, 0))
+		{
+		}
+
 		/// <summary>
 		/// Is triggered when this collider comes into contact with given collider
 		/// </summary>
