@@ -116,6 +116,12 @@
     <Compile Include="Physics\CollisionInformation.cs" />
     <Compile Include="Core\Game.cs" />
     <Compile Include="Core\Level.cs" />
+    <Compile Include="Graphics\Sprite.cs" />
+    <Compile Include="Graphics\Texture.cs" />
+    <Compile Include="Graphics\Color.cs" />
+    <Compile Include="Graphics\AnimationController.cs" />
+    <Compile Include="Graphics\Animation.cs" />
+    <Compile Include="Graphics\SpriteSheet.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

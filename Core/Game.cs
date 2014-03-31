@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace SpaceBagel
 {
@@ -16,8 +17,38 @@ namespace SpaceBagel
 
 		public int currentLevel;
 
+		public SFML.Window.Window window;
+		public World world;
+		public Player player;
+
 		public Game ()
 		{
+			// Create the main window
+			window = new SFML.Window.Window(new SFML.Window.VideoMode(640, 480), "SFML window with OpenGL");
+			world = new World();
+			player = new Player();
+			world.AddCollider(player.collider);
+
+			// Make it the active window for OpenGL calls
+			window.SetActive();
+
+
+		}
+
+		/// <summary>
+		/// Start this instance.
+		/// </summary>
+		public void Start() {
+			while (window.IsOpen())
+			{
+				// Process events
+				window.DispatchEvents();
+
+				// Finally, display the rendered frame on screen
+				window.Display();
+
+				world.Update();
+			}
 		}
 	}
 }
