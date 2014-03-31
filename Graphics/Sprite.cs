@@ -5,7 +5,6 @@ namespace SpaceBagel
 	public class Sprite
 	{
 		internal SFML.Graphics.Sprite sprite;
-		internal AnimationController animationController = new AnimationController();
 
 		/// <summary>
 		/// Creates a new sprite from the given texture.
