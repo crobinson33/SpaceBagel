@@ -35,7 +35,8 @@ namespace SpaceBagel
 			Vector2 relativeVelocity = collision.objectTwo.velocity - collision.objectOne.velocity;
 
 			// Calculate relative velocity in terms of the normal direction
-			float velAlongNormal = Vector2.Dot(relativeVelocity, collision.collisionNormal);
+            Vector2 forDot = new Vector2();
+			float velAlongNormal = forDot.Dot(relativeVelocity, collision.collisionNormal);
 
 			// Do not resolve if velocities are separating
 			if(velAlongNormal > 0)

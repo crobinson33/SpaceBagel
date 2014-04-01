@@ -7,15 +7,14 @@ namespace SpaceBagel
 	/// </summary>
 	public class CollisionInformation
 	{
-<<<<<<< HEAD
+
 		public Collider object1;
 		public Collider object2;
-=======
+
 		public Collider objectOne { get; set; }
 		public Collider objectTwo { get; set; }
 
 		public float penetrationAmount { get; set; }
->>>>>>> e1137e35fe3626b18c2511d795631d10073c186f
 
 		public Vector2 collisionNormal { get; set; }
 

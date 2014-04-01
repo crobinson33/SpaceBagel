@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -33,17 +33,17 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Data.Linq" />
-    <Reference Include="sfmlnet-window-2">
-      <HintPath>..\sfmlnet-window-2.dll</HintPath>
+    <Reference Include="sfmlnet-audio-2">
+      <HintPath>..\..\..\Downloads\SFML.Net-2.1\lib\sfmlnet-audio-2.dll</HintPath>
     </Reference>
     <Reference Include="sfmlnet-graphics-2">
-      <HintPath>..\sfmlnet-graphics-2.dll</HintPath>
+      <HintPath>..\..\..\Downloads\SFML.Net-2.1\lib\sfmlnet-graphics-2.dll</HintPath>
     </Reference>
-    <Reference Include="sfmlnet-audio-2">
-      <HintPath>..\sfmlnet-audio-2.dll</HintPath>
+    <Reference Include="sfmlnet-window-2">
+      <HintPath>..\..\..\Downloads\SFML.Net-2.1\lib\sfmlnet-window-2.dll</HintPath>
     </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="Tao.OpenGl">
       <HintPath>..\Tao.OpenGl.dll</HintPath>
     </Reference>
@@ -124,14 +124,7 @@
     <Compile Include="Graphics\SpriteSheet.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <Folder Include="src\" />
-    <Folder Include="libosx\" />
-    <Folder Include="Physics\" />
-    <Folder Include="Graphics\" />
-    <Folder Include="Core\" />
-    <Folder Include="Core\Objects\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="libsndfile-1.dll" />
     <None Include="openal32.dll" />
@@ -163,5 +156,16 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="csfml-audio-2.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="csfml-graphics-2.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="csfml-window-2.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>
