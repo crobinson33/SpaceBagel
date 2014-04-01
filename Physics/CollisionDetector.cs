@@ -43,6 +43,7 @@ namespace SpaceBagel
 		/// <param name="collisionInfo">Collision info.</param>
 		public bool AABBvsAABB(Collider colliderOne, Collider colliderTwo, CollisionInformation collisionInfo)
 		{
+            //Console.WriteLine("checking collision");
 			Vector2 collisionNormal;
 		
 			// Vector from A to B
@@ -58,6 +59,7 @@ namespace SpaceBagel
 			// SAT test on x axis
 			if(x_overlap > 0)
 			{
+                //Console.WriteLine("we have an overlap");
 				// Calculate half extents along x axis for each object
 				colliderOne_extent = (colliderOne.bottomRight.Y - colliderOne.topLeft.Y) / 2;
 				colliderTwo_extent = (colliderTwo.bottomRight.Y - colliderTwo.topLeft.Y) / 2;
@@ -68,9 +70,11 @@ namespace SpaceBagel
 				// SAT test on y axis
 				if(y_overlap > 0)
 				{
+                    //Console.WriteLine("double overlap, what does it mean");
 					// Find out which axis is axis of least penetration
 					if(x_overlap > y_overlap)
 					{
+                        //Console.WriteLine("FIRST");
 						// Point towards B knowing that n points from A to B
 						if(normal.X < 0)
 						{
@@ -88,6 +92,7 @@ namespace SpaceBagel
 					}
 					else
 					{
+                        //Console.WriteLine("Second");
 						// Point toward B knowing that n points from A to B
 						if(normal.Y < 0)
 						{
@@ -136,6 +141,9 @@ namespace SpaceBagel
 							collisionInfo.objectTwo = colliderTwo;
 
 							collisions.Add(collisionInfo);
+
+                            // we now need to check our triggers.
+                            CheckCustomTriggers(colliderOne, colliderTwo);
 						}
 					}
 				}
@@ -143,6 +151,21 @@ namespace SpaceBagel
 
 			return collisions;
 		}
+
+        public void CheckCustomTriggers(Collider colliderOne, Collider colliderTwo)
+        {
+            //Console.WriteLine("checking triggers");
+            foreach (CollisionTrigger colliderToCheck in colliderOne.triggers)
+            {
+                //Console.WriteLine(colliderTwo + ", " + colliderToCheck.collider);
+                //check to see if the colliders match.
+                if (colliderTwo == colliderToCheck.collider)
+                {
+                    //Console.WriteLine("calling method");
+                    colliderToCheck.method();
+                }
+            }
+        }
 	}
 }
 

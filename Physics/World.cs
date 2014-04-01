@@ -8,6 +8,8 @@ namespace SpaceBagel
 		// holds the list of colliders.
 		public List<Collider> colliders;
 
+        // do the checks.
+        public CollisionDetector detector;
 
 		/// <summary>
 		/// Default constructor
@@ -15,6 +17,7 @@ namespace SpaceBagel
 		public World ()
 		{
 			colliders = new List<Collider>();
+            detector = new CollisionDetector();
 		}
 
 		/// <summary>
@@ -22,10 +25,7 @@ namespace SpaceBagel
 		/// </summary>
 		public void Update()
 		{
-			foreach (Collider collider in colliders)
-			{
-				collider.OnCollisionEnter(null);
-			}
+            detector.GetAllCollisions(colliders);
 		}
 
 		/// <summary>

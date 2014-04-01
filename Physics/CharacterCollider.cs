@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace SpaceBagel
 {
@@ -7,18 +8,25 @@ namespace SpaceBagel
 	/// </summary>
 	public class CharacterCollider : Collider
 	{
-		public Vector2 size;
+        
 
-
-
-
-		public CharacterCollider()
+        /// <summary>
+        /// Default constructor. Object always needs a tag.
+        /// </summary>
+        /// <param name="tag"></param>
+		public CharacterCollider(string tag) : base(tag)
 		{
+            // player should never be static
+            this.isStatic = false;
 		}
 
-		public CharacterCollider(Vector2 size, Vector2 position) : base(size, position, new Vector2(0, 0))
+		public CharacterCollider(string tag, Vector2 size, Vector2 position) : base(size, position, new Vector2(0, 0))
 		{
+            this.tag = tag;
 			this.size = size;
+
+            // player should never be static
+            this.isStatic = false;
 
 			// Get internal variables set for collision detection
 			CalculatePoints();
@@ -37,10 +45,10 @@ namespace SpaceBagel
 		/// Triggered when character collider collides with given collider.
 		/// </summary>
 		/// <param name="collider">Collider.</param>
-		public override bool OnCollisionEnter(Collider collider)
+        public override void CreateOnCollisionEnter(Collider collider, Action method)
 		{
-			Console.WriteLine("got here");
-			return true;
+            CollisionTrigger newTrigger = new CollisionTrigger(collider, method);
+            triggers.Add(newTrigger);
 		}
 	}
 }

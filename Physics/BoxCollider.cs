@@ -7,24 +7,38 @@ namespace SpaceBagel
 	/// </summary>
 	public class BoxCollider : Collider
 	{
-		// will control if the object gets resolved. If static the object will not move.
-		public bool isStatic;
-
-		public BoxCollider ()
+        /// <summary>
+        /// Default constructor. We always have to have a tag.
+        /// </summary>
+        /// <param name="tag"></param>
+		public BoxCollider (string tag) : base(tag)
 		{
+            CalculatePoints();
 		}
 
-		public BoxCollider(Vector2 size, Vector2 pos) : base(size, pos, new Vector2(0, 0))
+		public BoxCollider(string tag, Vector2 size, Vector2 pos) : base(size, pos, new Vector2(0, 0))
 		{
+            this.tag = tag;
+            CalculatePoints();
 		}
+
+        /// <summary>
+        /// Get our topLeft and BottomRight. These are used in collision detection
+        /// </summary>
+        public void CalculatePoints()
+        {
+            topLeft = position;
+            bottomRight = new Vector2((position.X + size.X), (position.Y + size.Y));
+        }
 
 		/// <summary>
 		/// Is triggered when this collider comes into contact with given collider
 		/// </summary>
 		/// <param name="collider">Collider.</param>
-		public override bool OnCollisionEnter(Collider collider)
+        public override void CreateOnCollisionEnter(Collider collider, Action method)
 		{
-			return false;
+            CollisionTrigger newTrigger = new CollisionTrigger(collider, method);
+            triggers.Add(newTrigger);
 		}
 	}
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace SpaceBagel
 {
@@ -7,6 +8,8 @@ namespace SpaceBagel
 	/// </summary>
 	public class Collider
 	{
+        public string tag;
+
 		public Vector2 topLeft;
 		public Vector2 bottomRight;
 
@@ -18,8 +21,23 @@ namespace SpaceBagel
 		public float restitution;
 		public float mass;
 
-		public Collider ()
+        List<string> layersToIgnore = new List<string>();
+
+
+        // List of all triggers
+        public List<CollisionTrigger> triggers = new List<CollisionTrigger>();
+
+        // default set to false.
+        public bool isStatic;
+
+        /// <summary>
+        /// Default constructor. We always need a tag.
+        /// </summary>
+        /// <param name="tag"></param>
+		public Collider (string tag)
 		{
+            this.tag = tag;
+            isStatic = false;
 		}
 
 		public Collider(Vector2 size, Vector2 pos, Vector2 vel)
@@ -29,9 +47,9 @@ namespace SpaceBagel
 			this.velocity = vel;
 		}
 
-		public virtual bool OnCollisionEnter(Collider collider)
+		public virtual void CreateOnCollisionEnter(Collider collider, Action method)
 		{
-			return false;
+           // method();
 		}
 	}
 }

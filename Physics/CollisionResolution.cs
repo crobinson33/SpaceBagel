@@ -21,7 +21,7 @@ namespace SpaceBagel
 			// loop through all collisions and resolve!
 			foreach(CollisionInformation collision in collisions)
 			{
-				ResolveCollision(collision);
+				ResolveBoxCollision(collision);
 			}
 		}
 
@@ -29,13 +29,14 @@ namespace SpaceBagel
 		/// Takes a specific instance of a collision and resolves it.
 		/// </summary>
 		/// <param name="collision">Collision.</param>
-		public void ResolveCollision(CollisionInformation collision)
+		public void ResolveBoxCollision(CollisionInformation collision)
 		{
 			// Calculate relative velocity
 			Vector2 relativeVelocity = collision.objectTwo.velocity - collision.objectOne.velocity;
 
 			// Calculate relative velocity in terms of the normal direction
-			float velAlongNormal = Vector2.Dot(relativeVelocity, collision.collisionNormal);
+            Vector2 forDot = new Vector2();
+			float velAlongNormal = forDot.Dot(relativeVelocity, collision.collisionNormal);
 
 			// Do not resolve if velocities are separating
 			if(velAlongNormal > 0)
@@ -52,8 +53,17 @@ namespace SpaceBagel
 
 			// Apply impulse
 			Vector2 impulse = j * collision.collisionNormal;
-			collision.objectOne.velocity -= 1 / collision.objectOne.mass * impulse;
-			collision.objectTwo.velocity += 1 / collision.objectTwo.mass * impulse;
+
+            // only resolve if the object is not static.
+            if (collision.objectOne.isStatic != true)
+            {
+                collision.objectOne.velocity -= 1 / collision.objectOne.mass * impulse;
+            }
+            // only resolve if the object is not static.
+            if (collision.objectTwo.isStatic != true)
+            {
+                collision.objectTwo.velocity += 1 / collision.objectTwo.mass * impulse;
+            }
 		}
 	}
 }

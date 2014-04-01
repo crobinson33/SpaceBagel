@@ -10,6 +10,12 @@ namespace SpaceBagel
 		/// <summary>Y (vertical) component of the vector</summary>
 		public float Y;
 
+        public Vector2()
+        {
+            this.X = 0;
+            this.Y = 0;
+        }
+
 		////////////////////////////////////////////////////////////
 		/// <summary>
 		/// Construct the vector from its coordinates

@@ -7,8 +7,10 @@ namespace SpaceBagel
 	/// </summary>
 	public class CollisionInformation
 	{
+
 		public Collider object1;
 		public Collider object2;
+
 		public Collider objectOne { get; set; }
 		public Collider objectTwo { get; set; }
 

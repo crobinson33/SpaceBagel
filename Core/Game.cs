@@ -20,22 +20,31 @@ namespace SpaceBagel
 		public SFML.Window.Window window;
 		public World world;
 		public Player player;
-		public Sprite testSprite;
-		public Texture testTexture;
+        public BoxCollider box;
+
+        public delegate void Test(string message);
 
 		public Game ()
 		{
 			// Create the main window
 			window = new SFML.Window.Window(new SFML.Window.VideoMode(640, 480), "SFML window with OpenGL");
 			world = new World();
-			player = new Player();
+			player = new Player("player1", new Vector2(0, 0));
+            box = new BoxCollider("box1", new Vector2(50, 50), new Vector2(10, 10));
+
 			world.AddCollider(player.collider);
+            world.AddCollider(box);
+
+            Test test = Console.WriteLine;
+
+            player.collider.CreateOnCollisionEnter(box, () => test("got here"));
+
 
 			// Make it the active window for OpenGL calls
 			window.SetActive();
-
-
 		}
+
+        
 
 		/// <summary>
 		/// Start this instance.
@@ -45,8 +54,6 @@ namespace SpaceBagel
 			{
 				// Process events
 				window.DispatchEvents();
-
-				window.draw ();
 
 				// Finally, display the rendered frame on screen
 				window.Display();
