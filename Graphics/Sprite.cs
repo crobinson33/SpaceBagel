@@ -2,7 +2,7 @@
 
 namespace SpaceBagel
 {
-	public class Sprite
+	public class Sprite : BaseDrawable
 	{
 		internal SFML.Graphics.Sprite sprite;
 
