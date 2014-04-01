@@ -16,7 +16,7 @@ namespace SpaceBagel
             CalculatePoints();
 		}
 
-		public BoxCollider(string tag, Vector2 size, Vector2 pos) : base(size, pos, new Vector2(0, 0))
+		public BoxCollider(string tag, Vector2 size, Vector2 pos) : base(size, pos, new Vector2(-0.5f, 0))
 		{
             this.tag = tag;
             CalculatePoints();

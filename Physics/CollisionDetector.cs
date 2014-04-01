@@ -121,7 +121,7 @@ namespace SpaceBagel
 		/// <param name="objects">Objects.</param>
 		public List<CollisionInformation> GetAllCollisions(List<Collider> objects)
 		{
-			// to be returned
+			// to be returned - Need to set clean so we don't have left overs from last time.
 			List<CollisionInformation> collisions = new List<CollisionInformation>();
 
 			// Need to loop through all objects and test all objects against all objects. 
@@ -133,24 +133,49 @@ namespace SpaceBagel
 					// don't want to check against ourselves.
 					if (colliderOne != colliderTwo)
 					{
-						// check the collisions
-						CollisionInformation collisionInfo = new CollisionInformation();
-						if (AABBvsAABB(colliderOne, colliderTwo, collisionInfo))
-						{
-							collisionInfo.objectOne = colliderOne;
-							collisionInfo.objectTwo = colliderTwo;
+                        // i think we need this otherwise the objects just stay inside eachother for ever?
+                        // we also do this before detection to try and increase preformance. 
+                        if (CheckIfAlreadyInCollisionInfo(colliderOne, colliderTwo, collisions) != true)
+                        {
+						    // check the collisions
+						    CollisionInformation collisionInfo = new CollisionInformation();
+						    if (AABBvsAABB(colliderOne, colliderTwo, collisionInfo))
+						    {
+                            
+                                collisionInfo.objectOne = colliderOne;
+                                collisionInfo.objectTwo = colliderTwo;
 
-							collisions.Add(collisionInfo);
+                                //Console.WriteLine("object1: " + colliderOne.velocity + ", object2: " + colliderTwo.velocity);
 
-                            // we now need to check our triggers.
-                            CheckCustomTriggers(colliderOne, colliderTwo);
+                                collisions.Add(collisionInfo);
+
+                                // we now need to check our triggers.
+                                CheckCustomTriggers(colliderOne, colliderTwo);
+                            }
 						}
 					}
 				}
 			}
 
+            //Console.WriteLine(collisions.Count);
 			return collisions;
 		}
+
+        public bool CheckIfAlreadyInCollisionInfo(Collider one, Collider two, List<CollisionInformation> collisions)
+        {
+            foreach (CollisionInformation info in collisions)
+            {
+                if (info.objectOne == one || info.objectTwo == one)
+                {
+                    if (info.objectOne == two || info.objectTwo == two)
+                    {
+                        Console.WriteLine("already in: (" + one.tag + ", " + two.tag + "), (" + info.objectOne.tag + ", " + info.objectTwo.tag + ")");
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
 
         public void CheckCustomTriggers(Collider colliderOne, Collider colliderTwo)
         {

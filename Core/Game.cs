@@ -59,6 +59,8 @@ namespace SpaceBagel
 				window.Display();
 
 				world.Update();
+                player.Update();
+                Console.WriteLine(player.position + ", " + box.position);
 			}
 		}
 	}

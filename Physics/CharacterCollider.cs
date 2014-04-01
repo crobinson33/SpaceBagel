@@ -20,7 +20,7 @@ namespace SpaceBagel
             this.isStatic = false;
 		}
 
-		public CharacterCollider(string tag, Vector2 size, Vector2 position) : base(size, position, new Vector2(0, 0))
+		public CharacterCollider(string tag, Vector2 size, Vector2 position) : base(size, position, new Vector2(1, 1))
 		{
             this.tag = tag;
 			this.size = size;

@@ -7,9 +7,12 @@ namespace SpaceBagel
 	{
 		// holds the list of colliders.
 		public List<Collider> colliders;
+        public List<CollisionInformation> collisions;
 
         // do the checks.
         public CollisionDetector detector;
+        // resolve all collisions
+        public CollisionResolution resolution;
 
 		/// <summary>
 		/// Default constructor
@@ -17,7 +20,10 @@ namespace SpaceBagel
 		public World ()
 		{
 			colliders = new List<Collider>();
+            collisions = new List<CollisionInformation>();
             detector = new CollisionDetector();
+            resolution = new CollisionResolution();
+            Console.WriteLine("whats the order");
 		}
 
 		/// <summary>
@@ -25,26 +31,26 @@ namespace SpaceBagel
 		/// </summary>
 		public void Update()
 		{
-            detector.GetAllCollisions(colliders);
+            collisions = detector.GetAllCollisions(colliders);
+            resolution.ResolveAllCollisions(collisions);
+            //Console.WriteLine(colliders[0].velocity);
+
+            foreach (Collider collider in colliders)
+            {
+                collider.Update();
+            }
 		}
 
 		/// <summary>
-		/// Adds the box collider.
+		/// Adds the collider.
 		/// </summary>
 		/// <param name="boxCollider">Box collider.</param>
-		public void AddCollider(BoxCollider boxCollider)
+		public void AddCollider(Collider collider)
 		{
-			colliders.Add(boxCollider);
+			colliders.Add(collider);
+            Console.WriteLine("added: " + collider.velocity);
 		}
 
-		/// <summary>
-		/// Adds the character collider.
-		/// </summary>
-		/// <param name="characterCollider">Character collider.</param>
-		public void AddCollider(CharacterCollider characterCollider)
-		{
-			colliders.Add(characterCollider);
-		}
 	}
 }
 

@@ -18,9 +18,11 @@ namespace SpaceBagel
 		/// <param name="collisions">Collisions.</param>
 		public void ResolveAllCollisions(List<CollisionInformation> collisions)
 		{
+            //Console.WriteLine(collisions.Count);
 			// loop through all collisions and resolve!
 			foreach(CollisionInformation collision in collisions)
 			{
+                //Console.WriteLine("loop");
 				ResolveBoxCollision(collision);
 			}
 		}
@@ -31,8 +33,10 @@ namespace SpaceBagel
 		/// <param name="collision">Collision.</param>
 		public void ResolveBoxCollision(CollisionInformation collision)
 		{
+            //Console.WriteLine("resolving...");
 			// Calculate relative velocity
 			Vector2 relativeVelocity = collision.objectTwo.velocity - collision.objectOne.velocity;
+            //Console.WriteLine(collision.objectOne.velocity);
 
 			// Calculate relative velocity in terms of the normal direction
             Vector2 forDot = new Vector2();
@@ -53,16 +57,25 @@ namespace SpaceBagel
 
 			// Apply impulse
 			Vector2 impulse = j * collision.collisionNormal;
+            //Console.WriteLine(impulse);
 
-            // only resolve if the object is not static.
-            if (collision.objectOne.isStatic != true)
+            if (collision.objectOne.mass > 0)
             {
-                collision.objectOne.velocity -= 1 / collision.objectOne.mass * impulse;
+                // only resolve if the object is not static.
+                if (collision.objectOne.isStatic != true)
+                {
+                    Console.WriteLine("applying: -=" + (1 / collision.objectOne.mass * impulse));
+                    collision.objectOne.velocity -= (1 / collision.objectOne.mass * impulse);
+                }
             }
-            // only resolve if the object is not static.
-            if (collision.objectTwo.isStatic != true)
+            if (collision.objectTwo.mass > 0)
             {
-                collision.objectTwo.velocity += 1 / collision.objectTwo.mass * impulse;
+                // only resolve if the object is not static.
+                if (collision.objectTwo.isStatic != true)
+                {
+                    Console.WriteLine("applying: +=" + (1 / collision.objectTwo.mass * impulse));
+                    collision.objectTwo.velocity += (1 / collision.objectTwo.mass * impulse);
+                }
             }
 		}
 	}
