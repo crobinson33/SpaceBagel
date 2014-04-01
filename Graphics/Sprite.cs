@@ -15,10 +15,15 @@ namespace SpaceBagel
 			sprite = new SFML.Graphics.Sprite (texture.texture);
 		}
 
-		public void setColor()
+		public override void Render (float x, float y)
 		{
+
 		}
 
+		public void setColor(Color color)
+		{
+			sprite.Color = color;
+		}
 	}
 }
 

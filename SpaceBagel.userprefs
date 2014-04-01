@@ -3,14 +3,15 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Core/Game.cs">
     <Files>
       <File FileName="Program.cs" Line="17" Column="18" />
-      <File FileName="Graphics/AnimationController.cs" Line="16" Column="1" />
       <File FileName="Graphics/Animation.cs" Line="8" Column="3" />
-      <File FileName="Graphics/Sprite.cs" Line="7" Column="40" />
-      <File FileName="Graphics/Texture.cs" Line="81" Column="4" />
-      <File FileName="Core/Game.cs" Line="3" Column="38" />
-      <File FileName="../../Downloads/kylepulver-otter-d4446b1c130b/Otter/Graphics/Anim.cs" Line="219" Column="32" />
+      <File FileName="Graphics/Sprite.cs" Line="13" Column="34" />
+      <File FileName="Graphics/SpriteSheet.cs" Line="4" Column="2" />
+      <File FileName="Graphics/Texture.cs" Line="41" Column="32" />
+      <File FileName="Graphics/BaseDrawable.cs" Line="9" Column="23" />
+      <File FileName="Core/Game.cs" Line="24" Column="30" />
+      <File FileName="../../Downloads/kylepulver-otter-d4446b1c130b/Otter/Graphics/Graphic.cs" Line="1" Column="1" />
+      <File FileName="../../Downloads/kylepulver-otter-d4446b1c130b/Otter/Graphics/Image.cs" Line="615" Column="44" />
       <File FileName="../../Downloads/kylepulver-otter-d4446b1c130b/Otter/Graphics/ImageSet.cs" Line="1" Column="1" />
-      <File FileName="Graphics/SpriteSheet.cs" Line="7" Column="80" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

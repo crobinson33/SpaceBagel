@@ -50,27 +50,6 @@ namespace SpaceBagel
 			texture = new SFML.Graphics.Texture ((uint)width, (uint)height);
 		}
 
-		/// <summary>
-		/// Load a texture from an SFML texture.
-		/// </summary>
-		/// <param name="texture"></param>
-		internal Texture(SFML.Graphics.Texture texture) {
-			this.texture = texture;
-		}
-
-		internal SFML.Graphics.Texture SFMLTexture {
-			get { return texture; }
-		}
-
-		/// <summary>
-		/// Copy a texture into a new texture.
-		/// </summary>
-		/// <param name="copy">Texture to copy</param>
-		public Texture(Texture copy)
-		{
-			texture = new SFML.Graphics.Texture (copy.SFMLTexture);
-		}
-
 		public int Width {
 			get { return (int)texture.Size.X; }
 		}

@@ -2,7 +2,7 @@
 
 namespace SpaceBagel
 {
-	public class SpriteSheet : BaseDrawable
+	public class SpriteSheet : Sprite
 	{
 		internal AnimationController animationController = new AnimationController();
 

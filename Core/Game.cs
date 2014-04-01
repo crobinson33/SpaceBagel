@@ -20,6 +20,8 @@ namespace SpaceBagel
 		public SFML.Window.Window window;
 		public World world;
 		public Player player;
+		public Sprite testSprite;
+		public Texture testTexture;
 
 		public Game ()
 		{
@@ -43,6 +45,8 @@ namespace SpaceBagel
 			{
 				// Process events
 				window.DispatchEvents();
+
+				window.draw ();
 
 				// Finally, display the rendered frame on screen
 				window.Display();
