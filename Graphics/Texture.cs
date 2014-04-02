@@ -15,6 +15,7 @@ namespace SpaceBagel
 		public Texture (string source) 
 		{
 			texture = new SFML.Graphics.Texture(source);
+            Console.WriteLine((texture = new SFML.Graphics.Texture(source)));
 		}
 
 		/// <summary>

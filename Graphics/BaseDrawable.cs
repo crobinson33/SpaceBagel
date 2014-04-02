@@ -7,13 +7,15 @@ namespace SpaceBagel
 
 		public float Width;
 		public float Height;
+        public Color color;
 
 		public BaseDrawable ()
 		{
 		}
 
-		public virtual void Render(float x, float y)
+		public virtual void Render(Vector2 position)
 		{
+
 		}
 	}
 }

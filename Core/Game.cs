@@ -10,27 +10,36 @@ namespace SpaceBagel
 	public class Game
 	{
 		/*
-		 * Going to have all settingss in here like window height - width - framerate - resize options - etc.
+		 * Going to have all settings in here like window height - width - framerate - resize options - etc.
 		 */
 
 		public List<Level> levels = new List<Level>();
 
 		public int currentLevel;
 
-		public SFML.Window.Window window;
+		public SFML.Graphics.RenderWindow window;
 		public World world;
 		public Player player;
         public BoxCollider box;
+
+        // Testing Rendering a Sprite with a Texture
+        public Texture texture;
+        public Sprite sprite;
 
         public delegate void Test(string message);
 
 		public Game ()
 		{
 			// Create the main window
-			window = new SFML.Window.Window(new SFML.Window.VideoMode(640, 480), "SFML window with OpenGL");
+			window = new SFML.Graphics.RenderWindow(new SFML.Window.VideoMode(640, 480), "SFML window with OpenGL");
 			world = new World();
 			player = new Player("player1", new Vector2(0, 0));
             box = new BoxCollider("box1", new Vector2(50, 50), new Vector2(10, 10));
+
+            // Testing Rendering a Sprite with a Texture
+            texture = new Texture("test.png");
+            Console.WriteLine(texture.texture.ToString());
+            sprite = new Sprite(texture);
 
 			world.AddCollider(player.collider);
             world.AddCollider(box);
@@ -52,15 +61,16 @@ namespace SpaceBagel
 		public void Start() {
 			while (window.IsOpen())
 			{
-				// Process events
-				window.DispatchEvents();
+                window.Clear();
+                // Testing rendering
+                window.Draw(sprite.sprite);
 
 				// Finally, display the rendered frame on screen
 				window.Display();
 
 				world.Update();
                 player.Update();
-                Console.WriteLine(player.position + ", " + box.position);
+                //Console.WriteLine(player.position + ", " + box.position);
 			}
 		}
 	}

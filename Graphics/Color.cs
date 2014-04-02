@@ -12,10 +12,10 @@ namespace SpaceBagel
 
 		public Color ()
 		{
-			color.R = 1.0f;
-			color.G = 1.0f;
-			color.B = 1.0f;
-			color.A = 1.0f;
+			R = 1.0f;
+			G = 1.0f;
+			B = 1.0f;
+			A = 1.0f;
 		}
 	}
 }
