@@ -133,26 +133,30 @@ namespace SpaceBagel
 					// don't want to check against ourselves.
 					if (colliderOne != colliderTwo)
 					{
-                        // i think we need this otherwise the objects just stay inside eachother for ever?
-                        // we also do this before detection to try and increase preformance. 
-                        if (CheckIfAlreadyInCollisionInfo(colliderOne, colliderTwo, collisions) != true)
+                        // check to see if we need to ignore it. (check objects one's ignores vs object two tag.
+                        if (CheckForTag(colliderTwo, colliderOne.layersToIgnore) != true)
                         {
-						    // check the collisions
-						    CollisionInformation collisionInfo = new CollisionInformation();
-						    if (AABBvsAABB(colliderOne, colliderTwo, collisionInfo))
-						    {
+                            // i think we need this otherwise the objects just stay inside eachother for ever?
+                            // we also do this before detection to try and increase preformance. 
+                            if (CheckIfAlreadyInCollisionInfo(colliderOne, colliderTwo, collisions) != true)
+                            {
+						        // check the collisions
+						        CollisionInformation collisionInfo = new CollisionInformation();
+						        if (AABBvsAABB(colliderOne, colliderTwo, collisionInfo))
+						        {
                             
-                                collisionInfo.objectOne = colliderOne;
-                                collisionInfo.objectTwo = colliderTwo;
+                                    collisionInfo.objectOne = colliderOne;
+                                    collisionInfo.objectTwo = colliderTwo;
 
-                                //Console.WriteLine("object1: " + colliderOne.velocity + ", object2: " + colliderTwo.velocity);
+                                    //Console.WriteLine("object1: " + colliderOne.velocity + ", object2: " + colliderTwo.velocity);
 
-                                collisions.Add(collisionInfo);
+                                    collisions.Add(collisionInfo);
 
-                                // we now need to check our triggers.
-                                CheckCustomTriggers(colliderOne, colliderTwo);
-                            }
-						}
+                                    // we now need to check our triggers.
+                                    CheckCustomTriggers(colliderOne, colliderTwo);
+                                }
+						    }
+                        }
 					}
 				}
 			}
@@ -160,6 +164,19 @@ namespace SpaceBagel
             //Console.WriteLine(collisions.Count);
 			return collisions;
 		}
+
+        public bool CheckForTag(Collider collider, List<string> tags)
+        {
+            foreach (string tag in tags)
+            {
+                if (collider.tag == tag)
+                {
+                    return true;
+                }
+            }
+            return false;
+
+        }
 
         public bool CheckIfAlreadyInCollisionInfo(Collider one, Collider two, List<CollisionInformation> collisions)
         {

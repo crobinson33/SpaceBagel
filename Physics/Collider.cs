@@ -21,7 +21,7 @@ namespace SpaceBagel
 		public float restitution;
 		public float mass = 1;
 
-        List<string> layersToIgnore = new List<string>();
+        public List<string> layersToIgnore = new List<string>();
 
 
         // List of all triggers
@@ -57,6 +57,16 @@ namespace SpaceBagel
 		{
            // method();
 		}
+
+        public void AddTagToIgnore(string tag)
+        {
+            layersToIgnore.Add(tag);
+        }
+
+        public void RemoveTagToIgnore(string tag)
+        {
+            layersToIgnore.Remove(tag);
+        }
 	}
 }
 
