@@ -45,9 +45,6 @@ namespace SpaceBagel
 		/// <param name="height">Height of texture.</param>
 		public Texture(int width, int height)
 		{
-			if (width < 0) throw new ArgumentException("Width must be a nonnegative integer.");
-			if (height < 0) throw new ArgumentException("Height must be a nonnegative integer.");
-
 			texture = new SFML.Graphics.Texture ((uint)width, (uint)height);
 		}
 

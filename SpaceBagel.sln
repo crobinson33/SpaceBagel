@@ -5,19 +5,26 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceBagel", "SpaceBagel.cs
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C90D060D-D448-4B8F-A60F-26FC5952CCFF}.Debug|x64.ActiveCfg = Debug|x86
+		{C90D060D-D448-4B8F-A60F-26FC5952CCFF}.Debug|x64.Build.0 = Debug|x86
 		{C90D060D-D448-4B8F-A60F-26FC5952CCFF}.Debug|x86.ActiveCfg = Debug|x86
 		{C90D060D-D448-4B8F-A60F-26FC5952CCFF}.Debug|x86.Build.0 = Debug|x86
+		{C90D060D-D448-4B8F-A60F-26FC5952CCFF}.Release|x64.ActiveCfg = Release|x64
+		{C90D060D-D448-4B8F-A60F-26FC5952CCFF}.Release|x64.Build.0 = Release|x64
 		{C90D060D-D448-4B8F-A60F-26FC5952CCFF}.Release|x86.ActiveCfg = Release|x86
 		{C90D060D-D448-4B8F-A60F-26FC5952CCFF}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = SpaceBagel.csproj
-<<<<<<< HEAD
-=======
 		Policies = $0
 		$0.VersionControlPolicy = $1
 		$1.inheritsSet = Mono
@@ -26,6 +33,5 @@ Global
 		$2.MessageStyle = $3
 		$3.LineAlign = 0
 		$2.inheritsSet = Mono
->>>>>>> bfbccaa3afa490e97f3fac921e7110e043224333
 	EndGlobalSection
 EndGlobal

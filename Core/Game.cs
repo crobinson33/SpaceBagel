@@ -16,30 +16,41 @@ namespace SpaceBagel
 		public List<Level> levels = new List<Level>();
 
 		public int currentLevel;
+        public uint windowWidth = 800;
+        public uint windowHeight = 600;
 
 		public SFML.Graphics.RenderWindow window;
+        public SFML.Graphics.RenderStates renderStates;
+        public Surface surface;
 		public World world;
 		public Player player;
         public BoxCollider box;
 
         // Testing Rendering a Sprite with a Texture
-        public Texture texture;
+        public Texture spriteTexture;
         public Sprite sprite;
+        public Texture spriteTexture2;
+        public Sprite sprite2;
 
         public delegate void Test(string message);
 
 		public Game ()
 		{
 			// Create the main window
-			window = new SFML.Graphics.RenderWindow(new SFML.Window.VideoMode(640, 480), "SFML window with OpenGL");
+			window = new SFML.Graphics.RenderWindow(new SFML.Window.VideoMode(windowWidth, windowHeight), "SFML window with OpenGL");
+            surface = new Surface(windowWidth, windowHeight, new Color(0.0f,0.0f,0.0f,1.0f), window);
+            renderStates = new SFML.Graphics.RenderStates();
 			world = new World();
 			player = new Player("player1", new Vector2(0, 0));
             box = new BoxCollider("box1", new Vector2(50, 50), new Vector2(10, 10));
 
             // Testing Rendering a Sprite with a Texture
-            texture = new Texture("test.png");
-            Console.WriteLine(texture.texture.ToString());
-            sprite = new Sprite(texture);
+            spriteTexture = new Texture("test.png");
+            spriteTexture2 = new Texture("test2.png");
+            sprite = new Sprite(spriteTexture);
+            sprite2 = new Sprite(spriteTexture2);
+            sprite.sprite.Position = new SFML.Window.Vector2f(0f,0f);
+            sprite2.sprite.Position = new SFML.Window.Vector2f(32f,0f);
 
 			world.AddCollider(player.collider);
             world.AddCollider(box);
@@ -61,10 +72,14 @@ namespace SpaceBagel
 		public void Start() {
 			while (window.IsOpen())
 			{
-                window.Clear();
+                surface.Clear();
                 // Testing rendering
-                window.Draw(sprite.sprite);
+                surface.Draw(sprite);
+                surface.Draw(sprite2);
 
+                window.Clear();
+
+                surface.DrawToWindow();
 				// Finally, display the rendered frame on screen
 				window.Display();
 

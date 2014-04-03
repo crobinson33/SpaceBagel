@@ -4,10 +4,19 @@ namespace SpaceBagel
 {
 	public class Animation
 	{
-		public int frameCount;
+        public string name;
+        public int startingFrame;
+        public int numFrames;
+        public int animType;
 
-		public Animation ()
+        public enum animTypes { };
+
+		public Animation (string name, int startingFrame, int numFrames, animTypes animType)
 		{
+            this.name = name;
+            this.startingFrame = startingFrame;
+            this.numFrames = numFrames;
+            this.animType = (int)animType;
 		}
 	}
 }
