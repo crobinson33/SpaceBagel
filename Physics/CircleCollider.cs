@@ -5,9 +5,11 @@ using System.Text;
 
 namespace SpaceBagel
 {
+    /// <summary>
+    /// Creates 2d circle colliders.
+    /// </summary>
     public class CircleCollider : Collider
     {
-        public float radius;
 
         public CircleCollider(string tag) : base(tag)
         {
@@ -17,6 +19,16 @@ namespace SpaceBagel
         {
             this.position = pos;
             this.radius = radius;
+        }
+
+        /// <summary>
+        /// Is triggered when this collider comes into contact with given collider
+        /// </summary>
+        /// <param name="collider">Collider.</param>
+        public override void CreateOnCollisionEnter(Collider collider, Action method)
+        {
+            CollisionTrigger newTrigger = new CollisionTrigger(collider, method);
+            triggers.Add(newTrigger);
         }
     }
 }

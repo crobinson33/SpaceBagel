@@ -52,6 +52,7 @@
     <Compile Include="Graphics\BaseDrawable.cs" />
     <Compile Include="Graphics\Light.cs" />
     <Compile Include="Graphics\Shader.cs" />
+    <Compile Include="Physics\CircleCollider.cs" />
     <Compile Include="Physics\CollisionTrigger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
