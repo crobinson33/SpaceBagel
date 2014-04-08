@@ -14,16 +14,19 @@ namespace SpaceBagel
 
 		public Vector2 collisionNormal { get; set; }
 
+        public string collisionType { get; set; }
+
 		public CollisionInformation()
 		{
 		}
 
-		public CollisionInformation(Collider objectOne, Collider objectTwo, float penetrationAmount, Vector2 collisionNormal)
+		public CollisionInformation(Collider objectOne, Collider objectTwo, float penetrationAmount, Vector2 collisionNormal, string type)
 		{
 			this.objectOne = objectOne;
 			this.objectTwo = objectTwo;
 			this.penetrationAmount = penetrationAmount;
 			this.collisionNormal = collisionNormal;
+            this.collisionType = type;
 		}
 	}
 }
