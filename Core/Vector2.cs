@@ -38,6 +38,20 @@ namespace SpaceBagel
 		{
 			return ((vOne.X * vTwo.X) + (vOne.Y * vTwo.Y));
 		}
+
+        public Vector2 Normalize(float length)
+        {
+            return new Vector2(this.X / Math.Abs(length), this.Y / Math.Abs(length));
+        }
+
+        /// <summary>
+        /// Get length
+        /// </summary>
+        /// <returns>Float</returns>
+        public float LengthSquared()
+        {
+            return (float)((this.X * this.X) + (this.Y * this.Y));
+        }
 		
 		////////////////////////////////////////////////////////////
 		/// <summary>

@@ -21,5 +21,28 @@ namespace SpaceBagel
             else if (f > 1.0f) return 1.0f;
             else return f;
         }
+
+        /// <summary>
+        /// Utility method to clamp a value between max and min
+        /// </summary>
+        /// <param name="value">float value</param>
+        /// <param name="min">float min</param>
+        /// <param name="max">float max</param>
+        /// <returns></returns>
+        public static float Clamp(float value, float min, float max)
+        {
+            if (value < min)
+            {
+                return min;
+            }
+            else if (value > max)
+            {
+                return max;
+            }
+            else
+            {
+                return value;
+            }
+        }
     }
 }

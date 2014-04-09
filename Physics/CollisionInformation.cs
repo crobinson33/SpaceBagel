@@ -7,10 +7,6 @@ namespace SpaceBagel
 	/// </summary>
 	public class CollisionInformation
 	{
-
-		public Collider object1;
-		public Collider object2;
-
 		public Collider objectOne { get; set; }
 		public Collider objectTwo { get; set; }
 
@@ -18,16 +14,19 @@ namespace SpaceBagel
 
 		public Vector2 collisionNormal { get; set; }
 
+        public string collisionType { get; set; }
+
 		public CollisionInformation()
 		{
 		}
 
-		public CollisionInformation(Collider objectOne, Collider objectTwo, float penetrationAmount, Vector2 collisionNormal)
+		public CollisionInformation(Collider objectOne, Collider objectTwo, float penetrationAmount, Vector2 collisionNormal, string type)
 		{
 			this.objectOne = objectOne;
 			this.objectTwo = objectTwo;
 			this.penetrationAmount = penetrationAmount;
 			this.collisionNormal = collisionNormal;
+            this.collisionType = type;
 		}
 	}
 }

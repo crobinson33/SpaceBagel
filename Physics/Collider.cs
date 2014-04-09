@@ -17,6 +17,7 @@ namespace SpaceBagel
 		public Vector2 position;
 
 		public Vector2 size;
+        public float radius;
 
 		public float restitution;
 		public float mass = 1;
