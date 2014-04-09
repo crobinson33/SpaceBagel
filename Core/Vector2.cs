@@ -29,6 +29,14 @@ namespace SpaceBagel
 			Y = y;
 		}
 
+        /// <summary>
+        /// Access SFML Vector 2 directly
+        /// </summary>
+        internal SFML.Window.Vector2f SFMLVector2
+        {
+            get { return new SFML.Window.Vector2f(this.X, this.Y); }
+        }
+
 		/// <summary>
 		/// Calculates the Dot Product of two vectors
 		/// </summary>

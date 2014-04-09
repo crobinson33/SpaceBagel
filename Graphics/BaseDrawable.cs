@@ -10,8 +10,8 @@ namespace SpaceBagel
     /// </summary>
 	public class BaseDrawable
 	{
-		public uint width;
-		public uint height;
+		public int width;
+		public int height;
         public Color color;
         public Shader shader;
         internal SFML.Graphics.RenderStates renderStates;

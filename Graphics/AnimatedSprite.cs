@@ -9,6 +9,7 @@ namespace SpaceBagel
 	{
         public int columns;
         public int rows;
+        public AnimationController animationController;
 
         public AnimatedSprite()
 		{

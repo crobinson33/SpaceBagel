@@ -24,7 +24,6 @@ namespace SpaceBagel
 		public SFML.Graphics.RenderWindow window;
         public SFML.Graphics.RenderStates renderStates;
         public Surface surface;
-        public RenderLayer layer;
 		public World world;
 		public Player player;
         public BoxCollider box;
@@ -48,15 +47,10 @@ namespace SpaceBagel
 
             // Testing Rendering a Sprite with a Texture
             texture = new Texture("test.png");
-            layer = new RenderLayer(texture, 1);
-            sprite = new Sprite(new Vector2(0, 0), 32, 32);
-            sprite2 = new Sprite(new Vector2(32, 0), 32, 32);
-            sprite3 = new Sprite(new Vector2(0, 32), 32, 32);
-            sprite4 = new Sprite(new Vector2(32, 32), 32, 32);
-            layer.AddDrawable(sprite, new Vector2(64, 64));
-            layer.AddDrawable(sprite2, new Vector2(0, 64));
-            layer.AddDrawable(sprite3, new Vector2(64, 0));
-            layer.AddDrawable(sprite4, new Vector2(0, 0));
+            sprite = new Sprite(texture, new Vector2(0,0), 32, 32);
+            sprite2 = new Sprite(texture, new Vector2(0,32), 32, 32);
+            sprite3 = new Sprite(texture, new Vector2(32,32), 32, 32);
+            sprite4 = new Sprite(texture, new Vector2(32,0), 32, 32);
 
 			world.AddCollider(player.collider);
             world.AddCollider(box);
@@ -81,9 +75,13 @@ namespace SpaceBagel
                 surface.Clear();
 
                 // Testing rendering
-                surface.Draw(layer);
+                surface.Draw(sprite, new Vector2(0,0));
+                surface.Draw(sprite2, new Vector2(0,128));
+                surface.Draw(sprite3, new Vector2(514,423));
+                surface.Draw(sprite4, new Vector2(10, 27));
 
                 window.Clear();
+
                 surface.DrawToWindow(window);
 
 				world.Update();

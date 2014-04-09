@@ -11,6 +11,7 @@ namespace SpaceBagel
         internal SFML.Graphics.RenderStates renderStates;
         internal SFML.Graphics.VertexArray vertexArray;
         internal SFML.Graphics.Texture t;
+        public BaseDrawable[] drawables;
         public Color baseColor;
 
         // test
@@ -52,10 +53,10 @@ namespace SpaceBagel
         }
 
         // Draws layer to surface
-        public void Draw(RenderLayer layer)
+        public void Draw(Sprite sprite, Vector2 position)
         {
-            target.Draw(layer.vertexArray, layer.renderStates);
-            //target.Draw(sprite);
+            sprite.drawableSource.Position = position.SFMLVector2;
+            target.Draw(sprite.drawableSource);
         }
     }
 }
