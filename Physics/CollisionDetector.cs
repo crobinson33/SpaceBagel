@@ -186,7 +186,7 @@ namespace SpaceBagel
                 {
                     if (info.objectOne == two || info.objectTwo == two)
                     {
-                        Console.WriteLine("already in: (" + one.tag + ", " + two.tag + "), (" + info.objectOne.tag + ", " + info.objectTwo.tag + ")");
+                        //Console.WriteLine("already in: (" + one.tag + ", " + two.tag + "), (" + info.objectOne.tag + ", " + info.objectTwo.tag + ")");
                         return true;
                     }
                 }

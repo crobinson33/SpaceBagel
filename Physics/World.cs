@@ -23,7 +23,7 @@ namespace SpaceBagel
             collisions = new List<CollisionInformation>();
             detector = new CollisionDetector();
             resolution = new CollisionResolution();
-            Console.WriteLine("whats the order");
+            //Console.WriteLine("whats the order");
 		}
 
 		/// <summary>
@@ -48,7 +48,7 @@ namespace SpaceBagel
 		public void AddCollider(Collider collider)
 		{
 			colliders.Add(collider);
-            Console.WriteLine("added: " + collider.velocity);
+            //Console.WriteLine("added: " + collider.velocity);
 		}
 
 	}

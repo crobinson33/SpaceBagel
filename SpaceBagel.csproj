@@ -53,13 +53,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="sfmlnet-audio-2">
-      <HintPath>..\..\..\..\..\dev\SFML.Net-2.1\lib\sfmlnet-audio-2.dll</HintPath>
+      <HintPath>..\..\..\Desktop\sfmlnet\sfmlnet-audio-2.dll</HintPath>
     </Reference>
     <Reference Include="sfmlnet-graphics-2">
-      <HintPath>..\..\..\..\..\dev\SFML.Net-2.1\lib\sfmlnet-graphics-2.dll</HintPath>
+      <HintPath>..\..\..\Desktop\sfmlnet\sfmlnet-graphics-2.dll</HintPath>
     </Reference>
     <Reference Include="sfmlnet-window-2">
-      <HintPath>..\..\..\..\..\dev\SFML.Net-2.1\lib\sfmlnet-window-2.dll</HintPath>
+      <HintPath>..\..\..\Desktop\sfmlnet\sfmlnet-window-2.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data.Linq" />
@@ -71,9 +71,11 @@
     <Compile Include="Core\Util.cs" />
     <Compile Include="Graphics\BaseDrawable.cs" />
     <Compile Include="Graphics\Light.cs" />
+    <Compile Include="Graphics\Quad.cs" />
+    <Compile Include="Graphics\RenderLayer.cs" />
     <Compile Include="Graphics\Shader.cs" />
     <Compile Include="Graphics\Surface.cs" />
-    <Compile Include="Graphics\TileMap.cs" />
+    <Compile Include="Graphics\Vertex.cs" />
     <Compile Include="Physics\CollisionTrigger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

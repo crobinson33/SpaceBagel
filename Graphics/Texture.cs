@@ -1,21 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.IO;
-using SFML.Graphics;
+using System.Text;
 
 namespace SpaceBagel
 {
 	public class Texture
 	{
-		internal SFML.Graphics.Texture texture;
+		internal SFML.Graphics.Texture source;
 
 		/// <summary>
 		/// Creates a texture from a source file.
 		/// </summary>
 		/// <param name="source">Path of file to load texture from.</param>
-		public Texture (string source) 
+		public Texture (string file) 
 		{
-			texture = new SFML.Graphics.Texture(source);
-            Console.WriteLine((texture = new SFML.Graphics.Texture(source)));
+            source = new SFML.Graphics.Texture(file);
 		}
 
 		/// <summary>
@@ -24,7 +25,7 @@ namespace SpaceBagel
 		/// <param name="stream">Stream to load texture from.</param>
 		public Texture (Stream stream)
 		{
-			texture = new SFML.Graphics.Texture (stream);
+            source = new SFML.Graphics.Texture(stream);
 		}
 
 		/// <summary>
@@ -34,7 +35,7 @@ namespace SpaceBagel
 		public Texture (byte[] bytes)
 		{
 			using (MemoryStream ms = new MemoryStream (bytes)) {
-				texture = new SFML.Graphics.Texture (ms);
+                source = new SFML.Graphics.Texture(ms);
 			}
 		}
 
@@ -45,15 +46,15 @@ namespace SpaceBagel
 		/// <param name="height">Height of texture.</param>
 		public Texture(int width, int height)
 		{
-			texture = new SFML.Graphics.Texture ((uint)width, (uint)height);
+            source = new SFML.Graphics.Texture((uint)width, (uint)height);
 		}
 
-		public int Width {
-			get { return (int)texture.Size.X; }
+		public uint width {
+            get { return source.Size.X; }
 		}
 
-		public int Height {
-			get { return (int)texture.Size.Y; }
+		public uint height {
+            get { return source.Size.Y; }
 		}
 			
 	}

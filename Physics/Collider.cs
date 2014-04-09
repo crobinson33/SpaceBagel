@@ -45,7 +45,7 @@ namespace SpaceBagel
 			this.size = size;
 			this.position = pos;
 			this.velocity = vel;
-            Console.WriteLine("Created with : " + this.velocity);
+            //Console.WriteLine("Created with : " + this.velocity);
 		}
 
         public void Update()

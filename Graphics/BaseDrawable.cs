@@ -1,25 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace SpaceBagel
 {
+    /// <summary>
+    /// A class to define base attributes af all drawables.
+    /// </summary>
 	public class BaseDrawable
 	{
-
-		public float width;
-		public float height;
+		public uint width;
+		public uint height;
         public Color color;
         public Shader shader;
-        internal SFML.Graphics.Drawable drawableSource;
         internal SFML.Graphics.RenderStates renderStates;
-
-		public BaseDrawable ()
-		{
-		}
-
-		public virtual void Draw(SFML.Graphics.RenderTarget target, SFML.Graphics.RenderStates renderStates)
-		{
-
-		}
 	}
 }
 

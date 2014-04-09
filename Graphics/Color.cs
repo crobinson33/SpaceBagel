@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace SpaceBagel
 {
@@ -11,10 +14,10 @@ namespace SpaceBagel
 
 		public Color ()
 		{
-			r = 1.0f;
-			g = 1.0f;
-			b = 1.0f;
-			a = 1.0f;
+			r = 1f;
+			g = 1f;
+			b = 1f;
+			a = 1f;
 		}
 
         public Color(float r, float g, float b, float a)
@@ -25,12 +28,12 @@ namespace SpaceBagel
             this.a = Util.Clamp(a);
         }
 
-        public Color(float R, float G, float B)
+        public Color(float r, float g, float b)
         {
             this.r = Util.Clamp(r);
             this.g = Util.Clamp(g);
             this.b = Util.Clamp(b);
-            this.a = 1.0f;
+            this.a = 1f;
         }
 
         internal SFML.Graphics.Color SFMLColor
@@ -76,6 +79,42 @@ namespace SpaceBagel
                 int i = (int)Math.Round(f);
                 return Convert.ToByte(i);
             }
+        }
+
+        /// <summary>Predefined black color</summary>
+        public static readonly Color Black = new Color(0f, 0f, 0f);
+
+        /// <summary>Predefined white color</summary>
+        public static readonly Color White = new Color(1f, 1f, 1f);
+
+        /// <summary>Predefined red color</summary>
+        public static readonly Color Red = new Color(1f, 0f, 0f);
+
+        /// <summary>Predefined green color</summary>
+        public static readonly Color Green = new Color(0f, 1f, 0f);
+
+        /// <summary>Predefined blue color</summary>
+        public static readonly Color Blue = new Color(0f, 0f, 1f);
+
+        /// <summary>Predefined yellow color</summary>
+        public static readonly Color Yellow = new Color(1f, 1f, 0f);
+
+        /// <summary>Predefined magenta color</summary>
+        public static readonly Color Magenta = new Color(1f, 0f, 1f);
+
+        /// <summary>Predefined cyan color</summary>
+        public static readonly Color Cyan = new Color(0f, 1f, 1f);
+
+        /// <summary>Predefined (black) transparent color</summary>
+        public static readonly Color Transparent = new Color(0f, 0f, 0f, 0f);
+
+        public override string ToString()
+        {
+            return "[Color]" +
+                   " R(" + r + ")" +
+                   " G(" + g + ")" +
+                   " B(" + b + ")" +
+                   " A(" + a + ")";
         }
 	}
 }

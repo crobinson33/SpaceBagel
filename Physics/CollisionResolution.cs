@@ -64,7 +64,7 @@ namespace SpaceBagel
                 // only resolve if the object is not static.
                 if (collision.objectOne.isStatic != true)
                 {
-                    Console.WriteLine("applying: -=" + (1 / collision.objectOne.mass * impulse));
+                    //Console.WriteLine("applying: -=" + (1 / collision.objectOne.mass * impulse));
                     collision.objectOne.velocity -= (1 / collision.objectOne.mass * impulse);
                 }
             }
@@ -73,7 +73,7 @@ namespace SpaceBagel
                 // only resolve if the object is not static.
                 if (collision.objectTwo.isStatic != true)
                 {
-                    Console.WriteLine("applying: +=" + (1 / collision.objectTwo.mass * impulse));
+                    //Console.WriteLine("applying: +=" + (1 / collision.objectTwo.mass * impulse));
                     collision.objectTwo.velocity += (1 / collision.objectTwo.mass * impulse);
                 }
             }
