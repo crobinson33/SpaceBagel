@@ -1,6 +1,9 @@
 C:\Users\neavalia\Documents\GitHub\SpaceBagel\bin\Debug\csfml-audio-2.dll
+C:\Users\neavalia\Documents\GitHub\SpaceBagel\bin\Debug\Sounds\Cheers.wav
+C:\Users\neavalia\Documents\GitHub\SpaceBagel\bin\Debug\Resources\sansation.ttf
 C:\Users\neavalia\Documents\GitHub\SpaceBagel\bin\Debug\csfml-graphics-2.dll
 C:\Users\neavalia\Documents\GitHub\SpaceBagel\bin\Debug\csfml-window-2.dll
+C:\Users\neavalia\Documents\GitHub\SpaceBagel\bin\Debug\Images\Hat.png
 C:\Users\neavalia\Documents\GitHub\SpaceBagel\bin\Debug\src\Window\Keyboard.cs
 C:\Users\neavalia\Documents\GitHub\SpaceBagel\bin\Debug\libosx\libcsfml-audio.2.0.dylib
 C:\Users\neavalia\Documents\GitHub\SpaceBagel\bin\Debug\libosx\libcsfml-graphics.2.0.dylib
@@ -18,6 +21,3 @@ C:\Users\neavalia\Documents\GitHub\SpaceBagel\bin\Debug\sfmlnet-graphics-2.dll
 C:\Users\neavalia\Documents\GitHub\SpaceBagel\bin\Debug\sfmlnet-window-2.dll
 C:\Users\neavalia\Documents\GitHub\SpaceBagel\obj\x86\Debug\SpaceBagel.exe
 C:\Users\neavalia\Documents\GitHub\SpaceBagel\obj\x86\Debug\SpaceBagel.pdb
-C:\Users\neavalia\Documents\GitHub\SpaceBagel\obj\x86\Debug\SpaceBagel.csprojResolveAssemblyReference.cache
-C:\Users\neavalia\Documents\GitHub\SpaceBagel\bin\Debug\Images\Hat.png
-C:\Users\neavalia\Documents\GitHub\SpaceBagel\bin\Debug\Resources\sansation.ttf

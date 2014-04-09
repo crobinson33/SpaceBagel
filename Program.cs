@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Threading; 
 using SFML.Graphics;
 using SFML.Window;
+using SFML.Audio; 
 
 namespace SpaceBagel
 {
@@ -11,6 +12,14 @@ namespace SpaceBagel
 	{
 		public static void Main (string[] args)
 		{
+
+            SoundBuffer buffer = new SoundBuffer("Sounds/Cheers.wav");
+            Sound mSound = new Sound(buffer);
+            mSound.Play(); 
+
+            
+
+            
             /*
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
