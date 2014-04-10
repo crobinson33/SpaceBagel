@@ -52,19 +52,11 @@ namespace SpaceBagel
             this.z = z;
         }
 
-        /// <summary>
-        /// Add animation to sprite animation controller
-        /// </summary>
-        /// <param name="animation">Animation to add</param>
         public void AddAnimation(Animation animation)
         {
             animationController.animations.Add(animation);
         }
 
-        /// <summary>
-        /// Update animated sprite's current frame, position, and texture coordinates of current frame
-        /// </summary>
-        /// <param name="position">Position to set</param>
         public void Update(Vector2 position)
         {
             animationController.AdvanceFrame();
