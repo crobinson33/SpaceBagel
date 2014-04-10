@@ -52,8 +52,8 @@ namespace SpaceBagel
             }
             frameRow = curFrame / aSprite.columns;
             frameCol = curFrame % aSprite.columns;
-            Console.WriteLine("frameRow is " + frameRow + ".");
-            Console.WriteLine("frameCol is " + frameCol + ".");
+            //Console.WriteLine("frameRow is " + frameRow + ".");
+            //Console.WriteLine("frameCol is " + frameCol + ".");
             curFrameCoords.X = frameCol * aSprite.width;
             curFrameCoords.Y = frameRow * aSprite.height;
             //Console.WriteLine("Frame is " + curFrame + ".");
