@@ -12,9 +12,10 @@ namespace SpaceBagel
 	{
 		public int width;
 		public int height;
+        public int z;
         public Color color;
         public Shader shader;
         internal SFML.Graphics.RenderStates renderStates;
-	}
+    }
 }
 

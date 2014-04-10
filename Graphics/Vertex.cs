@@ -5,12 +5,18 @@ using System.Text;
 
 namespace SpaceBagel
 {
+    /// <summary>
+    /// Wrapper for SFML Vertex
+    /// </summary>
     public class Vertex
     {
         public Vector2 position;
         public Color color;
         public Vector2 texCoords;
 
+        /// <summary>
+        /// Access SFML Vertex directly
+        /// </summary>
         internal SFML.Graphics.Vertex SFMLVertex
         {
             get { return new SFML.Graphics.Vertex(new SFML.Window.Vector2f(position.X, position.Y), color.SFMLColor, new SFML.Window.Vector2f(texCoords.X, texCoords.Y)); }

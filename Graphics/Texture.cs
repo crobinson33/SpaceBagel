@@ -6,6 +6,9 @@ using System.Text;
 
 namespace SpaceBagel
 {
+    /// <summary>
+    /// Wrapper for SFML Texture
+    /// </summary>
 	public class Texture
 	{
 		internal SFML.Graphics.Texture source;

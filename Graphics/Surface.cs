@@ -5,13 +5,16 @@ using System.Text;
 
 namespace SpaceBagel
 {
+    /// <summary>
+    /// Surface that can be drawn to, and in turn be drawn to a Window or other Surface
+    /// </summary>
     public class Surface
     {
         internal SFML.Graphics.RenderTexture target;
         internal SFML.Graphics.RenderStates renderStates;
         internal SFML.Graphics.VertexArray vertexArray;
         internal SFML.Graphics.Texture t;
-        public BaseDrawable[] drawables;
+        public List<BaseDrawable> drawables = new List<BaseDrawable>();
         public Color baseColor;
 
         // test
@@ -21,7 +24,7 @@ namespace SpaceBagel
         {
             target = new SFML.Graphics.RenderTexture((uint) width, (uint) height);
             baseColor = color;
-            this.renderStates = SFML.Graphics.RenderStates.Default;
+            renderStates = SFML.Graphics.RenderStates.Default;
             vertexArray = new SFML.Graphics.VertexArray(SFML.Graphics.PrimitiveType.Quads, 0);
             vertexArray.Append(new Vertex(new Vector2(0, 0), new Vector2(0, 0)).SFMLVertex);
             vertexArray.Append(new Vertex(new Vector2(target.Size.X, 0), new Vector2(target.Size.X, 0)).SFMLVertex);
@@ -52,11 +55,18 @@ namespace SpaceBagel
             target.Display();
         }
 
-        // Draws layer to surface
+        // Draws sprite to surface
         public void Draw(Sprite sprite, Vector2 position)
         {
-            sprite.drawableSource.Position = position.SFMLVector2;
+            sprite.Update(position);
             target.Draw(sprite.drawableSource);
+        }
+
+        // Draws sprite to surface
+        public void Draw(AnimatedSprite aSprite, Vector2 position)
+        {
+            aSprite.Update(position);
+            target.Draw(aSprite.drawableSource);
         }
     }
 }

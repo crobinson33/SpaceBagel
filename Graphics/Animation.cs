@@ -10,16 +10,17 @@ namespace SpaceBagel
         public string name;
         public int startingFrame;
         public int numFrames;
-        public int animType;
+        
+        //public int animType;
 
-        public enum animTypes { };
+        //public enum animTypes { };
 
-		public Animation (string name, int startingFrame, int numFrames, animTypes animType)
+		public Animation (string name, int startingFrame, int numFrames)
 		{
             this.name = name;
             this.startingFrame = startingFrame;
             this.numFrames = numFrames;
-            this.animType = (int)animType;
+            //this.animType = (int)animType;
 		}
 	}
 }
