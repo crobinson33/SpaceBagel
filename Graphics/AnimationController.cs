@@ -20,20 +20,27 @@ namespace SpaceBagel
             curFrameCoords = new Vector2(0, 0);
             this.aSprite = aSprite;
             animChanged = false;
-            //this.activeAnimation = Lookup "default";
 		}
 
+        /// <summary>
+        /// Sets current animation
+        /// </summary>
+        /// <param name="animation">Animation to set</param>
         public void SetActiveAnimation(Animation animation)
         {
             activeAnimation = animation;
             animChanged = true;
         }
 
+        /// <summary>
+        /// Advances the sprite to the next logical frame in the animation, or starts a new animation.
+        /// </summary>
         public void AdvanceFrame()
         {
             int frameCol;
             int frameRow;
 
+            // Start new animation
             if (animChanged)
             {
                 curFrame = activeAnimation.startingFrame;
@@ -41,24 +48,22 @@ namespace SpaceBagel
             }
             else
             {
+                // Advance to next frame in current animation
                 if (curFrame < ((activeAnimation.startingFrame + activeAnimation.numFrames) -1))
                 {
                     curFrame++;
                 }
+                // Restart animation
                 else
                 {
                     curFrame = activeAnimation.startingFrame;
                 }
             }
+            // Set texture coordinates of frame for sprite update call
             frameRow = curFrame / aSprite.columns;
             frameCol = curFrame % aSprite.columns;
-            Console.WriteLine("frameRow is " + frameRow + ".");
-            Console.WriteLine("frameCol is " + frameCol + ".");
             curFrameCoords.X = frameCol * aSprite.width;
             curFrameCoords.Y = frameRow * aSprite.height;
-            //Console.WriteLine("Frame is " + curFrame + ".");
-            //Console.WriteLine("Xpx is " + curFrameCoords.X + ".");
-            //Console.WriteLine("Ypx is " + curFrameCoords.Y + ".");
         }
 
 	}

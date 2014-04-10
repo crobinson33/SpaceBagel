@@ -70,7 +70,7 @@ namespace SpaceBagel
             asprite.AddAnimation(defaultAnimation);
             asprite.AddAnimation(downRunAnimation);
 
-            // Test animation
+            // Test animation set active
             asprite.animationController.SetActiveAnimation(downRunAnimation);
 
 			world.AddCollider(player.collider);
