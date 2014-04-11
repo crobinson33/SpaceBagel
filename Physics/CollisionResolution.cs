@@ -53,11 +53,11 @@ namespace SpaceBagel
 
 			// Calculate impulse scalar
 			float j = -(1 + e) * velAlongNormal;
-			j /= 1 / collision.objectOne.mass + 1 / collision.objectTwo.mass;
+			j /= (float)1 / collision.objectOne.mass + 1 / collision.objectTwo.mass;
 
 			// Apply impulse
 			Vector2 impulse = j * collision.collisionNormal;
-            //Console.WriteLine(impulse);
+            Console.WriteLine(impulse);
 
             if (collision.objectOne.mass > 0)
             {
@@ -77,6 +77,12 @@ namespace SpaceBagel
                     collision.objectTwo.velocity += (1 / collision.objectTwo.mass * impulse);
                 }
             }
+
+            float percent = 0.2f; // usually 20% to 80%
+            float slop = 0.01f; // usually 0.01 to 0.1
+            Vector2 correction = Math.Max(collision.penetrationAmount - slop, 0) / ((1 / collision.objectOne.mass) + (1 / collision.objectTwo.mass)) * percent * collision.collisionNormal;
+            collision.objectOne.position -= 1 / collision.objectOne.mass * correction;
+            collision.objectTwo.position += 1 / collision.objectTwo.mass * correction;
 		}
 	}
 }

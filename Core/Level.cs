@@ -8,11 +8,14 @@ namespace SpaceBagel
         public List<BaseObject> objects;
         public Surface surface;
 
+        public World world;
+
 		public Level (Surface surface)
 		{
             objects = new List<BaseObject>();
             this.surface = surface;
             Console.WriteLine("surface created");
+            world = new World();
 		}
 
         public void AddObject(BaseObject newObject)
@@ -31,6 +34,8 @@ namespace SpaceBagel
             {
                 obj.Update(deltaTime);
             }
+
+            world.Update(deltaTime);
         }
 
         public void Draw()

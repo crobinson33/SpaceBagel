@@ -19,8 +19,8 @@ namespace SpaceBagel
 		public Vector2 size;
         public float radius;
 
-		public float restitution;
-		public float mass = 1;
+		public float restitution = 0.5f;
+		public float mass = 10;
 
         public List<string> layersToIgnore = new List<string>();
 
@@ -49,9 +49,16 @@ namespace SpaceBagel
             //Console.WriteLine("Created with : " + this.velocity);
 		}
 
-        public void Update()
+        public void Update(float deltaTime)
         {
-            this.position += this.velocity;
+            //Console.WriteLine("got here");
+            this.position += this.velocity * deltaTime;
+            ClearVelocity();
+        }
+
+        public void ClearVelocity()
+        {
+            this.velocity *= 0.9f;
         }
 
 		public virtual void CreateOnCollisionEnter(Collider collider, Action method)

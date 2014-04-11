@@ -43,7 +43,7 @@ namespace SpaceBagel
 		/// <param name="collisionInfo">Collision info.</param>
 		public bool AABBvsAABB(Collider colliderOne, Collider colliderTwo, CollisionInformation collisionInfo)
 		{
-            //Console.WriteLine("checking collision");
+            //Console.WriteLine(colliderOne.position.X + ", " +colliderOne.position.Y + ": " + colliderTwo.position.X + ", " + colliderTwo.position.Y + ": " + colliderOne.size + ": " + colliderTwo.size);
 			Vector2 collisionNormal;
 		
 			// Vector from A to B
@@ -79,14 +79,18 @@ namespace SpaceBagel
 						if(normal.X < 0)
 						{
 							collisionNormal = new Vector2(-1, 0);
+                            //Console.WriteLine("here1");
 						}
 						else
 						{
-							collisionNormal = new Vector2(0,0);
+							collisionNormal = new Vector2(1,0);
+                            //Console.WriteLine("here2");
 						}
 						
 						collisionInfo.collisionNormal = collisionNormal;
 						collisionInfo.penetrationAmount = x_overlap;
+
+                        Console.WriteLine(collisionInfo.collisionNormal + ", " + collisionInfo.penetrationAmount);
 						
 						return true;
 					}
@@ -97,14 +101,20 @@ namespace SpaceBagel
 						if(normal.Y < 0)
 						{
 							collisionNormal = new Vector2(0,-1);
+                            //Console.WriteLine("here3");
 						}
 						else
 						{
 							collisionNormal = new Vector2(0,1);
+                            //Console.WriteLine("here4");
 						}
 
+                        
+
 						collisionInfo.collisionNormal = collisionNormal;
-						collisionInfo.penetrationAmount =y_overlap;
+						collisionInfo.penetrationAmount = y_overlap;
+
+                        Console.WriteLine(collisionInfo.collisionNormal + ", " + collisionInfo.penetrationAmount);
 
 						return true;
 					}
@@ -319,9 +329,11 @@ namespace SpaceBagel
                 //box v box
                 if (AABBvsAABB(one, two, info))
                 {
+                    //Console.WriteLine("COLLISION!");
                     info.collisionType = "AABBvsAABB";
                     return true;
                 }
+                //Console.WriteLine("---");
             }
             // make sure both objects are not boxes
             else if (one.GetType() != typeof(BoxCollider) && one.GetType() != typeof(CharacterCollider) &&

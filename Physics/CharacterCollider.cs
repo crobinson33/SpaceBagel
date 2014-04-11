@@ -11,7 +11,7 @@ namespace SpaceBagel
         
 
         /// <summary>
-        /// Default constructor. Object always needs a tag.
+        /// Default constructor. Object always needs a tag.w
         /// </summary>
         /// <param name="tag"></param>
 		public CharacterCollider(string tag) : base(tag)
@@ -50,6 +50,11 @@ namespace SpaceBagel
             CollisionTrigger newTrigger = new CollisionTrigger(collider, method);
             triggers.Add(newTrigger);
 		}
+
+        public void AddVelocity(Vector2 velocity)
+        {
+            this.velocity += velocity;
+        }
 	}
 }
 

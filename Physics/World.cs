@@ -29,7 +29,7 @@ namespace SpaceBagel
 		/// <summary>
 		/// Updates all physics objects
 		/// </summary>
-		public void Update()
+		public void Update(float deltaTime)
 		{
             collisions = detector.GetAllCollisions(colliders);
             resolution.ResolveAllCollisions(collisions);
@@ -37,7 +37,7 @@ namespace SpaceBagel
 
             foreach (Collider collider in colliders)
             {
-                collider.Update();
+                collider.Update(deltaTime);
             }
 		}
 
