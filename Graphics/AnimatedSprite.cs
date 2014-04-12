@@ -62,7 +62,7 @@ namespace SpaceBagel
             animationController.AdvanceFrame(deltaTime);
             drawableSource.Position = position.SFMLVector2;
             //Console.WriteLine(drawableSource.Position);
-            if (animationController.activeAnimation.flip = true)
+            if (animationController.activeAnimation.flip == true)
             {
                 drawableSource.TextureRect = new SFML.Graphics.IntRect((int)animationController.curFrameCoords.X + width, (int)animationController.curFrameCoords.Y, -this.width, this.height);
             }
