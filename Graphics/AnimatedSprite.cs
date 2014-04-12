@@ -5,8 +5,8 @@ using System.Text;
 
 namespace SpaceBagel
 {
-	public class AnimatedSprite : BaseDrawable
-	{
+    public class AnimatedSprite : BaseDrawable
+    {
         internal SFML.Graphics.Sprite drawableSource;
         public Texture texture;
         public Vector2 texCoords;
@@ -14,8 +14,8 @@ namespace SpaceBagel
         public int rows;
         public AnimationController animationController;
 
-        public AnimatedSprite (Texture texture, int width, int height)
-		{
+        public AnimatedSprite(Texture texture, int width, int height)
+        {
             color = Color.White;
             this.width = width;
             this.height = height;
@@ -28,10 +28,10 @@ namespace SpaceBagel
             //this.textureBottomLeft = new Vector2(textureCoords.X, textureCoords.Y + this.height);
             //this.layer = layer;
             texCoords = new Vector2(0, 0);
-            drawableSource = new SFML.Graphics.Sprite(texture.source, new SFML.Graphics.IntRect((int)texCoords.X, (int)texCoords.Y ,this.width, this.height));
+            drawableSource = new SFML.Graphics.Sprite(texture.source, new SFML.Graphics.IntRect((int)texCoords.X, (int)texCoords.Y, this.width, this.height));
             animationController = new AnimationController(this);
             this.z = 0;
-		}
+        }
 
         public AnimatedSprite(Texture texture, int width, int height, int z)
         {
@@ -62,8 +62,17 @@ namespace SpaceBagel
             animationController.AdvanceFrame(deltaTime);
             drawableSource.Position = position.SFMLVector2;
             //Console.WriteLine(drawableSource.Position);
-            drawableSource.TextureRect = new SFML.Graphics.IntRect((int)animationController.curFrameCoords.X, (int)animationController.curFrameCoords.Y, this.width, this.height);
+            if (animationController.activeAnimation.flip = true)
+            {
+                drawableSource.TextureRect = new SFML.Graphics.IntRect((int)animationController.curFrameCoords.X + width, (int)animationController.curFrameCoords.Y, -this.width, this.height);
+            }
+            else
+            {
+                drawableSource.TextureRect = new SFML.Graphics.IntRect((int)animationController.curFrameCoords.X, (int)animationController.curFrameCoords.Y, this.width, this.height);
+            }
+	
         }
-	}
+
+    }
 }
 

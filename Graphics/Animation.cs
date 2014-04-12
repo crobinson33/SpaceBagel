@@ -11,6 +11,7 @@ namespace SpaceBagel
         public int startingFrame;
         public int numFrames;
         public float speed;
+        public bool flip;
         
         //public int animType;
 
@@ -22,6 +23,7 @@ namespace SpaceBagel
             this.startingFrame = startingFrame;
             this.numFrames = numFrames;
             this.speed = speed * 0.06f;
+            this.flip = false;
             //this.animType = (int)animType;
 		}
 
@@ -31,6 +33,27 @@ namespace SpaceBagel
             this.startingFrame = startingFrame;
             this.numFrames = numFrames;
             this.speed = 0.06f;
+            this.flip = false;
+            //this.animType = (int)animType;
+        }
+
+        public Animation(string name, int startingFrame, int numFrames, bool flip)
+        {
+            this.name = name;
+            this.startingFrame = startingFrame;
+            this.numFrames = numFrames;
+            this.speed = 0.06f;
+            this.flip = flip;
+            //this.animType = (int)animType;
+        }
+
+        public Animation(string name, int startingFrame, int numFrames, float speed, bool flip)
+        {
+            this.name = name;
+            this.startingFrame = startingFrame;
+            this.numFrames = numFrames;
+            this.speed = speed * 0.06f;
+            this.flip = flip;
             //this.animType = (int)animType;
         }
 	}
