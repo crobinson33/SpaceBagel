@@ -16,16 +16,21 @@ namespace SpaceBagel
             CalculatePoints();
 		}
 
-		public BoxCollider(string tag, Vector2 size, Vector2 pos) : base(size, pos, new Vector2(-0.5f, 0))
+		public BoxCollider(string tag, Vector2 size, Vector2 pos) : base(size, pos, new Vector2(0, 0))
 		{
             this.tag = tag;
             CalculatePoints();
 		}
 
+        public void AddVelocity(Vector2 vel)
+        {
+            this.velocity += vel;
+        }
+
         /// <summary>
         /// Get our topLeft and BottomRight. These are used in collision detection
         /// </summary>
-        public void CalculatePoints()
+        public override void CalculatePoints()
         {
             topLeft = position;
             bottomRight = new Vector2((position.X + size.X), (position.Y + size.Y));

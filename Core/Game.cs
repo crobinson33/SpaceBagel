@@ -100,7 +100,8 @@ namespace SpaceBagel
         public Level AddLevel()
         {
             Surface surface = new Surface(windowWidth, windowHeight, Color.Black);
-            Level newLevel = new Level(surface);
+            Mouse mouse = new Mouse(window);
+            Level newLevel = new Level(surface, mouse);
             levels.Add(newLevel);
             return newLevel;
         }

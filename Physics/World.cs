@@ -37,6 +37,7 @@ namespace SpaceBagel
 
             foreach (Collider collider in colliders)
             {
+                collider.CalculatePoints();
                 collider.Update(deltaTime);
             }
 		}
@@ -50,6 +51,11 @@ namespace SpaceBagel
 			colliders.Add(collider);
             //Console.WriteLine("added: " + collider.velocity);
 		}
+
+        public void RemoveCollider(Collider collider)
+        {
+            colliders.Remove(collider);
+        }
 
 	}
 }

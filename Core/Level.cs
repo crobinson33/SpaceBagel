@@ -10,12 +10,15 @@ namespace SpaceBagel
 
         public World world;
 
-		public Level (Surface surface)
+        public Mouse mouse;
+
+		public Level (Surface surface, Mouse mouse)
 		{
             objects = new List<BaseObject>();
             this.surface = surface;
             Console.WriteLine("surface created");
             world = new World();
+            this.mouse = mouse;
 		}
 
         public void AddObject(BaseObject newObject)

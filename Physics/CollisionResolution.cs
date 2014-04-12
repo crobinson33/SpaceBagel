@@ -27,6 +27,16 @@ namespace SpaceBagel
 			}
 		}
 
+        public void ResolveCollision(CollisionInformation collision)
+        {
+            if (collision.collisionNormal.X == -1)
+            {
+                Console.WriteLine("got here");
+                //Console.WriteLine(collision.objectOne.velocity);
+                collision.objectTwo.velocity.X *= -1;
+            }
+        }
+
 		/// <summary>
 		/// Takes a specific instance of a collision and resolves it.
 		/// </summary>
@@ -36,11 +46,14 @@ namespace SpaceBagel
             //Console.WriteLine("resolving...");
 			// Calculate relative velocity
 			Vector2 relativeVelocity = collision.objectTwo.velocity - collision.objectOne.velocity;
-            //Console.WriteLine(collision.objectOne.velocity);
+            //Console.WriteLine(relativeVelocity);
 
 			// Calculate relative velocity in terms of the normal direction
             Vector2 forDot = new Vector2();
 			float velAlongNormal = forDot.Dot(relativeVelocity, collision.collisionNormal);
+
+            float objectOneInvMass = (float)1 / collision.objectOne.mass;
+            float objectTwoInvMass = (float)1 / collision.objectTwo.mass;
 
 			// Do not resolve if velocities are separating
 			if(velAlongNormal > 0)
@@ -53,11 +66,11 @@ namespace SpaceBagel
 
 			// Calculate impulse scalar
 			float j = -(1 + e) * velAlongNormal;
-			j /= (float)1 / collision.objectOne.mass + 1 / collision.objectTwo.mass;
+            j /= objectOneInvMass + objectTwoInvMass;
 
 			// Apply impulse
-			Vector2 impulse = j * collision.collisionNormal;
-            Console.WriteLine(impulse);
+			Vector2 impulse = collision.collisionNormal * j;
+            //Console.WriteLine(impulse);
 
             if (collision.objectOne.mass > 0)
             {
@@ -65,7 +78,7 @@ namespace SpaceBagel
                 if (collision.objectOne.isStatic != true)
                 {
                     //Console.WriteLine("applying: -=" + (1 / collision.objectOne.mass * impulse));
-                    collision.objectOne.velocity -= (1 / collision.objectOne.mass * impulse);
+                    collision.objectOne.velocity -= (objectOneInvMass * impulse);
                 }
             }
             if (collision.objectTwo.mass > 0)
@@ -74,15 +87,22 @@ namespace SpaceBagel
                 if (collision.objectTwo.isStatic != true)
                 {
                     //Console.WriteLine("applying: +=" + (1 / collision.objectTwo.mass * impulse));
-                    collision.objectTwo.velocity += (1 / collision.objectTwo.mass * impulse);
+                    collision.objectTwo.velocity += (objectTwoInvMass * impulse);
                 }
             }
 
-            float percent = 0.2f; // usually 20% to 80%
+            float percent = 0.9f; // usually 20% to 80%
             float slop = 0.01f; // usually 0.01 to 0.1
-            Vector2 correction = Math.Max(collision.penetrationAmount - slop, 0) / ((1 / collision.objectOne.mass) + (1 / collision.objectTwo.mass)) * percent * collision.collisionNormal;
-            collision.objectOne.position -= 1 / collision.objectOne.mass * correction;
-            collision.objectTwo.position += 1 / collision.objectTwo.mass * correction;
+            Vector2 correction = Math.Max(collision.penetrationAmount - slop, 0) / (objectOneInvMass + objectTwoInvMass) * percent * collision.collisionNormal;
+            Console.WriteLine(correction);
+            if (collision.objectOne.isStatic != true)
+            {
+                collision.objectOne.position -= objectOneInvMass * correction;
+            }
+            if (collision.objectTwo.isStatic != true)
+            {
+                collision.objectTwo.position += objectTwoInvMass * correction;
+            }
 		}
 	}
 }

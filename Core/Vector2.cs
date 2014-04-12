@@ -52,6 +52,13 @@ namespace SpaceBagel
             return new Vector2(this.X / Math.Abs(length), this.Y / Math.Abs(length));
         }
 
+        public void Normalize()
+        {
+            Vector2 newVector = Normalize(LengthSquared());
+            this.X = newVector.X;
+            this.Y = newVector.Y;
+        }
+
         /// <summary>
         /// Get length
         /// </summary>

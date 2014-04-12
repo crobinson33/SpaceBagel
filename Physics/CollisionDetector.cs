@@ -50,8 +50,8 @@ namespace SpaceBagel
 			Vector2 normal = colliderTwo.position - colliderOne.position;
 
 			// Calculate half extents along x axis for each object
-			float colliderOne_extent = (colliderOne.bottomRight.X - colliderOne.topLeft.X) / 2;
-			float colliderTwo_extent = (colliderTwo.bottomRight.X - colliderTwo.topLeft.X) / 2;
+			float colliderOne_extent = ((colliderOne.position.X + colliderOne.size.X) - colliderOne.position.X) / 2;
+            float colliderTwo_extent = ((colliderTwo.position.X + colliderTwo.size.X) - colliderTwo.position.X) / 2;
 
 			// Calculate overlap on x axis
 			float x_overlap = colliderOne_extent + colliderTwo_extent - Math.Abs(normal.X);
@@ -61,8 +61,8 @@ namespace SpaceBagel
 			{
                 //Console.WriteLine("we have an overlap");
 				// Calculate half extents along x axis for each object
-				colliderOne_extent = (colliderOne.bottomRight.Y - colliderOne.topLeft.Y) / 2;
-				colliderTwo_extent = (colliderTwo.bottomRight.Y - colliderTwo.topLeft.Y) / 2;
+                colliderOne_extent = ((colliderOne.position.Y + colliderOne.size.Y) - colliderOne.position.Y) / 2;
+                colliderTwo_extent = ((colliderTwo.position.Y + colliderTwo.size.Y) - colliderTwo.position.Y) / 2;
 
 				// Calculate overlap on y axis
 				float y_overlap = colliderOne_extent + colliderTwo_extent - Math.Abs(normal.Y);
@@ -72,25 +72,26 @@ namespace SpaceBagel
 				{
                     //Console.WriteLine("double overlap, what does it mean");
 					// Find out which axis is axis of least penetration
-					if(x_overlap > y_overlap)
+                    //Console.WriteLine(x_overlap + ", " + y_overlap);
+					if(x_overlap < y_overlap)
 					{
                         //Console.WriteLine("FIRST");
 						// Point towards B knowing that n points from A to B
 						if(normal.X < 0)
 						{
 							collisionNormal = new Vector2(-1, 0);
-                            //Console.WriteLine("here1");
+                            //Console.WriteLine("left");
 						}
 						else
 						{
-							collisionNormal = new Vector2(1,0);
-                            //Console.WriteLine("here2");
+                            collisionNormal = new Vector2(1, 0);
+                            //Console.WriteLine("right");
 						}
 						
 						collisionInfo.collisionNormal = collisionNormal;
 						collisionInfo.penetrationAmount = x_overlap;
 
-                        Console.WriteLine(collisionInfo.collisionNormal + ", " + collisionInfo.penetrationAmount);
+                        //Console.WriteLine(collisionInfo.collisionNormal + ", " + collisionInfo.penetrationAmount);
 						
 						return true;
 					}
@@ -114,7 +115,7 @@ namespace SpaceBagel
 						collisionInfo.collisionNormal = collisionNormal;
 						collisionInfo.penetrationAmount = y_overlap;
 
-                        Console.WriteLine(collisionInfo.collisionNormal + ", " + collisionInfo.penetrationAmount);
+                        //Console.WriteLine(collisionInfo.collisionNormal + ", " + collisionInfo.penetrationAmount);
 
 						return true;
 					}
@@ -264,6 +265,31 @@ namespace SpaceBagel
             }
  
             return true;
+        }
+
+        public bool BoxVsBox(Collider one, Collider two)
+        {
+            /*
+            if (one.position.X + one.size.X > two.position.X && one.position.X < two.position.X + two.size.X)
+            {
+                if (one.position.Y > two.position.Y && two.position.Y < two.position.Y + two.size.Y)
+                {
+                    Console.WriteLine(one.size + ", " + two.size);
+                    one.velocity *= -1;
+                    return true;
+                }
+            }*/
+
+            if ((Math.Abs(one.position.X - two.position.X) * 2 < (one.size.X + two.size.X)) &&
+            (Math.Abs(one.position.Y - two.position.Y) * 2 < (one.size.Y + two.size.Y)))
+            {
+                Console.WriteLine("got here");
+                two.velocity.X *= -1;
+                return true;
+            }
+            Console.WriteLine("---");
+
+            return false;
         }
 
 		/// <summary>

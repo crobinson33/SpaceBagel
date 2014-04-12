@@ -5,9 +5,10 @@ namespace SpaceBagel
 {
 	public class Mouse
 	{
-		public Mouse ()
+        Window window;
+		public Mouse (Window window)
 		{
-
+            this.window = window;
 		}
 
 		////////////////////////////////////////////////////////////
@@ -66,7 +67,7 @@ namespace SpaceBagel
 		/// <returns>The mouse position.</returns>
 		public Vector2 GetMousePosition()
 		{
-			return new Vector2(SFML.Window.Mouse.GetPosition().X, SFML.Window.Mouse.GetPosition().Y);
+			return new Vector2(SFML.Window.Mouse.GetPosition(window).X, SFML.Window.Mouse.GetPosition(window).Y);
 		}
 
 		/// <summary>
