@@ -41,11 +41,11 @@ namespace SpaceBagel
             world.Update(deltaTime);
         }
 
-        public void Draw()
+        public void Draw(float deltaTime)
         {
             foreach(BaseObject obj in objects)
             {
-                obj.Draw(surface);
+                obj.Draw(surface, deltaTime);
             }
         }
 	}

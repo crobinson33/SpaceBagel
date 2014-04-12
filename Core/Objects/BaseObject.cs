@@ -20,7 +20,7 @@ namespace SpaceBagel
 
         }
 
-        public virtual void Draw(Surface surface)
+        public virtual void Draw(Surface surface, float deltaTime)
         {
 
         }

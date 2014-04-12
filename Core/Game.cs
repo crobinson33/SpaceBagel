@@ -144,7 +144,7 @@ namespace SpaceBagel
                 levels[currentLevel].Update(deltaTime);
 
                 //draw
-                levels[currentLevel].Draw();
+                levels[currentLevel].Draw(deltaTime);
 
                 // Clear window each frame
                 window.Clear();

@@ -14,6 +14,7 @@ namespace SpaceBagel
         public List<Animation> animations = new List<Animation>();
         public AnimatedSprite aSprite;
         public bool animChanged;
+        private float timeSinceFrame;
 
 		public AnimationController (AnimatedSprite aSprite)
 		{
@@ -29,10 +30,11 @@ namespace SpaceBagel
             animChanged = true;
         }
 
-        public void AdvanceFrame()
+        public void AdvanceFrame(float deltaTime)
         {
             int frameCol;
             int frameRow;
+            timeSinceFrame += deltaTime;
 
             if (animChanged)
             {
@@ -41,24 +43,23 @@ namespace SpaceBagel
             }
             else
             {
-                if (curFrame < ((activeAnimation.startingFrame + activeAnimation.numFrames) -1))
+                if (timeSinceFrame > activeAnimation.speed)
                 {
-                    curFrame++;
-                }
-                else
-                {
-                    curFrame = activeAnimation.startingFrame;
+                    if (curFrame < ((activeAnimation.startingFrame + activeAnimation.numFrames) - 1))
+                    {
+                        curFrame++;
+                    }
+                    else
+                    {
+                        curFrame = activeAnimation.startingFrame;
+                    }
+                    timeSinceFrame = 0f;
                 }
             }
             frameRow = curFrame / aSprite.columns;
             frameCol = curFrame % aSprite.columns;
-            //Console.WriteLine("frameRow is " + frameRow + ".");
-            //Console.WriteLine("frameCol is " + frameCol + ".");
             curFrameCoords.X = frameCol * aSprite.width;
             curFrameCoords.Y = frameRow * aSprite.height;
-            //Console.WriteLine("Frame is " + curFrame + ".");
-            //Console.WriteLine("Xpx is " + curFrameCoords.X + ".");
-            //Console.WriteLine("Ypx is " + curFrameCoords.Y + ".");
         }
 
 	}

@@ -63,9 +63,9 @@ namespace SpaceBagel
         }
 
         // Draws sprite to surface
-        public void Draw(AnimatedSprite aSprite, Vector2 position)
+        public void Draw(AnimatedSprite aSprite, Vector2 position, float deltaTime)
         {
-            aSprite.Update(position);
+            aSprite.Update(position, deltaTime);
             target.Draw(aSprite.drawableSource);
         }
     }
