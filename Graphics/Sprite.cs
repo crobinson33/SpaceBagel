@@ -23,6 +23,7 @@ namespace SpaceBagel
             //this.textureBottomLeft = new Vector2(textureCoords.X, textureCoords.Y + this.height);
             //this.layer = layer;
             drawableSource = new SFML.Graphics.Sprite(texture.source);
+            renderStates = SFML.Graphics.RenderStates.Default;
             this.z = 0;
 		}
 
@@ -38,6 +39,7 @@ namespace SpaceBagel
             //this.textureBottomLeft = new Vector2(textureCoords.X, textureCoords.Y + this.height);
             //this.layer = layer;
             drawableSource = new SFML.Graphics.Sprite(texture.source, new SFML.Graphics.IntRect((int)texCoords.X, (int)texCoords.Y, width, height));
+            renderStates = SFML.Graphics.RenderStates.Default;
             this.z = 0;
         }
 
@@ -53,6 +55,7 @@ namespace SpaceBagel
             //this.textureBottomLeft = new Vector2(textureCoords.X, textureCoords.Y + this.height);
             //this.layer = layer;
             drawableSource = new SFML.Graphics.Sprite(texture.source, new SFML.Graphics.IntRect((int)texCoords.X, (int)texCoords.Y, width, height));
+            renderStates = SFML.Graphics.RenderStates.Default;
             this.z = z;
         }
 
