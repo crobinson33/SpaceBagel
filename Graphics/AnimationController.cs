@@ -26,6 +26,12 @@ namespace SpaceBagel
 
         public void SetActiveAnimation(Animation animation)
         {
+            // want to break early if it's already the animation.
+            if (activeAnimation == animation)
+            {
+                return;
+            }
+
             activeAnimation = animation;
             animChanged = true;
         }
