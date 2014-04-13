@@ -16,6 +16,11 @@ namespace SpaceBagel
         public Color color;
         public Shader shader;
         internal SFML.Graphics.RenderStates renderStates;
+
+        public void addShader(Shader shader)
+        {
+            this.renderStates.Shader = shader.SFMLshader;
+        }
     }
 }
 

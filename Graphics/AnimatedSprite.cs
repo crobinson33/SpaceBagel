@@ -30,6 +30,7 @@ namespace SpaceBagel
             texCoords = new Vector2(0, 0);
             drawableSource = new SFML.Graphics.Sprite(texture.source, new SFML.Graphics.IntRect((int)texCoords.X, (int)texCoords.Y, this.width, this.height));
             animationController = new AnimationController(this);
+            renderStates = SFML.Graphics.RenderStates.Default;
             this.z = 0;
         }
 
@@ -49,6 +50,7 @@ namespace SpaceBagel
             texCoords = new Vector2(0, 0);
             drawableSource = new SFML.Graphics.Sprite(texture.source, new SFML.Graphics.IntRect((int)texCoords.X, (int)texCoords.Y, width, height));
             animationController = new AnimationController(this);
+            renderStates = SFML.Graphics.RenderStates.Default;
             this.z = z;
         }
 
