@@ -22,6 +22,8 @@ namespace SpaceBagel
 		public float restitution = 1;
 		public float mass = 10;
 
+        public float clearVelocityAmount = 0.95f;
+
         public List<string> layersToIgnore = new List<string>();
 
 
@@ -58,7 +60,7 @@ namespace SpaceBagel
 
         public void ClearVelocity()
         {
-            this.velocity *= 0.989f;
+            this.velocity *= clearVelocityAmount;
         }
 
 		public virtual void CreateOnCollisionEnter(Collider collider, Action method)
