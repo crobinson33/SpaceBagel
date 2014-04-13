@@ -11,6 +11,7 @@ namespace SpaceBagel
     public class CollisionTrigger
     {
         public Collider collider;
+        public string tag;
         public Action method;
 
         /// <summary>
@@ -21,6 +22,12 @@ namespace SpaceBagel
         public CollisionTrigger(Collider collider, Action method)
         {
             this.collider = collider;
+            this.method = method;
+        }
+
+        public CollisionTrigger(string tag, Action method)
+        {
+            this.tag = tag;
             this.method = method;
         }
     }

@@ -94,7 +94,7 @@ namespace SpaceBagel
             float percent = 0.9f; // usually 20% to 80%
             float slop = 0.01f; // usually 0.01 to 0.1
             Vector2 correction = Math.Max(collision.penetrationAmount - slop, 0) / (objectOneInvMass + objectTwoInvMass) * percent * collision.collisionNormal;
-            Console.WriteLine(correction);
+            //Console.WriteLine(correction);
             if (collision.objectOne.isStatic != true)
             {
                 collision.objectOne.position -= objectOneInvMass * correction;

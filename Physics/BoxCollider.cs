@@ -45,6 +45,14 @@ namespace SpaceBagel
             CollisionTrigger newTrigger = new CollisionTrigger(collider, method);
             triggers.Add(newTrigger);
 		}
+
+        public override void CreateOnCollisionEnter(string tag, Action method)
+        {
+            CollisionTrigger newTrigger = new CollisionTrigger(tag, method);
+            triggers.Add(newTrigger);
+            Console.WriteLine("added trigger " + tag);
+            //base.CreateOnCollisionEnter(tag, method);
+        }
 	}
 }
 

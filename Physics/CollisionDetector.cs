@@ -8,6 +8,20 @@ namespace SpaceBagel
 	/// </summary>
 	public class CollisionDetector
 	{
+        public struct CheckAllTriggers
+        {
+            public Collider one;
+            public Collider two;
+            
+            public CheckAllTriggers(Collider one, Collider two)
+            {
+                this.one = one;
+                this.two = two;
+            }
+        }
+
+        List<CheckAllTriggers> allTriggers = new List<CheckAllTriggers>();
+
 		public CollisionDetector ()
 		{
 		}
@@ -45,6 +59,7 @@ namespace SpaceBagel
 		{
             //Console.WriteLine(colliderOne.position.X + ", " +colliderOne.position.Y + ": " + colliderTwo.position.X + ", " + colliderTwo.position.Y + ": " + colliderOne.size + ": " + colliderTwo.size);
 			Vector2 collisionNormal;
+            
 		
 			// Vector from A to B
 			Vector2 normal = colliderTwo.position - colliderOne.position;
@@ -301,6 +316,7 @@ namespace SpaceBagel
 		{
 			// to be returned - Need to set clean so we don't have left overs from last time.
 			List<CollisionInformation> collisions = new List<CollisionInformation>();
+            allTriggers = new List<CheckAllTriggers>();
 
 			// Need to loop through all objects and test all objects against all objects. 
 			// 	- Might need to implement a structure here later for preformace.
@@ -332,7 +348,9 @@ namespace SpaceBagel
                                     collisions.Add(collisionInfo);
 
                                     // we now need to check our triggers.
-                                    CheckCustomTriggers(colliderOne, colliderTwo);
+                                    //CheckCustomTriggers(colliderOne, colliderTwo);
+                                    CheckAllTriggers newTrigger = new CheckAllTriggers(colliderOne, colliderTwo);
+                                    allTriggers.Add(newTrigger);
                                 }
 						        
 						    }
@@ -342,6 +360,10 @@ namespace SpaceBagel
 			}
 
             //Console.WriteLine(collisions.Count);
+
+            //check all the triggers
+            CheckCustomTriggers();
+
 			return collisions;
 		}
 
@@ -423,17 +445,54 @@ namespace SpaceBagel
             return false;
         }
 
-        public void CheckCustomTriggers(Collider colliderOne, Collider colliderTwo)
+        public void CheckCustomTriggers()
         {
-            //Console.WriteLine("checking triggers");
-            foreach (CollisionTrigger colliderToCheck in colliderOne.triggers)
+            foreach (CheckAllTriggers trigger in allTriggers)
             {
-                //Console.WriteLine(colliderTwo + ", " + colliderToCheck.collider);
-                //check to see if the colliders match.
-                if (colliderTwo == colliderToCheck.collider)
+                //Console.WriteLine("checking triggers " + colliderTwo.triggers.Count);
+                // check first objects triggers.
+                foreach (CollisionTrigger colliderToCheck in trigger.one.triggers)
                 {
-                    //Console.WriteLine("calling method");
-                    colliderToCheck.method();
+                    //Console.WriteLine("tag: " + colliderToCheck.tag);
+                    if (colliderToCheck.tag.Length > 0)
+                    {
+                        //Console.WriteLine("has a tag");
+                        if (trigger.two.tag == colliderToCheck.tag)
+                        {
+                            colliderToCheck.method();
+                            return;
+                        }
+                    }
+                    //Console.WriteLine(colliderTwo + ", " + colliderToCheck.collider);
+                    //check to see if the colliders match.
+                    if (trigger.two == colliderToCheck.collider)
+                    {
+                        //Console.WriteLine("calling method");
+                        colliderToCheck.method();
+                        return;
+                    }
+                }
+                //check second objects triggers
+                foreach (CollisionTrigger colliderToCheck in trigger.two.triggers)
+                {
+                    //Console.WriteLine("tag: " + colliderToCheck.tag);
+                    if (colliderToCheck.tag.Length > 0)
+                    {
+                        //Console.WriteLine("has a tag");
+                        if (trigger.one.tag == colliderToCheck.tag)
+                        {
+                            colliderToCheck.method();
+                            //return;
+                        }
+                    }
+                    //Console.WriteLine(colliderTwo + ", " + colliderToCheck.collider);
+                    //check to see if the colliders match.
+                    if (trigger.one == colliderToCheck.collider)
+                    {
+                        //Console.WriteLine("calling method");
+                        colliderToCheck.method();
+                        //return;
+                    }
                 }
             }
         }

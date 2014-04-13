@@ -58,13 +58,18 @@ namespace SpaceBagel
 
         public void ClearVelocity()
         {
-            this.velocity *= 0.99f;
+            this.velocity *= 0.989f;
         }
 
 		public virtual void CreateOnCollisionEnter(Collider collider, Action method)
 		{
            // method();
 		}
+
+        public virtual void CreateOnCollisionEnter(string tag, Action method)
+        {
+
+        }
 
         public virtual void CalculatePoints()
         {
