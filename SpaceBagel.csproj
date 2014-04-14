@@ -70,7 +70,9 @@
   <ItemGroup>
     <Compile Include="Core\Util.cs" />
     <Compile Include="Graphics\BaseDrawable.cs" />
+    <Compile Include="Graphics\Camera.cs" />
     <Compile Include="Graphics\Light.cs" />
+    <Compile Include="Graphics\MultiDrawable.cs" />
     <Compile Include="Graphics\Quad.cs" />
     <Compile Include="Graphics\RenderLayer.cs" />
     <Compile Include="Graphics\Shader.cs" />

@@ -7,16 +7,18 @@ namespace SpaceBagel
 	{
         public List<BaseObject> objects;
         public Surface surface;
+        public Camera camera;
 
         public World world;
 
         public Mouse mouse;
 
-		public Level (Surface surface, Mouse mouse)
+		public Level (Surface surface, Mouse mouse, Camera camera)
 		{
             objects = new List<BaseObject>();
             this.surface = surface;
             Console.WriteLine("surface created");
+            this.camera = camera;
             world = new World();
             this.mouse = mouse;
 		}

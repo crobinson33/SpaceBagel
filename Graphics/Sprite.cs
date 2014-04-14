@@ -8,7 +8,6 @@ namespace SpaceBagel
 	public class Sprite : BaseDrawable
 	{
         //public Quad quad;
-        internal SFML.Graphics.Sprite drawableSource;
         public Texture texture;
 
 		public Sprite (Texture texture, int width, int height)
@@ -59,7 +58,7 @@ namespace SpaceBagel
             this.z = z;
         }
 
-        public void Update(Vector2 position)
+        public override void Update(Vector2 position, float deltaTime)
         {
             drawableSource.Position = position.SFMLVector2;
         }

@@ -56,9 +56,9 @@ namespace SpaceBagel
         }
 
         // Draws sprite to surface
-        public void Draw(Sprite sprite, Vector2 position)
+        public void Draw(Sprite sprite, Vector2 position, float deltaTime)
         {
-            sprite.Update(position);
+            sprite.Update(position, deltaTime);
             target.Draw(sprite.drawableSource, sprite.renderStates);
         }
 
@@ -67,6 +67,28 @@ namespace SpaceBagel
         {
             aSprite.Update(position, deltaTime);
             target.Draw(aSprite.drawableSource, aSprite.renderStates);
+        }
+
+        // Draws multi drawable to surface
+        public void Draw(MultiDrawable multiDrawable, Vector2 position, float deltaTime)
+        {
+            multiDrawable.Update(position, deltaTime);
+            if (multiDrawable.drawPartsInFront)
+            {
+                target.Draw(multiDrawable.baseDrawable.drawableSource, multiDrawable.baseDrawable.renderStates);
+                foreach (BaseDrawable obj in multiDrawable.drawableParts)
+                {
+                    target.Draw(obj.drawableSource, obj.renderStates);
+                }
+            }
+            else
+            {
+                foreach (BaseDrawable obj in multiDrawable.drawableParts)
+                {
+                    target.Draw(obj.drawableSource, obj.renderStates);
+                }
+                target.Draw(multiDrawable.baseDrawable.drawableSource, multiDrawable.baseDrawable.renderStates);
+            }
         }
     }
 }

@@ -11,7 +11,7 @@ namespace SpaceBagel
         
 
         /// <summary>
-        /// Default constructor. Object always needs a tag.w
+        /// Default constructor. Object always needs a tag.
         /// </summary>
         /// <param name="tag"></param>
 		public CharacterCollider(string tag) : base(tag)

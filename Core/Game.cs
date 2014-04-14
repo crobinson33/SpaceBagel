@@ -19,8 +19,8 @@ namespace SpaceBagel
 		public List<Level> levels = new List<Level>();
         public int currentLevel = 0;
 
-        public uint windowWidth = 800;
-        public uint windowHeight = 600;
+        public uint windowWidth = 1280;
+        public uint windowHeight = 800;
 
 		public SFML.Graphics.RenderWindow window;
         public SFML.Graphics.RenderStates renderStates;
@@ -40,16 +40,16 @@ namespace SpaceBagel
 			window.SetActive();
 
             window.SetFramerateLimit(60);
-
             timer = new Stopwatch();
             
 		}
 
-        public Level AddLevel()
+        public Level AddLevel(Vector2 cameraSize)
         {
             Surface surface = new Surface(windowWidth, windowHeight, Color.Black);
             Mouse mouse = new Mouse(window);
-            Level newLevel = new Level(surface, mouse);
+            Camera camera = new Camera(new Vector2(0, 0), cameraSize);
+            Level newLevel = new Level(surface, mouse, camera);
             levels.Add(newLevel);
             return newLevel;
         }
@@ -75,7 +75,7 @@ namespace SpaceBagel
                 deltaTime = ((float)timer.ElapsedMilliseconds / 1000);
                 timer.Restart();
 
-
+                window.SetView(levels[currentLevel].camera.SFMLView);
                 // Clear surface each frame
                 levels[currentLevel].surface.Clear();
 

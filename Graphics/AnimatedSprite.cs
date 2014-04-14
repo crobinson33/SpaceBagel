@@ -7,7 +7,6 @@ namespace SpaceBagel
 {
     public class AnimatedSprite : BaseDrawable
     {
-        internal SFML.Graphics.Sprite drawableSource;
         public Texture texture;
         public Vector2 texCoords;
         public int columns;
@@ -59,7 +58,7 @@ namespace SpaceBagel
             animationController.animations.Add(animation);
         }
 
-        public void Update(Vector2 position, float deltaTime)
+        public override void Update(Vector2 position, float deltaTime)
         {
             animationController.AdvanceFrame(deltaTime);
             drawableSource.Position = position.SFMLVector2;
