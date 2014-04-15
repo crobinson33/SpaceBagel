@@ -1,12 +1,13 @@
 using System;
-using SFML.Window;
+//using SFML.Window;
+//using SFML.Graphics;
 
 namespace SpaceBagel
 {
 	public class Mouse
 	{
-        Window window;
-		public Mouse (Window window)
+        SFML.Graphics.RenderWindow window;
+        public Mouse(SFML.Graphics.RenderWindow window)
 		{
             this.window = window;
 		}
@@ -69,6 +70,13 @@ namespace SpaceBagel
 		{
 			return new Vector2(SFML.Window.Mouse.GetPosition(window).X, SFML.Window.Mouse.GetPosition(window).Y);
 		}
+
+        public Vector2 GetMouseWorldPosition()
+        {
+            SFML.Window.Vector2i windowCoord = new SFML.Window.Vector2i(SFML.Window.Mouse.GetPosition(window).X, SFML.Window.Mouse.GetPosition(window).Y);
+            SFML.Window.Vector2f worldCoord = window.MapPixelToCoords(windowCoord);
+            return new Vector2(worldCoord.X, worldCoord.Y);
+        }
 
 		/// <summary>
 		/// Gets the mouse position relative to window. I don't think we will use this unless we create our own window object

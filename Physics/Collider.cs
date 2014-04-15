@@ -56,6 +56,15 @@ namespace SpaceBagel
             //Console.WriteLine("got here");
             this.position += this.velocity * deltaTime;
             ClearVelocity();
+            CheckVelocityToSetZero();
+        }
+
+        public void CheckVelocityToSetZero()
+        {
+            if (Math.Abs(this.velocity.X) < 0.1f && Math.Abs(this.velocity.Y) < 0.1f)
+            {
+                this.velocity = new Vector2(0, 0);
+            }
         }
 
         public void ClearVelocity()
