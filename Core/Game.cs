@@ -44,12 +44,13 @@ namespace SpaceBagel
             
 		}
 
-        public Level AddLevel(Vector2 cameraSize)
+        public Level AddLevel(Vector2 cameraSize, Vector2 levelSize, Color ambientColor)
         {
-            Surface surface = new Surface(windowWidth, windowHeight, Color.Black);
+            Surface diffuseSurface = new Surface((uint)levelSize.X, (uint)levelSize.Y);
+            Surface lightMap = new Surface((uint)levelSize.X, (uint)levelSize.Y);
             Mouse mouse = new Mouse(window);
             Camera camera = new Camera(new Vector2(0, 0), cameraSize);
-            Level newLevel = new Level(surface, mouse, camera);
+            Level newLevel = new Level(diffuseSurface, lightMap, mouse, camera, ambientColor);
             levels.Add(newLevel);
             return newLevel;
         }
@@ -77,7 +78,8 @@ namespace SpaceBagel
 
                 window.SetView(levels[currentLevel].camera.SFMLView);
                 // Clear surface each frame
-                levels[currentLevel].surface.Clear();
+                levels[currentLevel].diffuseSurface.Clear(Color.Black);
+                levels[currentLevel].lightMap.Clear();
 
                 //physics
                 levels[currentLevel].Update(deltaTime);
@@ -86,10 +88,14 @@ namespace SpaceBagel
                 levels[currentLevel].Draw(deltaTime);
 
                 // Clear window each frame
-                window.Clear();
+                window.Clear(SFML.Graphics.Color.Black);
+
+                // Display surface textures
+                levels[currentLevel].diffuseSurface.Display();
+                levels[currentLevel].lightMap.Display();
 
                 // Draw to window each frame (include window.display)
-                levels[currentLevel].surface.DrawToWindow(window);
+                levels[currentLevel].diffuseSurface.DrawToWindow(window);
 			}
 		}
 	}

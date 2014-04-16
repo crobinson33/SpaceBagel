@@ -76,6 +76,7 @@
     <Compile Include="Graphics\Quad.cs" />
     <Compile Include="Graphics\RenderLayer.cs" />
     <Compile Include="Graphics\Shader.cs" />
+    <Compile Include="Graphics\Spotlight.cs" />
     <Compile Include="Graphics\Surface.cs" />
     <Compile Include="Graphics\Vertex.cs" />
     <Compile Include="Physics\CircleCollider.cs" />
@@ -183,6 +184,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="app.config" />
+    <None Include="shaders\light.frag">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="csfml-audio-2.dll">

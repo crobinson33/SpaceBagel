@@ -6,22 +6,34 @@ namespace SpaceBagel
 	public class Level
 	{
         public List<BaseObject> objects;
-        public Surface surface;
+        public List<Light> lights;
+        public Surface diffuseSurface;
+        public Surface lightMap;
         public Camera camera;
+        public Color ambientColor;
+        public Shader lightShader;
 
         public World world;
 
         public Mouse mouse;
 
-		public Level (Surface surface, Mouse mouse, Camera camera)
-		{
+        public Level(Surface diffuseSurface, Surface lightMap, Mouse mouse, Camera camera, Color ambientColor)
+        {
             objects = new List<BaseObject>();
-            this.surface = surface;
+            lights = new List<Light>();
+            this.diffuseSurface = diffuseSurface;
+            this.lightMap = lightMap;
+            lightShader = new Shader(null, "shaders/light.frag");
+            lightShader.SetParameter("diffuseTexture", diffuseSurface.texture);
+            lightShader.SetParameter("lightMap", lightMap.texture);
+            lightShader.SetParameter("ambientColor", ambientColor);
+            lightMap.AddShader(lightShader);
             Console.WriteLine("surface created");
             this.camera = camera;
             world = new World();
             this.mouse = mouse;
-		}
+            this.ambientColor = ambientColor;
+        }
 
         public void AddObject(BaseObject newObject)
         {
@@ -33,6 +45,16 @@ namespace SpaceBagel
             objects.Remove(oldObject);
         }
 
+        public void AddLight(Light newLight)
+        {
+            lights.Add(newLight);
+        }
+
+        public void RemoveLight(Light oldLight)
+        {
+            lights.Remove(oldLight);
+        }
+
         public void Update(float deltaTime)
         {
             foreach(BaseObject obj in objects)
@@ -40,15 +62,27 @@ namespace SpaceBagel
                 obj.Update(deltaTime);
             }
 
+            foreach (Light light in lights)
+            {
+                light.Update(deltaTime);
+            }
+
             world.Update(deltaTime);
+
         }
 
         public void Draw(float deltaTime)
         {
             foreach(BaseObject obj in objects)
             {
-                obj.Draw(surface, deltaTime);
+                obj.Draw(diffuseSurface, deltaTime);
             }
+
+            foreach (Light light in lights)
+            {
+                light.Draw(lightMap, deltaTime);
+            }
+            diffuseSurface.Draw(lightMap, deltaTime);
         }
 	}
 }

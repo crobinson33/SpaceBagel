@@ -41,7 +41,7 @@ namespace SpaceBagel
 
         public void SetParameter(string name, Color color)
         {
-            SFMLshader.SetParameter(name, color.SFMLColor);
+            SFMLshader.SetParameter(name, color.r, color.g, color.b, color.a);
         }
 
         public void SetParameter(string name, Texture texture)

@@ -7,9 +7,22 @@ namespace SpaceBagel
 {
 	public class Light
 	{
-		public Light ()
-		{
-		}
+        public Vector2 position;
+        public Color color;
+        internal SFML.Graphics.RenderStates renderStates;
+
+        /// <summary>
+        /// override this with game logic
+        /// </summary>
+        public virtual void Update(float deltaTime)
+        {
+            
+        }
+
+        public virtual void Draw(Surface surface, float deltaTime)
+        {
+
+        }
 	}
 }
 

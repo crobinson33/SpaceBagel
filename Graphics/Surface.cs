@@ -13,32 +13,31 @@ namespace SpaceBagel
         internal SFML.Graphics.RenderTexture target;
         internal SFML.Graphics.RenderStates renderStates;
         internal SFML.Graphics.VertexArray vertexArray;
-        internal SFML.Graphics.Texture t;
-        public List<BaseDrawable> drawables = new List<BaseDrawable>();
-        public Color baseColor;
+        public Texture texture;
 
-        // test
-        SFML.Graphics.Sprite sprite;
-
-        public Surface(uint width, uint height, Color color)
+        public Surface(uint width, uint height)
         {
             target = new SFML.Graphics.RenderTexture((uint) width, (uint) height);
-            baseColor = color;
+            texture = new Texture((int)target.Size.X, (int)target.Size.Y);
             renderStates = SFML.Graphics.RenderStates.Default;
             vertexArray = new SFML.Graphics.VertexArray(SFML.Graphics.PrimitiveType.Quads, 0);
             vertexArray.Append(new Vertex(new Vector2(0, 0), new Vector2(0, 0)).SFMLVertex);
             vertexArray.Append(new Vertex(new Vector2(target.Size.X, 0), new Vector2(target.Size.X, 0)).SFMLVertex);
             vertexArray.Append(new Vertex(new Vector2(target.Size.X, target.Size.Y), new Vector2(target.Size.X, target.Size.Y)).SFMLVertex);
             vertexArray.Append(new Vertex(new Vector2(0, target.Size.Y), new Vector2(0, target.Size.Y)).SFMLVertex);
-            //sprite = new SFML.Graphics.Sprite(target.Texture);
-            t = target.Texture;
-            renderStates.Texture = t;
+            texture.source = target.Texture;
+            renderStates.Texture = texture.source;
+            Console.WriteLine(renderStates.Texture);
+        }
+
+        public void AddShader(Shader shader)
+        {
+            this.renderStates.Shader = shader.SFMLshader;
         }
 
         // Draws surface to window
         public void DrawToWindow(SFML.Graphics.RenderWindow window)
         {
-            target.Display();
             window.Draw(vertexArray, renderStates);
             window.Display();
         }
@@ -46,7 +45,12 @@ namespace SpaceBagel
         // Clears entire frame / begins frame
         public void Clear()
         {
-            target.Clear(baseColor.SFMLColor);
+            target.Clear(Color.Transparent.SFMLColor);
+        }
+
+        public void Clear(Color color)
+        {
+            target.Clear(color.SFMLColor);
         }
 
         // End the current Frame
@@ -67,6 +71,17 @@ namespace SpaceBagel
         {
             aSprite.Update(position, deltaTime);
             target.Draw(aSprite.drawableSource, aSprite.renderStates);
+        }
+
+        public void Draw(Spotlight sLight, Vector2 position, float deltaTime)
+        {
+            sLight.Update(deltaTime);
+            target.Draw(sLight.circleShape, sLight.renderStates);
+        }
+
+        public void Draw(Surface surface, float deltaTime)
+        {
+            target.Draw(surface.vertexArray, surface.renderStates);
         }
 
         // Draws multi drawable to surface

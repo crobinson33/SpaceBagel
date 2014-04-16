@@ -52,6 +52,16 @@ namespace SpaceBagel
             source = new SFML.Graphics.Texture((uint)width, (uint)height);
 		}
 
+        /// <summary>
+        /// Creates an empty texture.
+        /// </summary>
+        /// <param name="width">Width of texture.</param>
+        /// <param name="height">Height of texture.</param>
+        public Texture(SFML.Graphics.Texture copy)
+        {
+            source = new SFML.Graphics.Texture(copy);
+        }
+
 		public uint width {
             get { return source.Size.X; }
 		}
