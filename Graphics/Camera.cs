@@ -19,5 +19,18 @@ namespace SpaceBagel
             SFMLView.Center = position.SFMLVector2;
         }
 
+        public Vector2 GetTopLeftScreenBounds()
+        {
+            //return new Vector2(SFMLView.Size.X, SFMLView.Size.Y);
+            return new Vector2(SFMLView.Center.X - SFMLView.Size.X / 2, SFMLView.Center.Y - SFMLView.Size.Y / 2);
+            //return new Vector2(SFMLView.Viewport.Left, SFMLView.Viewport.Top);
+        }
+
+        public Vector2 GetBottomRightScreenBounds()
+        {
+            return new Vector2(SFMLView.Center.X + SFMLView.Size.X / 2, SFMLView.Center.Y + SFMLView.Size.Y / 2);
+            //return new Vector2(SFMLView.Viewport.Left + SFMLView.Viewport.Width, SFMLView.Viewport.Top + SFMLView.Viewport.Height);
+        }
+
     }
 }
