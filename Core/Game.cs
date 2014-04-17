@@ -79,7 +79,7 @@ namespace SpaceBagel
                 window.SetView(levels[currentLevel].camera.SFMLView);
                 // Clear surface each frame
                 levels[currentLevel].diffuseSurface.Clear(Color.Black);
-                levels[currentLevel].lightMap.Clear();
+                levels[currentLevel].lightMap.Clear(levels[currentLevel].ambientColor);
 
                 //physics
                 levels[currentLevel].Update(deltaTime);

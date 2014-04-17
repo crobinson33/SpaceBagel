@@ -9,6 +9,8 @@ namespace SpaceBagel
 	{
         public Vector2 position;
         public Color color;
+        public float intensity;
+        public Shader shader;
         internal SFML.Graphics.RenderStates renderStates;
 
         /// <summary>
@@ -22,6 +24,11 @@ namespace SpaceBagel
         public virtual void Draw(Surface surface, float deltaTime)
         {
 
+        }
+
+        public void AddShader(Shader shader)
+        {
+            this.renderStates.Shader = shader.SFMLshader;
         }
 	}
 }

@@ -11,7 +11,7 @@ namespace SpaceBagel
         public Surface lightMap;
         public Camera camera;
         public Color ambientColor;
-        public Shader lightShader;
+        public Shader lightMapShader;
 
         public World world;
 
@@ -23,11 +23,7 @@ namespace SpaceBagel
             lights = new List<Light>();
             this.diffuseSurface = diffuseSurface;
             this.lightMap = lightMap;
-            lightShader = new Shader(null, "shaders/light.frag");
-            lightShader.SetParameter("diffuseTexture", diffuseSurface.texture);
-            lightShader.SetParameter("lightMap", lightMap.texture);
-            lightShader.SetParameter("ambientColor", ambientColor);
-            lightMap.AddShader(lightShader);
+            this.lightMap.renderStates.BlendMode = SFML.Graphics.BlendMode.Multiply;
             Console.WriteLine("surface created");
             this.camera = camera;
             world = new World();
@@ -47,6 +43,8 @@ namespace SpaceBagel
 
         public void AddLight(Light newLight)
         {
+            newLight.shader.SetParameter("thisLightColor", newLight.color);
+            newLight.shader.SetParameter("thisLightIntensity", newLight.intensity);
             lights.Add(newLight);
         }
 

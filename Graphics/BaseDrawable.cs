@@ -15,6 +15,7 @@ namespace SpaceBagel
         public int z;
         public Color color;
         public Shader shader;
+        public bool selfIlluminated;
         internal SFML.Graphics.RenderStates renderStates;
         internal SFML.Graphics.Sprite drawableSource;
 
