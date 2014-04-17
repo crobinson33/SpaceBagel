@@ -74,6 +74,10 @@ namespace SpaceBagel
 			{
 
                 deltaTime = ((float)timer.ElapsedMilliseconds / 1000);
+                if (deltaTime > 0.02)
+                {
+                    Console.WriteLine(deltaTime);
+                }
                 timer.Restart();
 
                 window.SetView(levels[currentLevel].camera.SFMLView);
