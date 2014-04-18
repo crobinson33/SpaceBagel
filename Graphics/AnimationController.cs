@@ -68,6 +68,11 @@ namespace SpaceBagel
             curFrameCoords.Y = frameRow * aSprite.height;
         }
 
+		public string GetActiveAnimationName()
+		{
+			return activeAnimation.name;
+		}
+
 	}
 }
 
