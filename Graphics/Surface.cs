@@ -76,7 +76,7 @@ namespace SpaceBagel
         public void Draw(Spotlight sLight, Vector2 position, float deltaTime)
         {
             sLight.Update(deltaTime);
-            target.Draw(sLight.circleShape, sLight.renderStates);
+            target.Draw(sLight.array, sLight.renderStates);
         }
 
         public void Draw(Surface surface, float deltaTime)

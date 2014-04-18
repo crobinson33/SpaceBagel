@@ -43,7 +43,6 @@ namespace SpaceBagel
 
         public void AddLight(Light newLight)
         {
-            newLight.shader.SetParameter("thisLightColor", newLight.color);
             newLight.shader.SetParameter("thisLightIntensity", newLight.intensity);
             lights.Add(newLight);
         }
