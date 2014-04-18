@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+//using System.Linq;
 using System.Text;
 
 namespace SpaceBagel
@@ -21,12 +21,14 @@ namespace SpaceBagel
         /// <param name="method">Action</param>
         public CollisionTrigger(Collider collider, Action method)
         {
+			//Console.WriteLine ("test");
             this.collider = collider;
             this.method = method;
         }
 
         public CollisionTrigger(string tag, Action method)
         {
+			//Console.WriteLine ("created trigger with: " + tag);
             this.tag = tag;
             this.method = method;
         }

@@ -51,6 +51,12 @@ namespace SpaceBagel
             triggers.Add(newTrigger);
 		}
 
+		public override void CreateOnCollisionEnter(string tag, Action method)
+		{
+			CollisionTrigger newTrigger = new CollisionTrigger(tag, method);
+			triggers.Add(newTrigger);
+		}
+
         public void AddVelocity(Vector2 velocity)
         {
             this.velocity += velocity;

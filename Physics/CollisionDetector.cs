@@ -456,7 +456,7 @@ namespace SpaceBagel
                     //Console.WriteLine("tag: " + colliderToCheck.tag);
                     if (colliderToCheck.tag.Length > 0)
                     {
-                        //Console.WriteLine("has a tag");
+                        //Console.WriteLine("tagged: " + trigger.two.tag + ", " + colliderToCheck.tag);
                         if (trigger.two.tag == colliderToCheck.tag)
                         {
                             colliderToCheck.method();
@@ -478,7 +478,7 @@ namespace SpaceBagel
                     //Console.WriteLine("tag: " + colliderToCheck.tag);
                     if (colliderToCheck.tag.Length > 0)
                     {
-                        //Console.WriteLine("has a tag");
+						//Console.WriteLine("tagged: " + trigger.two.tag + ", " + colliderToCheck.tag);
                         if (trigger.one.tag == colliderToCheck.tag)
                         {
                             colliderToCheck.method();
