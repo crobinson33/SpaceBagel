@@ -100,8 +100,24 @@ namespace SpaceBagel
 
                 // Draw to window each frame (include window.display)
                 levels[currentLevel].diffuseSurface.DrawToWindow(window);
+
+                window.GainedFocus += new EventHandler(GainedFocused);
+                window.Closed += new EventHandler(CloseWindow);
+                window.DispatchEvents();
 			}
 		}
+
+        public void GainedFocused(object sender, EventArgs e)
+        {
+            Console.WriteLine("got here");
+            //window.
+        }
+
+        public void CloseWindow(object sender, EventArgs e)
+        {            
+            window.Close();
+            //this.CloseWindow();
+        }
 	}
 }
 
