@@ -70,6 +70,11 @@ namespace SpaceBagel
 		/// </summary>
 		public void Start() {
             timer.Start();
+			window.GainedFocus += new EventHandler(GainedFocused);
+			window.Closed += new EventHandler(CloseWindow);
+			//window.Resized += new EventHandler(WindowResized);
+
+			// ------ Main Game Loop ------
 			while (window.IsOpen())
 			{
 
@@ -101,9 +106,8 @@ namespace SpaceBagel
                 // Draw to window each frame (include window.display)
                 levels[currentLevel].diffuseSurface.DrawToWindow(window);
 
-                window.GainedFocus += new EventHandler(GainedFocused);
-                window.Closed += new EventHandler(CloseWindow);
-                //window.Resized += new EventHandler(WindowResized);
+                
+                
                 window.DispatchEvents();
 			}
 		}

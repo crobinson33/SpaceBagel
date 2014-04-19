@@ -314,6 +314,7 @@ namespace SpaceBagel
 		/// <param name="objects">Objects.</param>
 		public List<CollisionInformation> GetAllCollisions(List<Collider> objects)
 		{
+			//Console.WriteLine (" hello");
 			// to be returned - Need to set clean so we don't have left overs from last time.
 			List<CollisionInformation> collisions = new List<CollisionInformation>();
             allTriggers = new List<CheckAllTriggers>();
@@ -337,20 +338,29 @@ namespace SpaceBagel
 						        // check the collisions
 						        CollisionInformation collisionInfo = new CollisionInformation();
 
+								//Console.WriteLine (" hello");
                                 // we need to determine the type of collision
                                 if (DoCollisionCheck(colliderOne, colliderTwo, collisionInfo))
                                 {
-                                    collisionInfo.objectOne = colliderOne;
-                                    collisionInfo.objectTwo = colliderTwo;
+									// we now need to check our triggers.
+									//CheckCustomTriggers(colliderOne, colliderTwo);
+									CheckAllTriggers newTrigger = new CheckAllTriggers(colliderOne, colliderTwo);
+									allTriggers.Add(newTrigger);
 
-                                    //Console.WriteLine("object1: " + colliderOne.velocity + ", object2: " + colliderTwo.velocity);
+									// we do triggers first so we can call when objects want to interact but not be
+									// resolved. #winning.
+									if (CheckTagTwoWays(colliderOne, colliderTwo) != true)
+									{
+										Console.WriteLine ("adding resolution: " + colliderOne.tag + ", " + colliderTwo.tag);
+	                                    collisionInfo.objectOne = colliderOne;
+	                                    collisionInfo.objectTwo = colliderTwo;
 
-                                    collisions.Add(collisionInfo);
+	                                    //Console.WriteLine("object1: " + colliderOne.velocity + ", object2: " + colliderTwo.velocity);
 
-                                    // we now need to check our triggers.
-                                    //CheckCustomTriggers(colliderOne, colliderTwo);
-                                    CheckAllTriggers newTrigger = new CheckAllTriggers(colliderOne, colliderTwo);
-                                    allTriggers.Add(newTrigger);
+	                                    collisions.Add(collisionInfo);
+
+	                                    
+									}
                                 }
 						        
 						    }
@@ -428,6 +438,28 @@ namespace SpaceBagel
             return false;
 
         }
+
+		public bool CheckTagTwoWays(Collider one, Collider two)
+		{
+			foreach (string tag in one.layersToIgnore)
+			{
+				//Console.WriteLine ("one: " + one.tag + ", " + tag);
+				if (tag == two.tag)
+				{
+					return true;
+				}
+			}
+			foreach (string tag in two.layersToIgnore)
+			{
+				//Console.WriteLine ("two: " + two.tag + ", " + tag;
+				if (tag == one.tag)
+				{
+					return true;
+				}
+			}
+
+			return false;
+		}
 
         public bool CheckIfAlreadyInCollisionInfo(Collider one, Collider two, List<CollisionInformation> collisions)
         {
