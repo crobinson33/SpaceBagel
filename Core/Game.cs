@@ -74,7 +74,7 @@ namespace SpaceBagel
 			{
 
                 deltaTime = ((float)timer.ElapsedMilliseconds / 1000);
-                if (deltaTime > 0.02)
+                if (deltaTime > 0.0161)
                 {
                     Console.WriteLine(deltaTime);
                 }

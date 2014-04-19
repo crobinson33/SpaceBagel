@@ -21,7 +21,8 @@ namespace SpaceBagel
 
         public void AddShader(Shader shader)
         {
-            this.renderStates.Shader = shader.SFMLshader;
+            this.shader = shader;
+            this.renderStates.Shader = this.shader.SFMLshader;
         }
 
         public virtual void Update(Vector2 position, float deltaTime)
