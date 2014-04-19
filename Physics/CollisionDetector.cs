@@ -58,6 +58,17 @@ namespace SpaceBagel
 		public bool AABBvsAABB(Collider colliderOne, Collider colliderTwo, CollisionInformation collisionInfo)
 		{
             //Console.WriteLine(colliderOne.position.X + ", " +colliderOne.position.Y + ": " + colliderTwo.position.X + ", " + colliderTwo.position.Y + ": " + colliderOne.size + ": " + colliderTwo.size);
+			// Exit with no intersection if found separated along an axis
+			if (colliderOne.position.X + colliderOne.size.X < colliderTwo.position.X || colliderOne.position.X > colliderTwo.position.X + colliderTwo.size.X)
+			{
+				return false;
+			}
+			if (colliderOne.position.Y + colliderOne.size.Y < colliderTwo.position.Y || colliderOne.position.Y > colliderTwo.position.Y + colliderTwo.size.Y)
+			{
+				return false;
+			}
+
+
 			Vector2 collisionNormal;
             
 		
@@ -65,8 +76,18 @@ namespace SpaceBagel
 			Vector2 normal = colliderTwo.position - colliderOne.position;
 
 			// Calculate half extents along x axis for each object
-			float colliderOne_extent = ((colliderOne.position.X + colliderOne.size.X) - colliderOne.position.X) / 2;
-            float colliderTwo_extent = ((colliderTwo.position.X + colliderTwo.size.X) - colliderTwo.position.X) / 2;
+			float colliderOne_extent = ((colliderOne.position.X + colliderOne.size.X) - colliderOne.position.X) * 0.5f;
+            float colliderTwo_extent = ((colliderTwo.position.X + colliderTwo.size.X) - colliderTwo.position.X) * 0.5f;
+
+			if (colliderOne_extent > colliderTwo_extent)
+			{
+				colliderTwo_extent = colliderOne_extent;
+			}
+			
+			if (colliderOne_extent < colliderTwo_extent)
+			{
+				colliderOne_extent = colliderTwo_extent;
+			}
 
 			// Calculate overlap on x axis
 			float x_overlap = colliderOne_extent + colliderTwo_extent - Math.Abs(normal.X);
@@ -76,11 +97,23 @@ namespace SpaceBagel
 			{
                 //Console.WriteLine("we have an overlap");
 				// Calculate half extents along x axis for each object
-                colliderOne_extent = ((colliderOne.position.Y + colliderOne.size.Y) - colliderOne.position.Y) / 2;
-                colliderTwo_extent = ((colliderTwo.position.Y + colliderTwo.size.Y) - colliderTwo.position.Y) / 2;
+                float colliderOne_extent2 = ((colliderOne.position.Y + colliderOne.size.Y) - colliderOne.position.Y) * 0.5f;
+                float colliderTwo_extent2 = ((colliderTwo.position.Y + colliderTwo.size.Y) - colliderTwo.position.Y) * 0.5f;
+
+				if (colliderOne_extent2 > colliderTwo_extent2)
+				{
+					colliderTwo_extent2 = colliderOne_extent2;
+				}
+
+				if (colliderOne_extent2 < colliderTwo_extent2)
+				{
+					colliderOne_extent2 = colliderTwo_extent2;
+				}
 
 				// Calculate overlap on y axis
-				float y_overlap = colliderOne_extent + colliderTwo_extent - Math.Abs(normal.Y);
+				float y_overlap = colliderOne_extent2 + colliderTwo_extent2 - Math.Abs(normal.Y);
+
+				//Console.WriteLine ("x: " + x_overlap + ", y: " + y_overlap);
 
 				// SAT test on y axis
 				if(y_overlap > 0)
@@ -88,7 +121,7 @@ namespace SpaceBagel
                     //Console.WriteLine("double overlap, what does it mean");
 					// Find out which axis is axis of least penetration
                     //Console.WriteLine(x_overlap + ", " + y_overlap);
-					if(x_overlap < y_overlap)
+ 					if(x_overlap < y_overlap)
 					{
                         //Console.WriteLine("FIRST");
 						// Point towards B knowing that n points from A to B
@@ -351,7 +384,7 @@ namespace SpaceBagel
 									// resolved. #winning.
 									if (CheckTagTwoWays(colliderOne, colliderTwo) != true)
 									{
-										Console.WriteLine ("adding resolution: " + colliderOne.tag + ", " + colliderTwo.tag);
+										//Console.WriteLine ("adding resolution: " + colliderOne.tag + ", " + colliderTwo.tag);
 	                                    collisionInfo.objectOne = colliderOne;
 	                                    collisionInfo.objectTwo = colliderTwo;
 

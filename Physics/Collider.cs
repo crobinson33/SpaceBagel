@@ -14,7 +14,7 @@ namespace SpaceBagel
 		public Vector2 bottomRight;
 
 		public Vector2 velocity;
-		public Vector2 position;
+		public Vector2 position { get; set; }
 
         internal SFML.Graphics.VertexArray debugDraw;
         public bool debug;
