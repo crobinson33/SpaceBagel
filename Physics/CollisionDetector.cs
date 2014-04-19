@@ -449,7 +449,7 @@ namespace SpaceBagel
         {
             foreach (CheckAllTriggers trigger in allTriggers)
             {
-                //Console.WriteLine("checking triggers " + colliderTwo.triggers.Count);
+                //Console.WriteLine("checking triggers " + trigger.one.tag + ", " + trigger.two.tag);
                 // check first objects triggers.
                 foreach (CollisionTrigger colliderToCheck in trigger.one.triggers)
                 {
@@ -460,7 +460,7 @@ namespace SpaceBagel
                         if (trigger.two.tag == colliderToCheck.tag)
                         {
                             colliderToCheck.method();
-                            return;
+                            //return;
                         }
                     }
                     //Console.WriteLine(colliderTwo + ", " + colliderToCheck.collider);
@@ -469,10 +469,11 @@ namespace SpaceBagel
                     {
                         //Console.WriteLine("calling method");
                         colliderToCheck.method();
-                        return;
+                        //return;
                     }
                 }
                 //check second objects triggers
+                //Console.WriteLine(trigger.two.triggers.Count);
                 foreach (CollisionTrigger colliderToCheck in trigger.two.triggers)
                 {
                     //Console.WriteLine("tag: " + colliderToCheck.tag);
