@@ -103,6 +103,7 @@ namespace SpaceBagel
 
                 window.GainedFocus += new EventHandler(GainedFocused);
                 window.Closed += new EventHandler(CloseWindow);
+                //window.Resized += new EventHandler(WindowResized);
                 window.DispatchEvents();
 			}
 		}
@@ -117,6 +118,11 @@ namespace SpaceBagel
         {            
             window.Close();
             //this.CloseWindow();
+        }
+
+        public void WindowResized(object sender, EventArgs e)
+        {
+            //levels[currentLevel].
         }
 	}
 }

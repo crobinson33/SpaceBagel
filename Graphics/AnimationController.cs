@@ -16,6 +16,8 @@ namespace SpaceBagel
         public bool animChanged;
         private float timeSinceFrame;
 
+        public bool hasReachedEnd = false;
+
 		public AnimationController (AnimatedSprite aSprite)
 		{
             curFrameCoords = new Vector2(0, 0);
@@ -34,6 +36,7 @@ namespace SpaceBagel
 
             activeAnimation = animation;
             animChanged = true;
+            hasReachedEnd = false;
         }
 
         public void AdvanceFrame(float deltaTime)
@@ -58,6 +61,7 @@ namespace SpaceBagel
                     else
                     {
                         curFrame = activeAnimation.startingFrame;
+                        hasReachedEnd = true;
                     }
                     timeSinceFrame = 0f;
                 }
