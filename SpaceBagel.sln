@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceBagel", "SpaceBagel.csproj", "{C90D060D-D448-4B8F-A60F-26FC5952CCFF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OSHO", "..\OSHO\OSHO.csproj", "{EA121072-A82A-49BA-9512-701113DB0384}"
@@ -18,7 +20,6 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{C90D060D-D448-4B8F-A60F-26FC5952CCFF}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{C90D060D-D448-4B8F-A60F-26FC5952CCFF}.Debug|Any CPU.Build.0 = Debug|x86
 		{C90D060D-D448-4B8F-A60F-26FC5952CCFF}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{C90D060D-D448-4B8F-A60F-26FC5952CCFF}.Debug|Mixed Platforms.Build.0 = Debug|x86
 		{C90D060D-D448-4B8F-A60F-26FC5952CCFF}.Debug|x64.ActiveCfg = Debug|x86
@@ -38,7 +39,6 @@ Global
 		{EA121072-A82A-49BA-9512-701113DB0384}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{EA121072-A82A-49BA-9512-701113DB0384}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{EA121072-A82A-49BA-9512-701113DB0384}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{EA121072-A82A-49BA-9512-701113DB0384}.Debug|x86.Build.0 = Debug|Any CPU
 		{EA121072-A82A-49BA-9512-701113DB0384}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA121072-A82A-49BA-9512-701113DB0384}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EA121072-A82A-49BA-9512-701113DB0384}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
@@ -46,8 +46,14 @@ Global
 		{EA121072-A82A-49BA-9512-701113DB0384}.Release|x64.ActiveCfg = Release|Any CPU
 		{EA121072-A82A-49BA-9512-701113DB0384}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = ..\OSHO\OSHO.csproj
+		StartupItem = SpaceBagel.csproj
 		Policies = $0
 		$0.VersionControlPolicy = $1
 		$1.inheritsSet = Mono
@@ -56,11 +62,5 @@ Global
 		$2.MessageStyle = $3
 		$3.LineAlign = 0
 		$2.inheritsSet = Mono
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(Performance) = preSolution
-		HasPerformanceSessions = true
 	EndGlobalSection
 EndGlobal

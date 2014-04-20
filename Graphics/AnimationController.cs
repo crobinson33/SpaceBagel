@@ -17,6 +17,7 @@ namespace SpaceBagel
         private float timeSinceFrame;
 
         public bool hasReachedEnd = false;
+        public bool dontLoop = false;
 
 		public AnimationController (AnimatedSprite aSprite)
 		{
@@ -56,12 +57,30 @@ namespace SpaceBagel
                 {
                     if (curFrame < ((activeAnimation.startingFrame + activeAnimation.numFrames) - 1))
                     {
-                        curFrame++;
+                        if (dontLoop && hasReachedEnd)
+                        {
+                            // we don't want to loop
+                            //Console.WriteLine("not moving on");
+                        }
+                        else
+                        {
+                            curFrame++;
+                        }
                     }
                     else
                     {
-                        curFrame = activeAnimation.startingFrame;
-                        hasReachedEnd = true;
+                        //Console.WriteLine("dont loop: " + dontLoop);
+                        if (dontLoop)
+                        {
+                            //Console.WriteLine("not reseting");
+                            hasReachedEnd = true;
+                        }
+                        else
+                        {
+                            //Console.WriteLine("reseting");
+                            curFrame = activeAnimation.startingFrame;
+                            hasReachedEnd = true;
+                        }
                     }
                     timeSinceFrame = 0f;
                 }
