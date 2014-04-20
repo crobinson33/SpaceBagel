@@ -16,7 +16,7 @@ namespace SpaceBagel
         /// <summary>
         /// override this with game logic
         /// </summary>
-        public virtual void Update(float deltaTime)
+        public virtual void Update(Vector2 position, float deltaTime)
         {
             
         }

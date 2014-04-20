@@ -61,7 +61,7 @@ namespace SpaceBagel
 
             foreach (Light light in lights)
             {
-                light.Update(deltaTime);
+                light.Update(light.position, deltaTime);
             }
 
             world.Update(deltaTime);
@@ -72,7 +72,7 @@ namespace SpaceBagel
         {
             foreach(BaseObject obj in objects)
             {
-                obj.Draw(diffuseSurface, deltaTime);
+                obj.Draw(diffuseSurface, lightMap, deltaTime);
             }
 
             foreach (Light light in lights)

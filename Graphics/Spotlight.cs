@@ -8,11 +8,16 @@ namespace SpaceBagel
     public class Spotlight : Light
     {
         internal SFML.Graphics.VertexArray array;
+        public int points;
+        public int radius;
+        public bool attenuate;
         public Spotlight(int radius, Color color, Vector2 position, int points, float intensity)
         {
             this.color = color;
             this.position = position;
-            this.array = createArray(points, radius, false);
+            this.points = points;
+            this.radius = radius;
+            this.array = createArray(false);
             renderStates = SFML.Graphics.RenderStates.Default;
             renderStates.BlendMode = SFML.Graphics.BlendMode.Add;
             shader = new Shader(null, "shaders/calcLightIntensity.frag");
@@ -23,7 +28,10 @@ namespace SpaceBagel
 		{
             this.color = color;
             this.position = position;
-            this.array = createArray(points, radius, attenuate);
+            this.points = points;
+            this.radius = radius;
+            this.attenuate = attenuate;
+            this.array = createArray(attenuate);
             renderStates = SFML.Graphics.RenderStates.Default;
             renderStates.BlendMode = SFML.Graphics.BlendMode.Add;
             shader = new Shader(null, "shaders/calcLightIntensity.frag");
@@ -31,7 +39,7 @@ namespace SpaceBagel
             this.intensity = intensity;
 		}
 
-        internal SFML.Graphics.VertexArray createArray(int points, int radius, bool attenuate)
+        internal SFML.Graphics.VertexArray createArray(bool attenuate)
         {
             SFML.Graphics.VertexArray newArray = new SFML.Graphics.VertexArray(SFML.Graphics.PrimitiveType.TrianglesFan);
             float radianStep = ((float)Math.PI * 2f) / points;
@@ -64,9 +72,11 @@ namespace SpaceBagel
         /// <summary>
         /// override this with game logic
         /// </summary>
-        public override void Update(float deltaTime)
+        public override void Update(Vector2 position, float deltaTime)
         {
-            
+            this.position = position;
+            array.Clear();
+            array = createArray(attenuate);
         }
 
         public override void Draw(Surface surface, float deltaTime)

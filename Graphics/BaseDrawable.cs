@@ -15,7 +15,7 @@ namespace SpaceBagel
         public int z;
         public Color color;
         public Shader shader;
-        public bool selfIlluminated;
+        public Shader selfIlluminateShader;
         internal SFML.Graphics.RenderStates renderStates;
         internal SFML.Graphics.Sprite drawableSource;
 
@@ -23,6 +23,12 @@ namespace SpaceBagel
         {
             this.shader = shader;
             this.renderStates.Shader = this.shader.SFMLshader;
+        }
+
+        public void RemoveShader()
+        {
+            this.shader = null;
+            this.renderStates.Shader = null;
         }
 
         public virtual void Update(Vector2 position, float deltaTime)
