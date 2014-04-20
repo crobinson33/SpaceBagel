@@ -79,6 +79,32 @@ namespace SpaceBagel
 			}
 			return false;
 		}
+
+		/// <summary>
+		/// Call this only to see if it is the only key down.
+		/// </summary>
+		/// <returns><c>true</c> if this instance is only key down the specified keyCode; otherwise, <c>false</c>.</returns>
+		/// <param name="keyCode">Key code.</param>
+		public bool IsOnlyKeyDown(Key.KeyCode keyCode)
+		{
+			// first make sure the key is down.
+			if (IsKeyDown(keyCode))
+			{
+				foreach (Key.KeyCode key in allKeys)
+				{
+					if (IsKeyDown(key) && key != keyCode)
+					{
+						return false;
+					}
+				}
+				// we made it through the loop without returning! must be the only one down.
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
 	}
 }
 
