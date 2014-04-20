@@ -79,6 +79,11 @@ namespace SpaceBagel
             target.Draw(sLight.array, sLight.renderStates);
         }
 
+        public void Draw(Collider collider, Vector2 position, float deltaTime)
+        {
+            target.Draw(collider.debugDraw);
+        }
+
         public void Draw(Surface surface, float deltaTime)
         {
             target.Draw(surface.vertexArray, surface.renderStates);

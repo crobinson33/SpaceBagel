@@ -16,6 +16,9 @@ namespace SpaceBagel
 		public Vector2 velocity;
 		public Vector2 position;
 
+        internal SFML.Graphics.VertexArray debugDraw;
+        public bool debug;
+
 		public Vector2 size;
         public float radius;
 
@@ -85,6 +88,11 @@ namespace SpaceBagel
         public virtual void CalculatePoints()
         {
 
+        }
+
+        public virtual void DrawDebugBox(Surface surface, float deltaTime)
+        {
+            surface.Draw(this, this.position, deltaTime);
         }
 
         public void AddTagToIgnore(string tag)

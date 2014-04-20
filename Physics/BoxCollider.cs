@@ -7,6 +7,12 @@ namespace SpaceBagel
 	/// </summary>
 	public class BoxCollider : Collider
 	{
+        public Vertex debugV1;
+        public Vertex debugV2;
+        public Vertex debugV3;
+        public Vertex debugV4;
+        public Vertex debugV5;
+
         /// <summary>
         /// Default constructor. We always have to have a tag.
         /// </summary>
@@ -14,13 +20,52 @@ namespace SpaceBagel
 		public BoxCollider (string tag) : base(tag)
 		{
             CalculatePoints();
+
+            debugDraw = new SFML.Graphics.VertexArray(SFML.Graphics.PrimitiveType.LinesStrip);
+            debugV1 = new Vertex(this.topLeft, Color.Green);
+            debugV2 = new Vertex(new Vector2((this.topLeft.X + size.X), this.topLeft.Y), Color.Green);
+            debugV3 = new Vertex(this.bottomRight, Color.Green);
+            debugV4 = new Vertex(new Vector2((this.bottomRight.X - size.X), this.bottomRight.Y), Color.Green);
+            debugV5 = debugV1;
+            debugDraw.Append(debugV1.SFMLVertex);
+            debugDraw.Append(debugV2.SFMLVertex);
+            debugDraw.Append(debugV3.SFMLVertex);
+            debugDraw.Append(debugV4.SFMLVertex);
+            debugDraw.Append(debugV5.SFMLVertex);
 		}
 
 		public BoxCollider(string tag, Vector2 size, Vector2 pos) : base(size, pos, new Vector2(0, 0))
 		{
             this.tag = tag;
             CalculatePoints();
+
+            debugDraw = new SFML.Graphics.VertexArray(SFML.Graphics.PrimitiveType.LinesStrip);
+            debugV1 = new Vertex(this.topLeft, Color.Green);
+            debugV2 = new Vertex(new Vector2((this.topLeft.X + size.X), this.topLeft.Y), Color.Green);
+            debugV3 = new Vertex(this.bottomRight, Color.Green);
+            debugV4 = new Vertex(new Vector2((this.bottomRight.X - size.X), this.bottomRight.Y), Color.Green);
+            debugV5 = debugV1;
+            debugDraw.Append(debugV1.SFMLVertex);
+            debugDraw.Append(debugV2.SFMLVertex);
+            debugDraw.Append(debugV3.SFMLVertex);
+            debugDraw.Append(debugV4.SFMLVertex);
+            debugDraw.Append(debugV5.SFMLVertex);
 		}
+
+        public void UpdateVertices()
+        {
+            debugV1.position = topLeft;
+            debugV2.position = new Vector2((this.topLeft.X + size.X), this.topLeft.Y);
+            debugV3.position = this.bottomRight;
+            debugV4.position = new Vector2((this.bottomRight.X - size.X), this.bottomRight.Y);
+            debugV5.position = debugV1.position;
+            debugDraw.Clear();
+            debugDraw.Append(debugV1.SFMLVertex);
+            debugDraw.Append(debugV2.SFMLVertex);
+            debugDraw.Append(debugV3.SFMLVertex);
+            debugDraw.Append(debugV4.SFMLVertex);
+            debugDraw.Append(debugV5.SFMLVertex);
+        }
 
         public void AddVelocity(Vector2 vel)
         {
