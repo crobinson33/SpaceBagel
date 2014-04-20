@@ -22,10 +22,10 @@ namespace SpaceBagel
             CalculatePoints();
 
             debugDraw = new SFML.Graphics.VertexArray(SFML.Graphics.PrimitiveType.LinesStrip);
-            debugV1 = new Vertex(this.topLeft, Color.Green);
-            debugV2 = new Vertex(new Vector2((this.topLeft.X + size.X), this.topLeft.Y), Color.Green);
-            debugV3 = new Vertex(this.bottomRight, Color.Green);
-            debugV4 = new Vertex(new Vector2((this.bottomRight.X - size.X), this.bottomRight.Y), Color.Green);
+            debugV1 = new Vertex(this.position, Color.Green);
+            debugV2 = new Vertex(new Vector2((this.position.X + size.X), this.position.Y), Color.Green);
+            debugV3 = new Vertex(new Vector2((this.position.X + size.X), (this.position.Y + size.Y)), Color.Green);
+            debugV4 = new Vertex(new Vector2(this.position.X, (this.position.Y + size.Y)), Color.Green);
             debugV5 = debugV1;
             debugDraw.Append(debugV1.SFMLVertex);
             debugDraw.Append(debugV2.SFMLVertex);
@@ -40,10 +40,10 @@ namespace SpaceBagel
             CalculatePoints();
 
             debugDraw = new SFML.Graphics.VertexArray(SFML.Graphics.PrimitiveType.LinesStrip);
-            debugV1 = new Vertex(this.topLeft, Color.Green);
-            debugV2 = new Vertex(new Vector2((this.topLeft.X + size.X), this.topLeft.Y), Color.Green);
-            debugV3 = new Vertex(this.bottomRight, Color.Green);
-            debugV4 = new Vertex(new Vector2((this.bottomRight.X - size.X), this.bottomRight.Y), Color.Green);
+            debugV1 = new Vertex(this.position, Color.Green);
+            debugV2 = new Vertex(new Vector2((this.position.X + size.X), this.position.Y), Color.Green);
+            debugV3 = new Vertex(new Vector2((this.position.X + size.X), (this.position.Y + size.Y)), Color.Green);
+            debugV4 = new Vertex(new Vector2(this.position.X, (this.position.Y + size.Y)), Color.Green);
             debugV5 = debugV1;
             debugDraw.Append(debugV1.SFMLVertex);
             debugDraw.Append(debugV2.SFMLVertex);
@@ -54,10 +54,10 @@ namespace SpaceBagel
 
         public void UpdateVertices()
         {
-            debugV1.position = topLeft;
-            debugV2.position = new Vector2((this.topLeft.X + size.X), this.topLeft.Y);
-            debugV3.position = this.bottomRight;
-            debugV4.position = new Vector2((this.bottomRight.X - size.X), this.bottomRight.Y);
+            debugV1 = new Vertex(this.position, Color.Green);
+            debugV2 = new Vertex(new Vector2((this.position.X + size.X), this.position.Y), Color.Green);
+            debugV3 = new Vertex(new Vector2((this.position.X + size.X), (this.position.Y + size.Y)), Color.Green);
+            debugV4 = new Vertex(new Vector2(this.position.X, (this.position.Y + size.Y)), Color.Green);
             debugV5.position = debugV1.position;
             debugDraw.Clear();
             debugDraw.Append(debugV1.SFMLVertex);
