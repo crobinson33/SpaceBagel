@@ -23,17 +23,36 @@ namespace SpaceBagel
 			foreach(CollisionInformation collision in collisions)
 			{
                 //Console.WriteLine("loop");
-				ResolveBoxCollision(collision);
+				//ResolveBoxCollision(collision);
+                ResolveCollision(collision);
 			}
 		}
 
-        public void ResolveCollision(CollisionInformation collision)
+        public void ResolveCollision(CollisionInformation info)
         {
-            if (collision.collisionNormal.X == -1)
+            float objectOneInvMass = (float)1 / info.objectOne.mass;
+            float objectTwoInvMass = (float)1 / info.objectTwo.mass;
+
+            float percent = 1f; // usually 20% to 80%
+            float slop = 0; // usually 0.01 to 0.1
+            Vector2 correction = Math.Max(info.penetrationAmount - slop, 0) / (objectOneInvMass + objectTwoInvMass) * percent * info.collisionNormal;
+            //Console.WriteLine("still have collision");
+
+            if (info.objectOne.tag != "characterMelee")
             {
-                Console.WriteLine("got here");
-                //Console.WriteLine(collision.objectOne.velocity);
-                collision.objectTwo.velocity.X *= -1;
+                //Console.WriteLine("-----" + collision.objectOne.tag + ", " + collision.objectTwo.tag);
+                Console.WriteLine("tag: " + info.objectOne.isStatic);
+            }
+
+            if (info.objectOne.isStatic != true)
+            {
+                Console.WriteLine("resolving one: " + (objectOneInvMass * correction));
+                info.objectOne.position -= objectOneInvMass * correction;
+            }
+            if (info.objectTwo.isStatic != true)
+            {
+                //Console.WriteLine("resolving two");
+                info.objectTwo.position += objectTwoInvMass * correction;
             }
         }
 
@@ -50,6 +69,7 @@ namespace SpaceBagel
 
 			// Calculate relative velocity in terms of the normal direction
             Vector2 forDot = new Vector2();
+            //Console.WriteLine(collision.collisionNormal);
 			float velAlongNormal = forDot.Dot(relativeVelocity, collision.collisionNormal);
 
             float objectOneInvMass = (float)1 / collision.objectOne.mass;
@@ -58,6 +78,7 @@ namespace SpaceBagel
 			// Do not resolve if velocities are separating
 			if(velAlongNormal > 0)
 			{
+                
 				return;
 			}
 
@@ -94,13 +115,21 @@ namespace SpaceBagel
             float percent = 0.1f; // usually 20% to 80%
             float slop = 0.01f; // usually 0.01 to 0.1
             Vector2 correction = Math.Max(collision.penetrationAmount - slop, 0) / (objectOneInvMass + objectTwoInvMass) * percent * collision.collisionNormal;
-            //Console.WriteLine(correction);
+            //Console.WriteLine("still have collision");
+
+            if (collision.objectOne.tag != "characterMelee")
+            {
+                //Console.WriteLine("-----" + collision.objectOne.tag + ", " + collision.objectTwo.tag);
+            }
+            
             if (collision.objectOne.isStatic != true)
             {
+                //Console.WriteLine("resolving one: " + (objectOneInvMass * correction));
                 collision.objectOne.position -= objectOneInvMass * correction;
             }
             if (collision.objectTwo.isStatic != true)
             {
+                //Console.WriteLine("resolving two");
                 collision.objectTwo.position += objectTwoInvMass * correction;
             }
 		}

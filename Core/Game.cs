@@ -29,17 +29,19 @@ namespace SpaceBagel
 
         Stopwatch timer;
         float deltaTime = 0;
+        float oneFrameBack = 0;
 
 		public Game ()
 		{
 			// Create the main window
 			window = new SFML.Graphics.RenderWindow(new SFML.Window.VideoMode(windowWidth, windowHeight), "SFML window with OpenGL");
-            window.SetFramerateLimit(15);
+            //window.SetFramerateLimit(15);
           
 			// Make it the active window for OpenGL calls
 			window.SetActive();
 
-            window.SetFramerateLimit(60);
+            //window.SetFramerateLimit(60);
+            window.SetVerticalSyncEnabled(true);
             timer = new Stopwatch();
             
 		}
@@ -65,11 +67,16 @@ namespace SpaceBagel
             currentLevel = num;
         }
 
+        //Stopwatch updateTime = new Stopwatch();
+        //Stopwatch renderTime = new Stopwatch();
+
 		/// <summary>
 		/// Start this instance.
 		/// </summary>
 		public void Start() {
             timer.Start();
+            //updateTime.Start();
+            //renderTime.Start();
 			window.GainedFocus += new EventHandler(GainedFocused);
 			window.Closed += new EventHandler(CloseWindow);
 			//window.Resized += new EventHandler(WindowResized);
@@ -77,37 +84,53 @@ namespace SpaceBagel
 			// ------ Main Game Loop ------
 			while (window.IsOpen())
 			{
-
                 deltaTime = ((float)timer.ElapsedMilliseconds / 1000);
-                if (deltaTime > 0.0161)
+                if (deltaTime >= 0.010)
                 {
+                    //Console.WriteLine("Milli: " + timer.ElapsedMilliseconds);
+                    //deltaTime = 0.015f;
+                    //deltaTime = ((float)timer.ElapsedMilliseconds / 1000);
                     //Console.WriteLine(deltaTime);
+                    if (deltaTime > 0.0161)
+                    {
+                        Console.WriteLine(deltaTime);
+                    }
+                    timer.Restart();
+
+                    //renderTime.Reset();
+                    //renderTime.Start();
+                    window.SetView(levels[currentLevel].camera.SFMLView);
+                    // Clear surface each frame
+                    levels[currentLevel].diffuseSurface.Clear(Color.Black);
+                    levels[currentLevel].lightMap.Clear(levels[currentLevel].ambientColor);
+                    //renderTime.Stop();
+
+                    //updateTime.Reset();
+                    //updateTime.Start();
+                    //physics
+                    levels[currentLevel].Update(deltaTime);
+
+                    //updateTime.Stop();
+
+                    //renderTime.Start();
+                    //draw
+                    levels[currentLevel].Draw(deltaTime);
+
+                    // Clear window each frame
+                    window.Clear(SFML.Graphics.Color.Black);
+
+                    // Display surface textures
+                    levels[currentLevel].diffuseSurface.Display();
+                    levels[currentLevel].lightMap.Display();
+
+                    // Draw to window each frame (include window.display)
+                    levels[currentLevel].diffuseSurface.DrawToWindow(window);
+                    //renderTime.Stop();
+
+
+                    //Console.WriteLine("update: " + updateTime.ElapsedMilliseconds + ", render: " + renderTime.ElapsedMilliseconds);
+
                 }
-                timer.Restart();
-
-                window.SetView(levels[currentLevel].camera.SFMLView);
-                // Clear surface each frame
-                levels[currentLevel].diffuseSurface.Clear(Color.Black);
-                levels[currentLevel].lightMap.Clear(levels[currentLevel].ambientColor);
-
-                //physics
-                levels[currentLevel].Update(deltaTime);
-
-                //draw
-                levels[currentLevel].Draw(deltaTime);
-
-                // Clear window each frame
-                window.Clear(SFML.Graphics.Color.Black);
-
-                // Display surface textures
-                levels[currentLevel].diffuseSurface.Display();
-                levels[currentLevel].lightMap.Display();
-
-                // Draw to window each frame (include window.display)
-                levels[currentLevel].diffuseSurface.DrawToWindow(window);
-
-                
-                
                 window.DispatchEvents();
 			}
 		}

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace SpaceBagel
@@ -39,6 +40,7 @@ namespace SpaceBagel
         public void DrawToWindow(SFML.Graphics.RenderWindow window)
         {
             window.Draw(vertexArray, renderStates);
+            
             window.Display();
         }
 

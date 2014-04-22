@@ -68,7 +68,6 @@ namespace SpaceBagel
 				return false;
 			}
 
-
 			Vector2 collisionNormal;
             
 		
@@ -78,6 +77,7 @@ namespace SpaceBagel
 			// Calculate half extents along x axis for each object
 			float colliderOne_extent = ((colliderOne.position.X + colliderOne.size.X) - colliderOne.position.X) * 0.5f;
             float colliderTwo_extent = ((colliderTwo.position.X + colliderTwo.size.X) - colliderTwo.position.X) * 0.5f;
+
 
 			if (colliderOne_extent > colliderTwo_extent)
 			{
@@ -89,7 +89,6 @@ namespace SpaceBagel
 				colliderOne_extent = colliderTwo_extent;
 			}
 
-			// Calculate overlap on x axis
 			float x_overlap = colliderOne_extent + colliderTwo_extent - Math.Abs(normal.X);
 
 			// SAT test on x axis
@@ -113,10 +112,14 @@ namespace SpaceBagel
 				// Calculate overlap on y axis
 				float y_overlap = colliderOne_extent2 + colliderTwo_extent2 - Math.Abs(normal.Y);
 
+                if (colliderOne.tag == "one" && colliderTwo.tag == "box1")
+                {
+                    Console.WriteLine("collsion! x: " + x_overlap + ", y: " + y_overlap);
+                }
 				//Console.WriteLine ("x: " + x_overlap + ", y: " + y_overlap);
 
 				// SAT test on y axis
-				if(y_overlap > 0)
+				if(y_overlap > 0) 
 				{
                     //Console.WriteLine("double overlap, what does it mean");
 					// Find out which axis is axis of least penetration
@@ -315,29 +318,73 @@ namespace SpaceBagel
             return true;
         }
 
-        public bool BoxVsBox(Collider one, Collider two)
+        public bool BoxVsBox(Collider colliderOne, Collider colliderTwo, CollisionInformation collisionInfo)
         {
-            /*
-            if (one.position.X + one.size.X > two.position.X && one.position.X < two.position.X + two.size.X)
+            if (colliderOne.position.X + colliderOne.size.X < colliderTwo.position.X || colliderOne.position.X > colliderTwo.position.X + colliderTwo.size.X)
             {
-                if (one.position.Y > two.position.Y && two.position.Y < two.position.Y + two.size.Y)
-                {
-                    Console.WriteLine(one.size + ", " + two.size);
-                    one.velocity *= -1;
-                    return true;
-                }
-            }*/
-
-            if ((Math.Abs(one.position.X - two.position.X) * 2 < (one.size.X + two.size.X)) &&
-            (Math.Abs(one.position.Y - two.position.Y) * 2 < (one.size.Y + two.size.Y)))
-            {
-                Console.WriteLine("got here");
-                two.velocity.X *= -1;
-                return true;
+                return false;
             }
-            Console.WriteLine("---");
+            if (colliderOne.position.Y + colliderOne.size.Y < colliderTwo.position.Y || colliderOne.position.Y > colliderTwo.position.Y + colliderTwo.size.Y)
+            {
+                return false;
+            }
 
-            return false;
+            Vector2 normal = new Vector2();
+
+            // we now know we have a collision. 
+            // have to get collision normal now and penetration amount.
+            // woot.
+
+            // find biggest overlap?
+            float xLeft_overlap = Math.Abs((colliderOne.position.X + colliderOne.size.X) - colliderTwo.position.X);
+            float xRight_overlap = Math.Abs(colliderOne.position.X - (colliderTwo.position.X + colliderTwo.size.X));
+
+            float yTop_overlap = Math.Abs((colliderOne.position.Y + colliderOne.size.Y) - colliderTwo.position.Y);
+            float yBottom_overlap = Math.Abs(colliderOne.position.Y - (colliderTwo.position.Y + colliderTwo.size.Y));
+
+            float xBiggest = Math.Max(xLeft_overlap, xRight_overlap);
+            float yBiggest = Math.Max(yTop_overlap, yBottom_overlap);
+            //Console.WriteLine("x: " + xLeft_overlap + ", y: " + xRight_overlap);
+
+
+            if (xBiggest > yBiggest)
+            {
+                // one points towards two.
+                if (xLeft_overlap > xRight_overlap)
+                {
+                    //Console.WriteLine("left");
+                    normal = new Vector2(-1, 0);
+                }
+                else
+                {
+                    //Console.WriteLine("right");
+                    normal = new Vector2(1, 0);
+                }
+            }
+            else
+            {
+
+
+                if (yTop_overlap > yBottom_overlap)
+                {
+                    //Console.WriteLine("top");
+                    normal = new Vector2(0, -1);
+                }
+                else
+                {
+                    //Console.WriteLine("bottom");
+                    normal = new Vector2(0, 1);
+                }
+            }
+
+
+
+            collisionInfo.collisionNormal = normal;
+            collisionInfo.penetrationAmount = Math.Min(Math.Min(xLeft_overlap, xRight_overlap), Math.Min(yTop_overlap, yBottom_overlap));
+
+            //Console.WriteLine("nom: " + collisionInfo.collisionNormal + ", pen: " + xLeft_overlap + ", " + xRight_overlap + ", " + yTop_overlap + ", " + yBottom_overlap);
+
+            return true;
         }
 
 		/// <summary>
@@ -372,7 +419,11 @@ namespace SpaceBagel
 						        CollisionInformation collisionInfo = new CollisionInformation();
 
 								//Console.WriteLine (" hello");
-                                // we need to determine the type of collision
+                                //we need to determine the type of collision
+                                
+                                //test/
+                                //BoxVsBox(colliderOne, colliderTwo, collisionInfo);
+
                                 if (DoCollisionCheck(colliderOne, colliderTwo, collisionInfo))
                                 {
 									// we now need to check our triggers.
@@ -418,7 +469,7 @@ namespace SpaceBagel
             if (one.GetType() != typeof(CircleCollider) && two.GetType() != typeof(CircleCollider))
             {
                 //box v box
-                if (AABBvsAABB(one, two, info))
+                if (BoxVsBox(one, two, info))
                 {
                     //Console.WriteLine("COLLISION!");
                     info.collisionType = "AABBvsAABB";
