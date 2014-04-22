@@ -41,15 +41,16 @@ namespace SpaceBagel
             if (info.objectOne.tag != "characterMelee")
             {
                 //Console.WriteLine("-----" + collision.objectOne.tag + ", " + collision.objectTwo.tag);
-                Console.WriteLine("tag: " + info.objectOne.isStatic);
+                //Console.WriteLine("tag: " + info.objectOne.GetType() + ", " + info.objectTwo.GetType());
             }
 
-            if (info.objectOne.isStatic != true)
+            // handling normal resolutions.
+            if (info.objectOne.isStatic != true)// && info.objectOne.GetType() != typeof(CharacterCollider))
             {
-                Console.WriteLine("resolving one: " + (objectOneInvMass * correction));
+                //Console.WriteLine("resolving one: " + (objectOneInvMass * correction));
                 info.objectOne.position -= objectOneInvMass * correction;
             }
-            if (info.objectTwo.isStatic != true)
+            if (info.objectTwo.isStatic != true)// && info.objectTwo.GetType() != typeof(CharacterCollider))
             {
                 //Console.WriteLine("resolving two");
                 info.objectTwo.position += objectTwoInvMass * correction;
