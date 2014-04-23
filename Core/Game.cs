@@ -69,6 +69,9 @@ namespace SpaceBagel
 
         //Stopwatch updateTime = new Stopwatch();
         //Stopwatch renderTime = new Stopwatch();
+        Time fixedTime = Time.FromSeconds(1.0f / 60.0f);
+        Clock clock = new Clock();
+        Time accum = Time.Zero;
 
 		/// <summary>
 		/// Start this instance.
@@ -85,9 +88,22 @@ namespace SpaceBagel
 			while (window.IsOpen())
 			{
                 //deltaTime = ((float)timer.ElapsedMilliseconds / 1000);
-                deltaTime = (float)new TimeSpan(timer.ElapsedTicks).Milliseconds / 1000;
+                //deltaTime = (float)new TimeSpan(timer.ElapsedTicks).Milliseconds / 1000;
                 //Console.WriteLine("---");
                 //Console.WriteLine((float)new TimeSpan(timer.ElapsedTicks).Milliseconds / 1000);
+
+                accum += clock.Restart();
+
+                while (accum >= fixedTime)
+                {
+                    Console.WriteLine("updating game");
+                    levels[currentLevel].Update((float)fixedTime.Seconds);
+
+                    accum -= fixedTime;
+                }
+                //Console.WriteLine("drawing");
+
+                /*
                 if (deltaTime >= 0.016)
                 {
                     //Console.WriteLine("Milli: " + timer.ElapsedMilliseconds);
@@ -107,7 +123,7 @@ namespace SpaceBagel
 
                     //Console.WriteLine("update: " + updateTime.ElapsedMilliseconds + ", render: " + renderTime.ElapsedMilliseconds + ", Frame: " + deltaTime);
                     timer.Restart();
-                }
+                }*/
 
                 //renderTime.Reset();
                 //renderTime.Start();
@@ -121,7 +137,7 @@ namespace SpaceBagel
 
                 //renderTime.Start();
                 //draw
-                levels[currentLevel].Draw(deltaTime);
+                levels[currentLevel].Draw(fixedTime.Milliseconds);
 
                 // Clear window each frame
                 window.Clear(SFML.Graphics.Color.Black);

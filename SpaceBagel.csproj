@@ -72,6 +72,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Time\Clock.cs" />
+    <Compile Include="Core\Time\Stopwatch.cs" />
+    <Compile Include="Core\Time\Time.cs" />
+    <Compile Include="Core\Time\Timer.cs" />
     <Compile Include="Core\Util.cs" />
     <Compile Include="Graphics\BaseDrawable.cs" />
     <Compile Include="Graphics\Camera.cs" />
