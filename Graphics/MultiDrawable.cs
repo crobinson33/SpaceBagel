@@ -37,7 +37,7 @@ namespace SpaceBagel
             drawableParts.Add(drawable);
         }
 
-        public void Update(Vector2 position, float deltaTime)
+        public override void Update(Vector2 position, float deltaTime)
         {
             baseDrawable.Update(position, deltaTime);
             foreach (BaseDrawable drawable in drawableParts)

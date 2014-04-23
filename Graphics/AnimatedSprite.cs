@@ -83,6 +83,7 @@ namespace SpaceBagel
 
         public override void Update(Vector2 position, float deltaTime)
         {
+            Console.WriteLine("got to asprite update");
             animationController.AdvanceFrame(deltaTime);
             drawableSource.Position = position.SFMLVector2;
             //Console.WriteLine(drawableSource.Position);

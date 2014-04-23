@@ -22,7 +22,7 @@ namespace SpaceBagel
             this.name = name;
             this.startingFrame = startingFrame;
             this.numFrames = numFrames;
-            this.speed = speed * 0.08f;
+            this.speed = speed * 0.1f;
             this.flip = false;
             //this.animType = (int)animType;
 		}
@@ -32,7 +32,7 @@ namespace SpaceBagel
             this.name = name;
             this.startingFrame = startingFrame;
             this.numFrames = numFrames;
-            this.speed = 0.08f;
+            this.speed = 0.1f;
             this.flip = false;
             //this.animType = (int)animType;
         }
@@ -42,7 +42,7 @@ namespace SpaceBagel
             this.name = name;
             this.startingFrame = startingFrame;
             this.numFrames = numFrames;
-            this.speed = 0.08f;
+            this.speed = 0.1f;
             this.flip = flip;
             //this.animType = (int)animType;
         }

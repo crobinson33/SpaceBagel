@@ -127,7 +127,7 @@ namespace SpaceBagel
             {
                 light.Draw(lightMap, deltaTime);
             }
-            diffuseSurface.Draw(lightMap, deltaTime);
+            diffuseSurface.Draw(lightMap);
         }
 	}
 }

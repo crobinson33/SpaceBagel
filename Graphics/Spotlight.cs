@@ -81,7 +81,7 @@ namespace SpaceBagel
 
         public override void Draw(Surface surface, float deltaTime)
         {
-            surface.Draw(this, position, deltaTime);
+            surface.Draw(this);
         }
     }
 }

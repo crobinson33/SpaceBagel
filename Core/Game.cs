@@ -104,6 +104,7 @@ namespace SpaceBagel
 
                 //renderTime.Start();
                 //draw
+                //Console.WriteLine((float)clock.ElapsedTime.Seconds);
                 levels[currentLevel].Draw((float)clock.ElapsedTime.Seconds);
 
                 // Clear window each frame

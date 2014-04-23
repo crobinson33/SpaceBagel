@@ -92,7 +92,7 @@ namespace SpaceBagel
 
         public virtual void DrawDebugBox(Surface surface, float deltaTime)
         {
-            surface.Draw(this, this.position, deltaTime);
+            surface.Draw(this);
         }
 
         public void AddTagToIgnore(string tag)
