@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SpaceBagel
 {
-    public class MultiDrawable
+    public class MultiDrawable : BaseDrawable
     {
         internal List<BaseDrawable> drawableParts;
         public BaseDrawable baseDrawable;
@@ -15,7 +15,21 @@ namespace SpaceBagel
         {
             drawableParts = new List<BaseDrawable>();
             this.baseDrawable = baseDrawable;
+            this.width = baseDrawable.width;
+            this.height = baseDrawable.height;
+            this.yRenderOffset = baseDrawable.yRenderOffset;
             drawPartsInFront = true;
+        }
+
+        public MultiDrawable(BaseDrawable baseDrawable, int z)
+        {
+            drawableParts = new List<BaseDrawable>();
+            this.baseDrawable = baseDrawable;
+            this.width = baseDrawable.width;
+            this.height = baseDrawable.height;
+            this.yRenderOffset = baseDrawable.yRenderOffset;
+            drawPartsInFront = true;
+            this.z = z;
         }
 
         public void AddDrawable(BaseDrawable drawable)
@@ -26,9 +40,9 @@ namespace SpaceBagel
         public void Update(Vector2 position, float deltaTime)
         {
             baseDrawable.Update(position, deltaTime);
-            foreach (BaseDrawable obj in drawableParts)
+            foreach (BaseDrawable drawable in drawableParts)
             {
-                obj.Update(position, deltaTime);
+                drawable.Update(position, deltaTime);
             }
         }
     }

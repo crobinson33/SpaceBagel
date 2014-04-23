@@ -6,6 +6,7 @@ namespace SpaceBagel
 	{
 		public Vector2 position { get; set; }
         public string tag;
+        public BaseDrawable objectDrawable;
 
 		public BaseObject (string tag)
 		{

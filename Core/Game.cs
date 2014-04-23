@@ -93,7 +93,7 @@ namespace SpaceBagel
                     //Console.WriteLine(deltaTime);
                     if (deltaTime > 0.0161)
                     {
-                        Console.WriteLine(deltaTime);
+                        //Console.WriteLine(deltaTime);
                     }
                     timer.Restart();
 

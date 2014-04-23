@@ -58,7 +58,22 @@ namespace SpaceBagel
             debugV2 = new Vertex(new Vector2((this.position.X + size.X), this.position.Y), Color.Green);
             debugV3 = new Vertex(new Vector2((this.position.X + size.X), (this.position.Y + size.Y)), Color.Green);
             debugV4 = new Vertex(new Vector2(this.position.X, (this.position.Y + size.Y)), Color.Green);
-            debugV5.position = debugV1.position;
+            debugV5 = debugV1;
+            debugDraw.Clear();
+            debugDraw.Append(debugV1.SFMLVertex);
+            debugDraw.Append(debugV2.SFMLVertex);
+            debugDraw.Append(debugV3.SFMLVertex);
+            debugDraw.Append(debugV4.SFMLVertex);
+            debugDraw.Append(debugV5.SFMLVertex);
+        }
+
+        public void UpdateVertices(Color color)
+        {
+            debugV1 = new Vertex(this.position, color);
+            debugV2 = new Vertex(new Vector2((this.position.X + size.X), this.position.Y), color);
+            debugV3 = new Vertex(new Vector2((this.position.X + size.X), (this.position.Y + size.Y)), color);
+            debugV4 = new Vertex(new Vector2(this.position.X, (this.position.Y + size.Y)), color);
+            debugV5 = debugV1;
             debugDraw.Clear();
             debugDraw.Append(debugV1.SFMLVertex);
             debugDraw.Append(debugV2.SFMLVertex);

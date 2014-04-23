@@ -13,6 +13,10 @@ namespace SpaceBagel
 		public int width;
 		public int height;
         public int z;
+
+        // distance down from position to use for y sorting of drawables
+        public int yRenderOffset;
+
         public Color color;
         public Shader shader;
         public Shader selfIlluminateShader;
