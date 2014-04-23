@@ -55,6 +55,7 @@ namespace SpaceBagel
             {
                 if (timeSinceFrame > activeAnimation.speed)
                 {
+                    //Console.WriteLine(timeSinceFrame + " has passed since frame");
                     if (curFrame < ((activeAnimation.startingFrame + activeAnimation.numFrames) - 1))
                     {
                         if (dontLoop && hasReachedEnd)
