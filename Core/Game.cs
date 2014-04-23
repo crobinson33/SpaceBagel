@@ -84,53 +84,56 @@ namespace SpaceBagel
 			// ------ Main Game Loop ------
 			while (window.IsOpen())
 			{
-                deltaTime = ((float)timer.ElapsedMilliseconds / 1000);
-                if (deltaTime >= 0.010)
+                //deltaTime = ((float)timer.ElapsedMilliseconds / 1000);
+                deltaTime = (float)new TimeSpan(timer.ElapsedTicks).Milliseconds / 1000;
+                //Console.WriteLine("---");
+                //Console.WriteLine((float)new TimeSpan(timer.ElapsedTicks).Milliseconds / 1000);
+                if (deltaTime >= 0.016)
                 {
                     //Console.WriteLine("Milli: " + timer.ElapsedMilliseconds);
                     //deltaTime = 0.015f;
                     //deltaTime = ((float)timer.ElapsedMilliseconds / 1000);
-                    //Console.WriteLine(deltaTime);
+                    Console.WriteLine(deltaTime);
                     if (deltaTime > 0.0161)
                     {
                         //Console.WriteLine(deltaTime);
                     }
-                    timer.Restart();
-
-                    //renderTime.Reset();
-                    //renderTime.Start();
-                    window.SetView(levels[currentLevel].camera.SFMLView);
-                    // Clear surface each frame
-                    levels[currentLevel].diffuseSurface.Clear(Color.Black);
-                    levels[currentLevel].lightMap.Clear(levels[currentLevel].ambientColor);
-                    //renderTime.Stop();
-
                     //updateTime.Reset();
                     //updateTime.Start();
                     //physics
                     levels[currentLevel].Update(deltaTime);
 
-                    //updateTime.Stop();
+                    
 
-                    //renderTime.Start();
-                    //draw
-                    levels[currentLevel].Draw(deltaTime);
-
-                    // Clear window each frame
-                    window.Clear(SFML.Graphics.Color.Black);
-
-                    // Display surface textures
-                    levels[currentLevel].diffuseSurface.Display();
-                    levels[currentLevel].lightMap.Display();
-
-                    // Draw to window each frame (include window.display)
-                    levels[currentLevel].diffuseSurface.DrawToWindow(window);
-                    //renderTime.Stop();
-
-
-                    //Console.WriteLine("update: " + updateTime.ElapsedMilliseconds + ", render: " + renderTime.ElapsedMilliseconds);
-
+                    //Console.WriteLine("update: " + updateTime.ElapsedMilliseconds + ", render: " + renderTime.ElapsedMilliseconds + ", Frame: " + deltaTime);
+                    timer.Restart();
                 }
+
+                //renderTime.Reset();
+                //renderTime.Start();
+                window.SetView(levels[currentLevel].camera.SFMLView);
+                // Clear surface each frame
+                levels[currentLevel].diffuseSurface.Clear(Color.Black);
+                levels[currentLevel].lightMap.Clear(levels[currentLevel].ambientColor);
+                //renderTime.Stop();
+
+                //updateTime.Stop();
+
+                //renderTime.Start();
+                //draw
+                levels[currentLevel].Draw(deltaTime);
+
+                // Clear window each frame
+                window.Clear(SFML.Graphics.Color.Black);
+
+                // Display surface textures
+                levels[currentLevel].diffuseSurface.Display();
+                levels[currentLevel].lightMap.Display();
+
+                // Draw to window each frame (include window.display)
+                levels[currentLevel].diffuseSurface.DrawToWindow(window);
+                //renderTime.Stop();
+
                 window.DispatchEvents();
 			}
 		}
