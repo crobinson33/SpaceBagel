@@ -137,7 +137,7 @@ namespace SpaceBagel
 
                 //renderTime.Start();
                 //draw
-                levels[currentLevel].Draw(fixedTime.Milliseconds);
+                levels[currentLevel].Draw((float)fixedTime.Seconds);
 
                 // Clear window each frame
                 window.Clear(SFML.Graphics.Color.Black);
