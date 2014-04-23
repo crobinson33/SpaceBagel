@@ -114,7 +114,7 @@ namespace SpaceBagel
 
                 if (colliderOne.tag == "one" && colliderTwo.tag == "box1")
                 {
-                    Console.WriteLine("collsion! x: " + x_overlap + ", y: " + y_overlap);
+                    //Console.WriteLine("collsion! x: " + x_overlap + ", y: " + y_overlap);
                 }
 				//Console.WriteLine ("x: " + x_overlap + ", y: " + y_overlap);
 

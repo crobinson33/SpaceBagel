@@ -161,7 +161,7 @@ namespace SpaceBagel
 
         public void GainedFocused(object sender, EventArgs e)
         {
-            Console.WriteLine("got here");
+            //Console.WriteLine("got here");
             //window.
         }
 

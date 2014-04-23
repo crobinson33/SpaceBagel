@@ -19,7 +19,7 @@ namespace SpaceBagel
         public virtual void Update(float deltaTime)
         {
             objectDrawable.Update(this.position, deltaTime);
-            Console.WriteLine("got to baseupdate");
+            //Console.WriteLine("got to baseupdate");
         }
 
         public virtual void Draw(Surface diffuseSurface, Surface lightMap, float deltaTime)

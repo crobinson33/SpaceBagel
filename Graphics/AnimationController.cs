@@ -45,7 +45,7 @@ namespace SpaceBagel
             int frameCol;
             int frameRow;
             timeSinceFrame += (2 * deltaTime);
-            Console.WriteLine(timeSinceFrame);
+            //Console.WriteLine(timeSinceFrame);
 
             if (animChanged)
             {
