@@ -32,5 +32,10 @@ namespace SpaceBagel
             //return new Vector2(SFMLView.Viewport.Left + SFMLView.Viewport.Width, SFMLView.Viewport.Top + SFMLView.Viewport.Height);
         }
 
+        public Vector2 GetCurCenter()
+        {
+            return new Vector2(SFMLView.Center.X, SFMLView.Center.Y);
+        }
+
     }
 }

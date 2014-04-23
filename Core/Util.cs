@@ -44,5 +44,10 @@ namespace SpaceBagel
                 return value;
             }
         }
+
+        public static Vector2 Lerp(Vector2 start, Vector2 end, float amount)
+        {
+            return start + ((end - start) * amount);
+        }
     }
 }
