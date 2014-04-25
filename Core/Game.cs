@@ -96,7 +96,7 @@ namespace SpaceBagel
                 //renderTime.Start();
                 window.SetView(levels[currentLevel].camera.SFMLView);
                 // Clear surface each frame
-                levels[currentLevel].diffuseSurface.Clear(Color.Black);
+                levels[currentLevel].diffuseSurface.Clear(Color.Blue);
                 levels[currentLevel].lightMap.Clear(levels[currentLevel].ambientColor);
                 //renderTime.Stop();
 

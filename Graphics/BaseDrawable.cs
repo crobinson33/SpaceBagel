@@ -14,6 +14,8 @@ namespace SpaceBagel
 		public int height;
         public int z;
 
+        public Vector2 drawingOffset = new Vector2(0, 0);
+
         // distance down from position to use for y sorting of drawables
         public int yRenderOffset;
 

@@ -39,10 +39,10 @@ namespace SpaceBagel
 
         public override void Update(Vector2 position, float deltaTime)
         {
-            baseDrawable.Update(position, deltaTime);
+            baseDrawable.Update(position + baseDrawable.drawingOffset, deltaTime);
             foreach (BaseDrawable drawable in drawableParts)
             {
-                drawable.Update(position, deltaTime);
+                drawable.Update(position + drawable.drawingOffset, deltaTime);
             }
         }
     }
