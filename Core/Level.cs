@@ -84,9 +84,14 @@ namespace SpaceBagel
                 obj.Update(deltaTime);
             }
 
-            foreach(BaseObject obj in objects)
+            /*foreach(BaseObject obj in objects)
             {
                 obj.Update(deltaTime);
+            }*/
+
+            for (int i = objects.Count - 1; i >= 0; i--)
+            {
+                objects[i].Update(deltaTime);
             }
 
             // Sort by lowest z, then position + yRenderOffset of a sprite
