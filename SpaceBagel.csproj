@@ -72,6 +72,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Manager.cs" />
     <Compile Include="Core\Time\Clock.cs" />
     <Compile Include="Core\Time\Stopwatch.cs" />
     <Compile Include="Core\Time\Time.cs" />

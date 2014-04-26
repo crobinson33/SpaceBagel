@@ -547,11 +547,12 @@ namespace SpaceBagel
 
         public bool CheckIfAlreadyInCollisionInfo(Collider one, Collider two, List<CollisionInformation> collisions)
         {
+            //Console.WriteLine(collisions.Count);
             foreach (CollisionInformation info in collisions)
             {
-                if (info.objectOne == one || info.objectTwo == one)
+                if (info.objectOne.tag == one.tag || info.objectTwo.tag == one.tag)
                 {
-                    if (info.objectOne == two || info.objectTwo == two)
+                    if (info.objectOne.tag == two.tag || info.objectTwo.tag == two.tag)
                     {
                         //Console.WriteLine("already in: (" + one.tag + ", " + two.tag + "), (" + info.objectOne.tag + ", " + info.objectTwo.tag + ")");
                         return true;

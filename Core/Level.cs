@@ -90,7 +90,7 @@ namespace SpaceBagel
             }
 
             // Sort by lowest z, then position + yRenderOffset of a sprite
-            this.objects = this.objects.OrderBy(o => o.objectDrawable.z).ThenBy(o => (o.position.Y + o.objectDrawable.yRenderOffset)).ToList();
+            //this.objects = this.objects.OrderBy(o => o.objectDrawable.z).ThenBy(o => (o.position.Y + o.objectDrawable.yRenderOffset)).ToList();
 
             foreach (BaseObject obj in foregroundObjs)
             {
