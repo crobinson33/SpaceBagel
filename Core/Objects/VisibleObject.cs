@@ -8,6 +8,7 @@ namespace SpaceBagel
     public class VisibleObject : BaseObject
     {
         public BaseDrawable objectDrawable;
+		public bool isAlive = true;
 
         public VisibleObject(string tag)
             : base(tag) { }
