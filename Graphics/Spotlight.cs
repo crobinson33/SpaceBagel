@@ -108,6 +108,7 @@ namespace SpaceBagel
             {
                 flickerAccumulator += deltaTime * flickerSpeed;
                 this.radius += (int)(Math.Sin(flickerAccumulator) * this.flickerIntensity);
+                //Console.WriteLine(this.radius);
             }
         }
 
