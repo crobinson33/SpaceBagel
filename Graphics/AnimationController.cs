@@ -9,7 +9,7 @@ namespace SpaceBagel
 	public class AnimationController
 	{
         public Vector2 curFrameCoords;
-        private int curFrame;
+        public int curFrame;
         public Animation activeAnimation;
         public List<Animation> animations = new List<Animation>();
         public AnimatedSprite aSprite;
