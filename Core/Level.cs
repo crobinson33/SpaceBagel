@@ -6,7 +6,7 @@ namespace SpaceBagel
 {
 	public class Level
 	{
-        public List<BaseObject> backgroundObjs;
+        public List<VisibleObject> backgroundObjs;
         public List<VisibleObject> objects;
         public List<BaseObject> foregroundObjs;
         public List<BaseObject> managerObjects;
@@ -23,7 +23,7 @@ namespace SpaceBagel
 
         public Level(Surface diffuseSurface, Surface lightMap, Mouse mouse, Camera camera, Color ambientColor)
         {
-            backgroundObjs = new List<BaseObject>();
+            backgroundObjs = new List<VisibleObject>();
             objects = new List<VisibleObject>();
             foregroundObjs = new List<BaseObject>();
             managerObjects = new List<BaseObject>();
@@ -48,12 +48,12 @@ namespace SpaceBagel
             objects.Remove(oldObject);
         }
 
-        public void AddBackgroundObject(BaseObject newObject)
+        public void AddBackgroundObject(VisibleObject newObject)
         {
             backgroundObjs.Add(newObject);
         }
 
-        public void RemoveBackgroundObject(BaseObject oldObject)
+        public void RemoveBackgroundObject(VisibleObject oldObject)
         {
             backgroundObjs.Remove(oldObject);
         }
@@ -91,7 +91,7 @@ namespace SpaceBagel
 
         public void Update(float deltaTime)
         {
-            foreach (BaseObject obj in backgroundObjs)
+            foreach (VisibleObject obj in backgroundObjs)
             {
                 obj.Update(deltaTime);
             }
@@ -130,7 +130,7 @@ namespace SpaceBagel
 
         public void Draw(float deltaTime)
         {
-            foreach (BaseObject obj in backgroundObjs)
+            foreach (VisibleObject obj in backgroundObjs)
             {
                 obj.Draw(diffuseSurface, lightMap, deltaTime);
             }

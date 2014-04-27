@@ -36,6 +36,7 @@ namespace SpaceBagel
 			// Create the main window
 			window = new SFML.Graphics.RenderWindow(new SFML.Window.VideoMode(windowWidth, windowHeight), "SFML window with OpenGL");
             //window.SetFramerateLimit(15);
+            window.SetTitle("Made with SpaceBagel");
           
 			// Make it the active window for OpenGL calls
 			window.SetActive();
