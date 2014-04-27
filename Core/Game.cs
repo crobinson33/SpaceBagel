@@ -39,7 +39,7 @@ namespace SpaceBagel
             window.SetTitle("Made with SpaceBagel");
           
 			// Make it the active window for OpenGL calls
-			window.SetActive();
+			//window.SetActive();
 
             //window.SetFramerateLimit(60);
             window.SetVerticalSyncEnabled(true);
@@ -47,12 +47,12 @@ namespace SpaceBagel
             
 		}
 
-        public Level AddLevel(Vector2 cameraSize, Vector2 levelSize, Color ambientColor)
+        public Level AddLevel(Vector2 cameraPos, Vector2 cameraSize, Vector2 levelSize, Color ambientColor)
         {
             Surface diffuseSurface = new Surface((uint)levelSize.X, (uint)levelSize.Y);
             Surface lightMap = new Surface((uint)levelSize.X, (uint)levelSize.Y);
             Mouse mouse = new Mouse(window);
-            Camera camera = new Camera(new Vector2(0, 0), cameraSize);
+            Camera camera = new Camera(cameraPos, cameraSize);
             Level newLevel = new Level(diffuseSurface, lightMap, mouse, camera, ambientColor);
             levels.Add(newLevel);
             return newLevel;
@@ -78,16 +78,31 @@ namespace SpaceBagel
 		/// Start this instance.
 		/// </summary>
 		public void Start() {
-            timer.Start();
+            
+			window.SetActive();
+
+			timer.Start();
             //updateTime.Start();
             //renderTime.Start();
 			window.GainedFocus += new EventHandler(GainedFocused);
 			window.Closed += new EventHandler(CloseWindow);
 			//window.Resized += new EventHandler(WindowResized);
 
+
 			// ------ Main Game Loop ------
 			while (window.IsOpen())
 			{
+
+				accum += clock.Restart();
+				
+				while (accum >= fixedTime)
+				{
+					//Console.WriteLine("updating game");
+					levels[currentLevel].Update((float)fixedTime.Seconds);
+					
+					accum -= fixedTime;
+				}
+
                 //deltaTime = ((float)timer.ElapsedMilliseconds / 1000);
                 //deltaTime = (float)new TimeSpan(timer.ElapsedTicks).Milliseconds / 1000;
                 //Console.WriteLine("---");
@@ -121,15 +136,7 @@ namespace SpaceBagel
 
 
 
-                accum += clock.Restart();
-
-                while (accum >= fixedTime)
-                {
-                    //Console.WriteLine("updating game");
-                    levels[currentLevel].Update((float)fixedTime.Seconds);
-
-                    accum -= fixedTime;
-                }
+                
                 //Console.WriteLine("drawing");
 
                 /*
