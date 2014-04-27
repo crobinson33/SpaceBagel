@@ -49,7 +49,10 @@ namespace SpaceBagel
 
         public Vector2 Normalize(float length)
         {
-            return new Vector2(this.X / Math.Abs(length), this.Y / Math.Abs(length));
+            //return new Vector2(this.X / Math.Abs(length), this.Y / Math.Abs(length));
+
+            float hyp = (float)Math.Sqrt(length);
+            return new Vector2(this.X / hyp, this.Y / hyp);
         }
 
         public void Normalize()
