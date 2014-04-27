@@ -11,6 +11,11 @@ namespace SpaceBagel
         public int points;
         public int radius;
         public bool attenuate;
+        public bool flicker;
+        public float flickerAccumulator;
+        public float flickerIntensity;
+        public float flickerSpeed;
+
         public Spotlight(int radius, Color color, Vector2 position, int points, float intensity)
         {
             this.color = color;
@@ -23,7 +28,9 @@ namespace SpaceBagel
             shader = new Shader(null, "shaders/calcLightIntensity.frag");
             this.AddShader(shader);
             this.intensity = intensity;
+            this.flicker = false;
         }
+
         public Spotlight (int radius, Color color, Vector2 position, int points, float intensity, bool attenuate)
 		{
             this.color = color;
@@ -37,7 +44,27 @@ namespace SpaceBagel
             shader = new Shader(null, "shaders/calcLightIntensity.frag");
             this.AddShader(shader);
             this.intensity = intensity;
+            this.flicker = false;
 		}
+
+        public Spotlight(int radius, Color color, Vector2 position, int points, float intensity, bool attenuate, bool flicker, float flickerIntensity, float flickerSpeed)
+        {
+            this.color = color;
+            this.position = position;
+            this.points = points;
+            this.radius = radius;
+            this.attenuate = attenuate;
+            this.array = createArray(attenuate);
+            renderStates = SFML.Graphics.RenderStates.Default;
+            renderStates.BlendMode = SFML.Graphics.BlendMode.Add;
+            shader = new Shader(null, "shaders/calcLightIntensity.frag");
+            this.AddShader(shader);
+            this.intensity = intensity;
+            this.flicker = flicker;
+            this.flickerAccumulator = 0;
+            this.flickerIntensity = flickerIntensity;
+            this.flickerSpeed = flickerSpeed;
+        }
 
         internal SFML.Graphics.VertexArray createArray(bool attenuate)
         {
@@ -77,6 +104,12 @@ namespace SpaceBagel
             this.position = position;
             array.Clear();
             array = createArray(attenuate);
+            if (flicker)
+            {
+                flickerAccumulator += deltaTime * flickerSpeed;
+                this.radius += (int)(Math.Sin(flickerAccumulator) * this.flickerIntensity);
+                Console.WriteLine(this.radius);
+            }
         }
 
         public override void Draw(Surface surface, float deltaTime)
