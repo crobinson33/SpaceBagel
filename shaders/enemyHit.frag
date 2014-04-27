@@ -4,9 +4,9 @@ void main()
 {
 	vec4 pixel = texture2D(texture, gl_TexCoord[0].xy);
 
-	vec3 white = vec3(1,1,1);
+	vec4 red = vec4(1,0,0,0);
 
-	vec3 calcTween = vec3(mix(white, pixel.rgb, tweenValue));
+	vec4 calcTween = vec4(mix(red, pixel, tweenValue));
 
-    gl_FragColor = vec4(calcTween,pixel.a);
+    gl_FragColor = vec4(calcTween.rgb, (pixel.a * calcTween.a));
 }
