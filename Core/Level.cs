@@ -7,8 +7,9 @@ namespace SpaceBagel
 	public class Level
 	{
         public List<BaseObject> backgroundObjs;
-        public List<BaseObject> objects;
+        public List<VisibleObject> objects;
         public List<BaseObject> foregroundObjs;
+        public List<BaseObject> managerObjects;
         public List<Light> lights;
         public Surface diffuseSurface;
         public Surface lightMap;
@@ -23,8 +24,9 @@ namespace SpaceBagel
         public Level(Surface diffuseSurface, Surface lightMap, Mouse mouse, Camera camera, Color ambientColor)
         {
             backgroundObjs = new List<BaseObject>();
-            objects = new List<BaseObject>();
+            objects = new List<VisibleObject>();
             foregroundObjs = new List<BaseObject>();
+            managerObjects = new List<BaseObject>();
             lights = new List<Light>();
             this.diffuseSurface = diffuseSurface;
             this.lightMap = lightMap;
@@ -36,12 +38,12 @@ namespace SpaceBagel
             this.ambientColor = ambientColor;
         }
 
-        public void AddObject(BaseObject newObject)
+        public void AddObject(VisibleObject newObject)
         {
             objects.Add(newObject);
         }
 
-        public void RemoveObject(BaseObject oldObject)
+        public void RemoveObject(VisibleObject oldObject)
         {
             objects.Remove(oldObject);
         }
@@ -64,6 +66,16 @@ namespace SpaceBagel
         public void RemoveForegroundObject(BaseObject oldObject)
         {
             foregroundObjs.Remove(oldObject);
+        }
+
+        public void AddManagerObject(BaseObject newObject)
+        {
+            managerObjects.Add(newObject);
+        }
+
+        public void RemoveManagerObject(BaseObject oldObject)
+        {
+            managerObjects.Remove(oldObject);
         }
 
         public void AddLight(Light newLight)
@@ -95,11 +107,16 @@ namespace SpaceBagel
             }
 
             // Sort by lowest z, then position + yRenderOffset of a sprite
-            //this.objects = this.objects.OrderBy(o => o.objectDrawable.z).ThenBy(o => (o.position.Y + o.objectDrawable.yRenderOffset)).ToList();
+            this.objects = this.objects.OrderBy(o => o.objectDrawable.z).ThenBy(o => (o.position.Y + o.objectDrawable.yRenderOffset)).ToList();
 
             foreach (BaseObject obj in foregroundObjs)
             {
                 obj.Update(deltaTime);
+            }
+
+            foreach (BaseObject manager in managerObjects)
+            {
+                manager.Update(deltaTime);
             }
 
             foreach (Light light in lights)
@@ -118,7 +135,7 @@ namespace SpaceBagel
                 obj.Draw(diffuseSurface, lightMap, deltaTime);
             }
 
-            foreach (BaseObject obj in objects)
+            foreach (VisibleObject obj in objects)
             {
                 obj.Draw(diffuseSurface, lightMap, deltaTime);
             }

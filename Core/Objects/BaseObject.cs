@@ -6,7 +6,7 @@ namespace SpaceBagel
 	{
 		public Vector2 position { get; set; }
         public string tag;
-        public BaseDrawable objectDrawable;
+
 
 		public BaseObject (string tag)
 		{
@@ -18,7 +18,6 @@ namespace SpaceBagel
         /// </summary>
         public virtual void Update(float deltaTime)
         {
-            objectDrawable.Update(this.position, deltaTime);
             //Console.WriteLine("got to baseupdate");
         }
 
