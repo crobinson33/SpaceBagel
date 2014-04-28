@@ -19,7 +19,7 @@ namespace SpaceBagel
 		public List<Level> levels = new List<Level>();
         public int currentLevel = 0;
 
-        public uint windowWidth = 1280;
+        public uint windowWidth = 960;
         public uint windowHeight = 800;
 
 		public SFML.Graphics.RenderWindow window;
